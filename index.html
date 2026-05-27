@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AudialMind — Week 1</title>
+<title>AudialMind — Roadmap</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
@@ -35,7 +35,6 @@
     overflow-x: hidden;
   }
 
-  /* Animated grid background */
   body::before {
     content: '';
     position: fixed;
@@ -48,15 +47,9 @@
     z-index: 0;
   }
 
-  /* Waveform SVG header decoration */
-  .waveform-header {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 60px;
-    opacity: 0.3;
-  }
-
-  /* === HERO === */
+  /* ========================
+     SHARED HERO
+  ======================== */
   .hero {
     position: relative;
     padding: 80px 48px 60px;
@@ -69,14 +62,12 @@
     position: absolute;
     top: -100px; left: -100px;
     width: 600px; height: 400px;
-    background: radial-gradient(ellipse, rgba(0,212,255,0.08) 0%, transparent 70%);
     pointer-events: none;
   }
   .hero-glow2 {
     position: absolute;
     top: 20px; right: -80px;
     width: 400px; height: 300px;
-    background: radial-gradient(ellipse, rgba(168,85,247,0.07) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -84,7 +75,6 @@
     font-family: 'Space Mono', monospace;
     font-size: 11px;
     letter-spacing: 0.2em;
-    color: var(--accent);
     text-transform: uppercase;
     margin-bottom: 20px;
     display: flex;
@@ -95,7 +85,6 @@
     content: '';
     display: block;
     width: 32px; height: 1px;
-    background: var(--accent);
   }
 
   .hero h1 {
@@ -107,11 +96,7 @@
     color: #fff;
     margin-bottom: 8px;
   }
-
-  .hero h1 span.mind {
-    color: var(--accent);
-    position: relative;
-  }
+  .hero h1 span.mind { color: var(--accent); }
 
   .week-badge {
     display: inline-flex;
@@ -119,7 +104,6 @@
     gap: 10px;
     margin-top: 24px;
     margin-bottom: 28px;
-    background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(168,85,247,0.1));
     border: 1px solid var(--border);
     border-radius: 4px;
     padding: 10px 20px;
@@ -128,7 +112,6 @@
     font-family: 'Space Mono', monospace;
     font-size: 28px;
     font-weight: 700;
-    color: var(--accent2);
     line-height: 1;
   }
   .week-badge .label {
@@ -150,7 +133,6 @@
     color: #7da0be;
   }
 
-  /* Animated waveform bars */
   .wave-anim {
     display: flex;
     align-items: center;
@@ -159,7 +141,6 @@
   }
   .wave-anim .bar {
     width: 3px;
-    background: var(--accent);
     border-radius: 2px;
     animation: wavebar 1.4s ease-in-out infinite;
     opacity: 0.6;
@@ -169,7 +150,69 @@
     50% { transform: scaleY(3.5); }
   }
 
-  /* === LAYOUT === */
+  /* ========================
+     TAB NAVIGATION
+  ======================== */
+  .tab-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(5,10,15,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .tab-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 18px 28px;
+    border: none;
+    background: none;
+    color: var(--muted);
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    transform: scaleX(0);
+    transition: transform 0.2s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: #fff; }
+  .tab-btn.active::after { transform: scaleX(1); }
+
+  .tab-btn.w1::after { background: var(--accent); }
+  .tab-btn.w2::after { background: var(--accent3); }
+  .tab-btn.active.w1 { color: var(--accent); }
+  .tab-btn.active.w2 { color: var(--accent3); }
+
+  .tab-done {
+    font-size: 9px;
+    color: #4ade80;
+    margin-left: 6px;
+    letter-spacing: 0;
+  }
+
+  /* ========================
+     WEEK PANELS
+  ======================== */
+  .week-panel { display: none; }
+  .week-panel.active { display: block; }
+
+  /* ========================
+     LAYOUT
+  ======================== */
   .container {
     position: relative;
     z-index: 1;
@@ -178,7 +221,9 @@
     padding: 0 48px 80px;
   }
 
-  /* === SECTION HEADERS === */
+  /* ========================
+     SECTION HEADERS
+  ======================== */
   .section-head {
     display: flex;
     align-items: baseline;
@@ -192,7 +237,7 @@
     font-weight: 800;
     font-size: 34px;
     color: #fff;
-}
+  }
   .section-head .section-tag {
     font-family: 'Space Mono', monospace;
     font-size: 10px;
@@ -208,18 +253,16 @@
     flex-shrink: 0;
   }
 
-  /* === CARDS GRID === */
+  /* ========================
+     CARDS
+  ======================== */
   .cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 16px;
   }
-  .cards.wide {
-    grid-template-columns: 1fr;
-  }
-  .cards.two {
-    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-  }
+  .cards.wide { grid-template-columns: 1fr; }
+  .cards.two  { grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); }
 
   .card {
     background: var(--surface);
@@ -234,20 +277,26 @@
     display: block;
     color: inherit;
   }
-  .card:hover {
+  .w1-content .card:hover {
     border-color: var(--accent);
     transform: translateY(-2px);
     box-shadow: 0 8px 32px rgba(0,212,255,0.07);
+  }
+  .w2-content .card:hover {
+    border-color: var(--accent3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(168,85,247,0.08);
   }
   .card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--accent), var(--accent3));
     opacity: 0;
     transition: opacity 0.2s;
   }
+  .w1-content .card::before { background: linear-gradient(90deg, var(--accent), var(--accent3)); }
+  .w2-content .card::before { background: linear-gradient(90deg, var(--accent3), var(--accent2)); }
   .card:hover::before { opacity: 1; }
 
   .card-tags {
@@ -265,13 +314,15 @@
     border-radius: 2px;
     font-weight: 700;
   }
-  .tag.video    { background: rgba(255,107,53,0.15); color: var(--tag-video); border: 1px solid rgba(255,107,53,0.3); }
-  .tag.visual   { background: rgba(168,85,247,0.15); color: var(--tag-visual); border: 1px solid rgba(168,85,247,0.3); }
-  .tag.article  { background: rgba(0,212,255,0.1);   color: var(--tag-article); border: 1px solid rgba(0,212,255,0.25); }
-  .tag.interactive { background: rgba(34,197,94,0.12); color: var(--tag-interactive); border: 1px solid rgba(34,197,94,0.3); }
-  .tag.course   { background: rgba(245,158,11,0.12); color: var(--tag-course); border: 1px solid rgba(245,158,11,0.3); }
-  .tag.free     { background: rgba(34,197,94,0.08); color: #4ade80; border: 1px solid rgba(34,197,94,0.2); }
-  .tag.paid     { background: rgba(245,158,11,0.08); color: #fbbf24; border: 1px solid rgba(245,158,11,0.2); }
+  .tag.video       { background: rgba(255,107,53,0.15);  color: var(--tag-video);       border: 1px solid rgba(255,107,53,0.3); }
+  .tag.visual      { background: rgba(168,85,247,0.15);  color: var(--tag-visual);      border: 1px solid rgba(168,85,247,0.3); }
+  .tag.article     { background: rgba(0,212,255,0.10);   color: var(--tag-article);     border: 1px solid rgba(0,212,255,0.25); }
+  .tag.interactive { background: rgba(34,197,94,0.12);   color: var(--tag-interactive); border: 1px solid rgba(34,197,94,0.3); }
+  .tag.course      { background: rgba(245,158,11,0.12);  color: var(--tag-course);      border: 1px solid rgba(245,158,11,0.2); }
+  .tag.free        { background: rgba(34,197,94,0.08);   color: #4ade80;                border: 1px solid rgba(34,197,94,0.2); }
+  .tag.paid        { background: rgba(245,158,11,0.08);  color: #fbbf24;                border: 1px solid rgba(245,158,11,0.2); }
+  .tag.tool        { background: rgba(0,212,255,0.08);   color: var(--accent);          border: 1px solid rgba(0,212,255,0.2); }
+  .tag.paper       { background: rgba(168,85,247,0.10);  color: #c084fc;                border: 1px solid rgba(168,85,247,0.25); }
 
   .card-title {
     font-family: 'Times New Roman', Times, serif;
@@ -284,10 +335,12 @@
   .card-source {
     font-family: 'Space Mono', monospace;
     font-size: 10px;
-    color: var(--accent);
     margin-bottom: 10px;
     letter-spacing: 0.05em;
   }
+  .w1-content .card-source { color: var(--accent); }
+  .w2-content .card-source { color: var(--accent3); }
+
   .card-desc {
     font-size: 13.5px;
     line-height: 1.65;
@@ -300,11 +353,12 @@
     margin-top: 16px;
     font-family: 'Space Mono', monospace;
     font-size: 11px;
-    color: var(--accent);
     text-decoration: none;
     letter-spacing: 0.05em;
     transition: gap 0.2s;
   }
+  .w1-content .card-link { color: var(--accent); }
+  .w2-content .card-link { color: var(--accent3); }
   .card-link:hover { gap: 10px; }
 
   .card-star {
@@ -316,12 +370,10 @@
     display: flex; align-items: center; gap: 4px;
   }
 
-  /* === LEARNING PATH === */
-  .path {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
+  /* ========================
+     LEARNING PATH
+  ======================== */
+  .path { display: flex; flex-direction: column; gap: 0; }
   .path-step {
     display: flex;
     gap: 24px;
@@ -335,13 +387,20 @@
     font-family: 'Space Mono', monospace;
     font-size: 11px;
     font-weight: 700;
-    color: var(--accent2);
-    background: rgba(255,107,53,0.1);
-    border: 1px solid rgba(255,107,53,0.3);
     border-radius: 4px;
     padding: 4px 10px;
     flex-shrink: 0;
     margin-top: 2px;
+  }
+  .w1-content .step-num {
+    color: var(--accent2);
+    background: rgba(255,107,53,0.1);
+    border: 1px solid rgba(255,107,53,0.3);
+  }
+  .w2-content .step-num {
+    color: var(--accent3);
+    background: rgba(168,85,247,0.10);
+    border: 1px solid rgba(168,85,247,0.30);
   }
   .step-body h3 {
     font-family: 'Times New Roman', Times, serif;
@@ -350,11 +409,7 @@
     color: #fff;
     margin-bottom: 4px;
   }
-  .step-body p {
-    font-size: 13px;
-    color: #5a7a96;
-    line-height: 1.6;
-  }
+  .step-body p { font-size: 13px; color: #5a7a96; line-height: 1.6; }
   .step-body .step-links {
     display: flex;
     flex-wrap: wrap;
@@ -373,15 +428,24 @@
     transition: border-color 0.15s, color 0.15s;
     letter-spacing: 0.04em;
   }
-  .step-link:hover { border-color: var(--accent); color: var(--accent); }
+  .w1-content .step-link:hover { border-color: var(--accent); color: var(--accent); }
+  .w2-content .step-link:hover { border-color: var(--accent3); color: var(--accent3); }
 
-  /* === QUOTE BLOCK === */
+  /* ========================
+     QUOTE BLOCK
+  ======================== */
   .quote-block {
     margin: 48px 0;
     padding: 28px 32px;
+    border-radius: 0 8px 8px 0;
+  }
+  .w1-content .quote-block {
     border-left: 3px solid var(--accent);
     background: linear-gradient(135deg, rgba(0,212,255,0.04), rgba(168,85,247,0.04));
-    border-radius: 0 8px 8px 0;
+  }
+  .w2-content .quote-block {
+    border-left: 3px solid var(--accent3);
+    background: linear-gradient(135deg, rgba(168,85,247,0.04), rgba(255,107,53,0.04));
   }
   .quote-block p {
     font-family: 'Times New Roman', Times, serif;
@@ -399,45 +463,15 @@
     font-style: normal;
   }
 
-  /* === DIVIDER === */
   .divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--border), transparent);
     margin: 16px 0;
   }
 
-  /* === FOOTER === */
-  footer {
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid var(--border);
-    padding: 32px 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  footer .foot-left {
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-  }
-  footer .foot-right {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-  .progress-pill {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    color: var(--accent);
-    background: rgba(0,212,255,0.08);
-    border: 1px solid rgba(0,212,255,0.2);
-    border-radius: 20px;
-    padding: 6px 14px;
-    letter-spacing: 0.08em;
-  }
-
-  /* === INTRO STATS === */
+  /* ========================
+     STATS ROW
+  ======================== */
   .stats-row {
     display: flex;
     gap: 24px;
@@ -461,30 +495,228 @@
     color: #fff;
     line-height: 1;
   }
-  .stat .val span { color: var(--accent); }
-  .stat .lbl {
+  .stat .lbl { font-size: 11px; color: var(--muted); letter-spacing: 0.05em; }
+
+  /* ========================
+     PIPELINE ARCH (W2)
+  ======================== */
+  .arch-diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 4px;
+  }
+  .arch-row {
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid var(--border);
+  }
+  .arch-row:last-child { border-bottom: none; }
+  .arch-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    padding: 16px 10px;
+    background: rgba(0,0,0,0.2);
+    border-right: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    flex-shrink: 0;
+  }
+  .arch-blocks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 16px;
+    align-items: center;
+    flex: 1;
+  }
+  .arch-block {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    padding: 8px 14px;
+    border-radius: 4px;
+    border: 1px solid;
+    line-height: 1.3;
+    text-align: center;
+  }
+  .arch-block.raw    { color: #60a5fa; border-color: rgba(96,165,250,0.3); background: rgba(96,165,250,0.08); }
+  .arch-block.feat   { color: #c084fc; border-color: rgba(192,132,252,0.3); background: rgba(192,132,252,0.08); }
+  .arch-block.model  { color: #fb923c; border-color: rgba(251,146,60,0.3); background: rgba(251,146,60,0.08); }
+  .arch-block.out    { color: #4ade80; border-color: rgba(74,222,128,0.3); background: rgba(74,222,128,0.08); }
+  .arch-arrow { color: var(--muted); font-size: 18px; display: flex; align-items: center; padding: 0 2px; }
+
+  /* ========================
+     OPENSMILE TABLE (W2)
+  ======================== */
+  .feature-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  .feature-table th {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(0,0,0,0.2);
+  }
+  .feature-table td {
+    padding: 11px 16px;
+    border-bottom: 1px solid rgba(26,58,85,0.4);
+    color: #6a90aa;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .feature-table tr:last-child td { border-bottom: none; }
+  .feature-table tr:hover td { background: rgba(168,85,247,0.03); }
+  .feature-table td:first-child {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    white-space: nowrap;
+    width: 22%;
+  }
+  .feature-table td:nth-child(2) { color: #c084fc; width: 20%; }
+  .table-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  /* ========================
+     CODE CARDS (W2)
+  ======================== */
+  .card-code {
+    margin-top: 14px;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(168,85,247,0.2);
+    border-radius: 5px;
+    padding: 12px 14px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: #a5f3fc;
+    line-height: 1.7;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .card-code .cm  { color: #5a7a96; }
+  .card-code .kw  { color: #c084fc; }
+  .card-code .fn  { color: #60a5fa; }
+  .card-code .st  { color: #86efac; }
+  .card-code .nu  { color: #fb923c; }
+
+  /* ========================
+     FOOTER
+  ======================== */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 32px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  footer .foot-left {
+    font-family: 'Space Mono', monospace;
     font-size: 11px;
     color: var(--muted);
-    letter-spacing: 0.05em;
+  }
+  .progress-pill {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    border-radius: 20px;
+    padding: 6px 14px;
+    letter-spacing: 0.08em;
+  }
+  .w1-pill {
+    color: var(--accent);
+    background: rgba(0,212,255,0.08);
+    border: 1px solid rgba(0,212,255,0.2);
+  }
+  .w2-pill {
+    color: var(--accent3);
+    background: rgba(168,85,247,0.08);
+    border: 1px solid rgba(168,85,247,0.2);
+  }
+
+  code {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: #a5f3fc;
+    background: rgba(0,212,255,0.08);
+    border: 1px solid rgba(0,212,255,0.15);
+    border-radius: 3px;
+    padding: 1px 5px;
   }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
+<!-- ======================== HERO ======================== -->
 <header class="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-glow2"></div>
+  <div class="hero-glow" style="background: radial-gradient(ellipse, rgba(0,212,255,0.08) 0%, transparent 70%);"></div>
+  <div class="hero-glow2" style="background: radial-gradient(ellipse, rgba(168,85,247,0.07) 0%, transparent 70%);"></div>
 
-  <div class="project-eyebrow">PROJECT ROADMAP</div>
-
+  <div class="project-eyebrow" style="color:var(--accent);" >PROJECT ROADMAP</div>
   <h1>Audial<span class="mind">Mind</span></h1>
 
-  <div style="margin-top:16px">
-    <div class="week-badge">
+  <p class="hero-desc" style="margin-top:16px;">
+    A structured learning roadmap for signal processing and audio classification — from mathematical foundations through production-ready ML models.
+  </p>
+
+  <div class="wave-anim">
+    <div class="bar" style="height:8px;background:var(--accent);animation-delay:0.0s"></div>
+    <div class="bar" style="height:8px;background:var(--accent);animation-delay:0.1s"></div>
+    <div class="bar" style="height:8px;background:var(--accent);animation-delay:0.2s"></div>
+    <div class="bar" style="height:8px;background:var(--accent);animation-delay:0.3s"></div>
+    <div class="bar" style="height:8px;background:var(--accent);animation-delay:0.4s"></div>
+    <div class="bar" style="height:8px;background:var(--accent3);animation-delay:0.5s"></div>
+    <div class="bar" style="height:8px;background:var(--accent3);animation-delay:0.6s"></div>
+    <div class="bar" style="height:8px;background:var(--accent3);animation-delay:0.7s"></div>
+    <div class="bar" style="height:8px;background:var(--accent3);animation-delay:0.8s"></div>
+    <div class="bar" style="height:8px;background:var(--accent3);animation-delay:0.9s"></div>
+    <div class="bar" style="height:8px;background:var(--accent2);animation-delay:1.0s"></div>
+    <div class="bar" style="height:8px;background:var(--accent2);animation-delay:1.1s"></div>
+    <div class="bar" style="height:8px;background:var(--accent2);animation-delay:1.2s"></div>
+  </div>
+</header>
+
+<!-- ======================== TAB NAV ======================== -->
+<nav class="tab-nav">
+  <button class="tab-btn w1 active" onclick="switchTab('w1', this)">
+    Week 1 — Signal Processing Foundations
+  </button>
+  <button class="tab-btn w2" onclick="switchTab('w2', this)">
+    Week 2 — ML Models &amp; Feature Extraction
+  </button>
+</nav>
+
+<!-- ======================== WEEK 1 ======================== -->
+<div id="panel-w1" class="week-panel active">
+  <!-- Sub-hero for W1 -->
+  <div class="hero" style="padding:40px 48px 48px; border-bottom:1px solid var(--border);">
+    <div class="hero-glow" style="background: radial-gradient(ellipse, rgba(0,212,255,0.06) 0%, transparent 70%);"></div>
+    <div class="week-badge" style="background:linear-gradient(135deg,rgba(0,212,255,0.1),rgba(168,85,247,0.1));">
       <div>
-        <div class="sublabel">CURRENT</div>
-        <div class="num">01</div>
+        <div class="num" style="color:var(--accent2);">01</div>
       </div>
       <div style="width:1px;height:40px;background:var(--border)"></div>
       <div>
@@ -492,432 +724,849 @@
         <div class="sublabel">Signal Processing Foundations</div>
       </div>
     </div>
+    <p class="hero-desc">
+      Build the mathematical and intuitive foundation you need before touching audio classification.
+      This week covers the theory, visualizations, and hands-on tools for understanding signals and the Fourier transform.
+    </p>
+    <div class="stats-row">
+      <div class="stat"><div class="val">5<span style="color:var(--accent)">+</span></div><div class="lbl">Video Resources</div></div>
+      <div class="stat"><div class="val">4<span style="color:var(--accent)">+</span></div><div class="lbl">Visualizations</div></div>
+      <div class="stat"><div class="val">3<span style="color:var(--accent)">+</span></div><div class="lbl">Courses</div></div>
+      <div class="stat"><div class="val">4<span style="color:var(--accent)">+</span></div><div class="lbl">Tools</div></div>
+      <div class="stat"><div class="val">~<span style="color:var(--accent)">14</span>h</div><div class="lbl">Estimated Time</div></div>
+    </div>
   </div>
 
-  <p class="hero-desc">
-    Build the mathematical and intuitive foundation you need before touching audio classification.
-    This week covers the theory, visualizations, and hands-on tools for understanding signals and the Fourier transform.
-  </p>
-
-  <div class="wave-anim">
-    <div class="bar" style="height:8px; animation-delay:0s"></div>
-    <div class="bar" style="height:8px; animation-delay:0.1s"></div>
-    <div class="bar" style="height:8px; animation-delay:0.2s"></div>
-    <div class="bar" style="height:8px; animation-delay:0.3s"></div>
-    <div class="bar" style="height:8px; animation-delay:0.4s"></div>
-    <div class="bar" style="height:8px; animation-delay:0.5s"></div>
-    <div class="bar" style="height:8px; animation-delay:0.6s"></div>
-    <div class="bar" style="height:8px; animation-delay:0.7s"></div>
-    <div class="bar" style="height:8px; animation-delay:0.8s"></div>
-    <div class="bar" style="height:8px; animation-delay:0.9s"></div>
-    <div class="bar" style="height:8px; animation-delay:1.0s"></div>
-    <div class="bar" style="height:8px; animation-delay:1.1s"></div>
-    <div class="bar" style="height:8px; animation-delay:1.2s"></div>
-  </div>
-
-  <div class="stats-row">
-    <div class="stat"><div class="val">5<span>+</span></div><div class="lbl">Video Resources</div></div>
-    <div class="stat"><div class="val">4<span>+</span></div><div class="lbl">Visualizations</div></div>
-    <div class="stat"><div class="val">3<span>+</span></div><div class="lbl">Courses</div></div>
-    <div class="stat"><div class="val">4<span>+</span></div><div class="lbl">Tools</div></div>
-    <div class="stat"><div class="val">~<span>14</span>h</div><div class="lbl">Estimated Time</div></div>
-  </div>
-</header>
-
-<!-- MAIN CONTENT -->
-<main class="container">
-
-  <!-- === LEARNING PATH === -->
-  <div class="section-head">
-    <div class="section-icon" style="background:rgba(255,107,53,0.1);">🗺️</div>
-    <h2>Recommended Learning Path</h2>
-    <span class="section-tag">Start here</span>
-  </div>
-
-  <div class="path">
-    <div class="path-step">
-      <div class="step-num">01</div>
-      <div class="step-body">
-        <h3>What is a Signal? Intuition First</h3>
-        <p>Before equations, understand what a signal actually is — variations of a quantity over time or space. Audio, images, radio waves — everything is a signal.</p>
-        <div class="step-links">
-          <a class="step-link" href="https://www.youtube.com/watch?v=spUNpyF58BY" target="_blank">▶ 3Blue1Brown — Fourier Intro</a>
-          <a class="step-link" href="https://jackschaedler.github.io/circles-sines-signals/" target="_blank">◎ Circles & Sines (visual)</a>
+  <main class="container w1-content">
+    <!-- LEARNING PATH -->
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(255,107,53,0.1);">🗺️</div>
+      <h2>Recommended Learning Path</h2>
+      <span class="section-tag">Start here</span>
+    </div>
+    <div class="path">
+      <div class="path-step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h3>What is a Signal? Intuition First</h3>
+          <p>Before equations, understand what a signal actually is — variations of a quantity over time or space. Audio, images, radio waves — everything is a signal.</p>
+          <div class="step-links">
+            <a class="step-link" href="https://www.youtube.com/watch?v=spUNpyF58BY" target="_blank">▶ 3Blue1Brown — Fourier Intro</a>
+            <a class="step-link" href="https://jackschaedler.github.io/circles-sines-signals/" target="_blank">◎ Circles & Sines (visual)</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h3>Time Domain vs Frequency Domain</h3>
+          <p>The core mental model shift: the same signal can be viewed as amplitudes over time OR as a mix of frequencies. Both are equally real.</p>
+          <div class="step-links">
+            <a class="step-link" href="https://www.youtube.com/watch?v=r18Gi8lSkfM" target="_blank">▶ Veritasium — Fourier Transform</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h3>The Fourier Transform — Math Demystified</h3>
+          <p>Work through the actual DFT formula. You don't need to memorize it — you need to understand what the integral is asking: "how much does this frequency pattern correlate with my signal?"</p>
+          <div class="step-links">
+            <a class="step-link" href="https://www.youtube.com/watch?v=mkGsMWi_j4Q" target="_blank">▶ DFT Step by Step</a>
+            <a class="step-link" href="https://betterexplained.com/articles/an-interactive-guide-to-the-fourier-transform/" target="_blank">📖 Better Explained Guide</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h3>FFT & Spectrograms in Python</h3>
+          <p>Implement your first FFT with NumPy, plot a spectrogram of an audio file. See the theory materialize as code and visual output.</p>
+          <div class="step-links">
+            <a class="step-link" href="https://realpython.com/python-scipy-fft/" target="_blank">🐍 SciPy FFT Tutorial</a>
+            <a class="step-link" href="https://librosa.org/doc/latest/generated/librosa.display.specshow.html" target="_blank">🔊 Librosa Spectrogram</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-step">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <h3>Sampling, Aliasing & Nyquist Theorem</h3>
+          <p>Digital audio is sampled. Understand why 44.1 kHz is the standard, and what happens when you sample too slowly — aliasing artifacts.</p>
+          <div class="step-links">
+            <a class="step-link" href="https://www.youtube.com/watch?v=FcXZ28BX-xE" target="_blank">▶ Sampling Theorem Explained</a>
+            <a class="step-link" href="https://pudding.cool/2018/02/waveforms/" target="_blank">◎ Pudding — Waveforms Guide</a>
+          </div>
         </div>
       </div>
     </div>
-    <div class="path-step">
-      <div class="step-num">02</div>
-      <div class="step-body">
-        <h3>Time Domain vs Frequency Domain</h3>
-        <p>The core mental model shift: the same signal can be viewed as amplitudes over time OR as a mix of frequencies. Both are equally real.</p>
-        <div class="step-links">
-          <a class="step-link" href="https://www.youtube.com/watch?v=r18Gi8lSkfM" target="_blank">▶ Veritasium — Fourier Transform</a>
+
+    <div class="quote-block">
+      <p>"The Fourier transform is not just a mathematical tool — it's a way of seeing. Once you understand it, you'll see frequencies hiding inside everything."</p>
+      <cite>— Alan V. Oppenheim, Discrete-Time Signal Processing</cite>
+    </div>
+
+    <!-- VIDEOS W1 -->
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(255,107,53,0.12);">▶</div>
+      <h2>Must-Watch Videos</h2>
+      <span class="section-tag">Visual learning</span>
+    </div>
+    <div class="cards">
+      <a class="card" href="https://www.youtube.com/watch?v=spUNpyF58BY" target="_blank">
+        <div class="card-star">⭐ Essential</div>
+        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Free</span></div>
+        <div class="card-title">But what is the Fourier Transform? A visual introduction</div>
+        <div class="card-source">3Blue1Brown · YouTube · 20 min</div>
+        <div class="card-desc">The single best starting point for anyone. Grant Sanderson's stunning animation-driven explanation of why the Fourier Transform works, using the "winding frequency" intuition. No prior knowledge needed.</div>
+        <div class="card-link">Watch on YouTube →</div>
+      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=r18Gi8lSkfM" target="_blank">
+        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Free</span></div>
+        <div class="card-title">The Remarkable Story Behind the Fourier Transform</div>
+        <div class="card-source">Veritasium · YouTube · 31 min</div>
+        <div class="card-desc">Goes into the history and physics behind Fourier's original insight — decomposing heat flow into sine waves. Excellent for building context and motivation before the math.</div>
+        <div class="card-link">Watch on YouTube →</div>
+      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=mkGsMWi_j4Q" target="_blank">
+        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Free</span></div>
+        <div class="card-title">The Discrete Fourier Transform — Step by Step</div>
+        <div class="card-source">Steve Brunton · YouTube · 45 min</div>
+        <div class="card-desc">University-level lecture (UW) that carefully builds the DFT from scratch with clear notation. Professor Brunton's whiteboard style is unusually clear and connects DFT to the continuous FT.</div>
+        <div class="card-link">Watch on YouTube →</div>
+      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=FcXZ28BX-xE" target="_blank">
+        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Free</span></div>
+        <div class="card-title">Sampling, Nyquist Theorem & Aliasing Explained</div>
+        <div class="card-source">Reducible · YouTube · 22 min</div>
+        <div class="card-desc">Why can't we just record at any sample rate? This video nails the Nyquist-Shannon theorem visually, shows aliasing artifacts in action, and explains anti-aliasing filters used in real ADCs.</div>
+        <div class="card-link">Watch on YouTube →</div>
+      </a>
+      <a class="card" href="https://www.youtube.com/playlist?list=PLn0OLiymPak2G__qvavn3T8k7R8ssKxVr" target="_blank">
+        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Free</span></div>
+        <div class="card-title">Audio Signal Processing for ML — Full Series</div>
+        <div class="card-source">Valerio Velardo · YouTube · Series</div>
+        <div class="card-desc">A dedicated playlist that goes from signal basics all the way to MFCCs and spectrograms specifically for machine learning. One of the most practically relevant video series for audio classification projects.</div>
+        <div class="card-link">Open Playlist →</div>
+      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=0ALKGR0I5MA" target="_blank">
+        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Free</span></div>
+        <div class="card-title">The Fast Fourier Transform Algorithm Explained</div>
+        <div class="card-source">Reducible · YouTube · 30 min</div>
+        <div class="card-desc">Once you understand DFT, learn why FFT is O(n log n) instead of O(n²). Critical for understanding why real-time audio analysis is possible, and great algorithm thinking exercise.</div>
+        <div class="card-link">Watch on YouTube →</div>
+      </a>
+    </div>
+
+    <!-- INTERACTIVE VISUALS W1 -->
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(168,85,247,0.12);">◎</div>
+      <h2>Interactive Visualizations</h2>
+      <span class="section-tag">Learn by playing</span>
+    </div>
+    <div class="cards two">
+      <a class="card" href="https://jackschaedler.github.io/circles-sines-signals/" target="_blank">
+        <div class="card-star">⭐ Best Visual</div>
+        <div class="card-tags"><span class="tag interactive">Interactive</span><span class="tag visual">Visual</span><span class="tag free">Free</span></div>
+        <div class="card-title">Circles, Sines, and Signals — A Primer</div>
+        <div class="card-source">jackschaedler.github.io</div>
+        <div class="card-desc">A beautifully crafted scrollytelling primer on signal processing. Every concept is animated and interactive — from basic oscillations to Fourier series decomposition. Arguably the best single visual resource on the internet for this topic.</div>
+        <div class="card-link">Open Interactive Guide →</div>
+      </a>
+      <a class="card" href="https://pudding.cool/2018/02/waveforms/" target="_blank">
+        <div class="card-tags"><span class="tag interactive">Interactive</span><span class="tag visual">Visual</span><span class="tag free">Free</span></div>
+        <div class="card-title">Let's Learn About Waveforms</div>
+        <div class="card-source">The Pudding</div>
+        <div class="card-desc">An audio-driven visual explainer where you actually hear the sine, square, sawtooth and triangle waves as you learn about them. Combines perception and math. Excellent for building the intuition for why waveform shape matters for timbre.</div>
+        <div class="card-link">Open Visual Guide →</div>
+      </a>
+      <a class="card" href="https://www.falstad.com/fourier/" target="_blank">
+        <div class="card-tags"><span class="tag interactive">Interactive</span><span class="tag free">Free</span></div>
+        <div class="card-title">Falstad Fourier Series Applet</div>
+        <div class="card-source">falstad.com</div>
+        <div class="card-desc">A classic Java applet (now in JS) that lets you drag Fourier coefficients and see the resulting waveform in real time. Also lets you draw a custom waveform and watch it decompose into harmonics. Excellent for building coefficient intuition.</div>
+        <div class="card-link">Open Applet →</div>
+      </a>
+    </div>
+
+    <!-- ARTICLES W1 -->
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(0,212,255,0.10);">📄</div>
+      <h2>Articles & Reading</h2>
+      <span class="section-tag">Deep understanding</span>
+    </div>
+    <div class="cards">
+      <a class="card" href="https://betterexplained.com/articles/an-interactive-guide-to-the-fourier-transform/" target="_blank">
+        <div class="card-star">⭐ Best Read</div>
+        <div class="card-tags"><span class="tag article">Article</span><span class="tag free">Free</span></div>
+        <div class="card-title">An Interactive Guide to the Fourier Transform</div>
+        <div class="card-source">BetterExplained by Kalid Azad</div>
+        <div class="card-desc">Kalid's trademark "aha moment" writing style cuts through formulas to give you genuine intuition. Uses the analogy of a smoothie recipe — frequencies are the ingredients, the FT is the recipe. One of the most-linked DSP articles on the web.</div>
+        <div class="card-link">Read Article →</div>
+      </a>
+      <a class="card" href="https://realpython.com/python-scipy-fft/" target="_blank">
+        <div class="card-tags"><span class="tag article">Article</span><span class="tag interactive">Code</span><span class="tag free">Free</span></div>
+        <div class="card-title">Fourier Transforms with SciPy FFT</div>
+        <div class="card-source">Real Python</div>
+        <div class="card-desc">Hands-on tutorial that walks you from a basic sine wave all the way to analyzing audio files with FFT in Python. Includes filtering, spectral analysis, and visualizing results with Matplotlib. Your first real code session.</div>
+        <div class="card-link">Read Tutorial →</div>
+      </a>
+      <a class="card" href="https://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html" target="_blank">
+        <div class="card-tags"><span class="tag article">Article</span><span class="tag free">Free</span></div>
+        <div class="card-title">Speech Processing for ML — MFCCs from Scratch</div>
+        <div class="card-source">haythamfayek.com</div>
+        <div class="card-desc">A focused walkthrough from raw audio signal to MFCC features — the de-facto standard for audio classification. Great bridge between DSP basics this week and ML features in the coming weeks.</div>
+        <div class="card-link">Read Article →</div>
+      </a>
+    </div>
+
+    <!-- COURSES W1 -->
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(245,158,11,0.10);">🎓</div>
+      <h2>Structured Courses</h2>
+      <span class="section-tag">For going deeper</span>
+    </div>
+    <div class="cards two">
+      <a class="card" href="https://www.coursera.org/learn/audio-signal-processing" target="_blank">
+        <div class="card-tags"><span class="tag course">Course</span><span class="tag free">Free Audit</span></div>
+        <div class="card-title">Audio Signal Processing for Music Applications</div>
+        <div class="card-source">Coursera · Universitat Pompeu Fabra Barcelona</div>
+        <div class="card-desc">The gold-standard MOOC for audio DSP. Covers sinusoids, DFT, STFT, spectral models, and synthesis. Taught by researchers who literally wrote the book on music DSP. Highly recommended for AudialMind's long-term foundation.</div>
+        <div class="card-link">View Course →</div>
+      </a>
+      <a class="card" href="https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/" target="_blank">
+        <div class="card-tags"><span class="tag course">Course</span><span class="tag free">Free</span></div>
+        <div class="card-title">MIT 6.003 — Signals and Systems</div>
+        <div class="card-source">MIT OpenCourseWare</div>
+        <div class="card-desc">The classic undergrad signals course freely available from MIT. If you want rigorous mathematical depth — convolution, Laplace transforms, Z-transforms — this is the canonical resource. Use selectively: lectures 1–8 cover what you need this week.</div>
+        <div class="card-link">View OCW →</div>
+      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=iTMn0Kt18tg&list=PLMrJAkhIeNNT_Xh3Oy0Y4LTj0Oxo8GqsC" target="_blank">
+        <div class="card-tags"><span class="tag course">Course</span><span class="tag free">Free</span></div>
+        <div class="card-title">Engineering Math — Fourier Series & Transforms</div>
+        <div class="card-source">Steve Brunton · University of Washington</div>
+        <div class="card-desc">A free YouTube lecture series covering Fourier Series, Transforms, and their applications in engineering. Dr. Brunton is one of the clearest math lecturers on YouTube, with excellent coverage of SVD and data-driven methods too.</div>
+        <div class="card-link">Open Playlist →</div>
+      </a>
+    </div>
+
+    <!-- TOOLS W1 -->
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(34,197,94,0.10);">🔧</div>
+      <h2>Tools & Libraries to Install This Week</h2>
+      <span class="section-tag">Hands-on</span>
+    </div>
+    <div class="cards">
+      <a class="card" href="https://librosa.org" target="_blank">
+        <div class="card-star">⭐ Core Tool</div>
+        <div class="card-tags"><span class="tag interactive">Library</span><span class="tag free">Free</span></div>
+        <div class="card-title">Librosa — Audio Analysis in Python</div>
+        <div class="card-source">librosa.org · pip install librosa</div>
+        <div class="card-desc">The de-facto Python library for audio analysis. Loads audio files, computes spectrograms, MFCCs, chroma features, beats, and more. You'll use this for the entire AudialMind project.</div>
+        <div class="card-link">View Docs →</div>
+      </a>
+      <a class="card" href="https://docs.scipy.org/doc/scipy/reference/fft.html" target="_blank">
+        <div class="card-tags"><span class="tag interactive">Library</span><span class="tag free">Free</span></div>
+        <div class="card-title">SciPy FFT Module</div>
+        <div class="card-source">scipy.fft · Part of SciPy</div>
+        <div class="card-desc">The fastest and most correct FFT implementation for Python (wraps FFTPACK/FFTW). Essential for any custom signal processing work. <code>scipy.fft.fft()</code> is all you need to start.</div>
+        <div class="card-link">View Docs →</div>
+      </a>
+      <a class="card" href="https://matplotlib.org/stable/gallery/specialty_plots/mri_with_eeg.html" target="_blank">
+        <div class="card-tags"><span class="tag interactive">Library</span><span class="tag free">Free</span></div>
+        <div class="card-title">Matplotlib for Signal Visualization</div>
+        <div class="card-source">matplotlib.org · Already installed</div>
+        <div class="card-desc">You'll use <code>plt.specgram()</code>, <code>plt.psd()</code>, and <code>librosa.display.specshow()</code> constantly. This week: practice plotting a raw waveform, an FFT magnitude spectrum, and a spectrogram side by side.</div>
+        <div class="card-link">View Gallery →</div>
+      </a>
+      <a class="card" href="https://www.fon.hum.uva.nl/praat/" target="_blank">
+        <div class="card-star">⭐ Must Have</div>
+        <div class="card-tags"><span class="tag interactive">Software</span><span class="tag free">Free</span></div>
+        <div class="card-title">Praat — Phonetics & Speech Analysis</div>
+        <div class="card-source">fon.hum.uva.nl/praat · Windows / Mac / Linux</div>
+        <div class="card-desc">The gold-standard tool used by linguists, phoneticians, and audio researchers worldwide. Praat lets you visualize waveforms, spectrograms, pitch contours, formants, and intensity in real time — all without writing a single line of code. Ideal for building strong visual intuition for how speech signals behave before implementing analysis in Python.</div>
+        <div class="card-link">Download Praat →</div>
+      </a>
+    </div>
+
+    <div class="divider" style="margin-top:64px;"></div>
+
+    <!-- CHECKLIST W1 -->
+    <div style="margin-top:40px;padding:32px;background:var(--surface);border:1px solid var(--border);border-radius:8px;">
+      <div style="font-family:'Times New Roman',Times,serif;font-weight:800;font-size:20px;color:#fff;margin-bottom:16px;">📋 Week 1 Goals — Checklist</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Watch 3Blue1Brown Fourier video</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Read the BetterExplained Fourier article end-to-end</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Play with Circles & Sines until decomposition feels intuitive</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Install librosa and load your first .wav file in Python</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Plot a spectrogram of a real audio file using Matplotlib</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Explain Nyquist theorem in your own words</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Download Praat &amp; open a .wav file — inspect its spectrogram &amp; pitch contour</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Compare the same audio's spectrogram in Praat vs Matplotlib — note the differences</div>
+      </div>
+    </div>
+
+    <!-- W1 → W2 BRIDGE -->
+    <div style="margin-top:20px;padding:24px 32px;background:linear-gradient(135deg,rgba(0,212,255,0.06),rgba(168,85,247,0.04));border:1px solid rgba(0,212,255,0.2);border-radius:8px;display:flex;align-items:center;gap:24px;cursor:pointer;" onclick="switchTabById('w2')">
+      <div style="flex:1;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">Up Next</div>
+        <div style="font-family:'Times New Roman',Times,serif;font-weight:800;font-size:20px;color:#fff;margin-bottom:6px;">Week 2 — ML Models &amp; Feature Extraction with openSMILE</div>
+        <div style="font-size:13px;color:#6a90aa;line-height:1.6;">Turn signals into features, train SVM and CNN baselines, and master the openSMILE feature extraction pipeline.</div>
+      </div>
+      <div style="font-family:'Space Mono',monospace;font-size:40px;color:rgba(168,85,247,0.3);flex-shrink:0;">02 →</div>
+    </div>
+  </main>
+</div>
+
+<!-- ======================== WEEK 2 ======================== -->
+<div id="panel-w2" class="week-panel">
+  <!-- Sub-hero for W2 -->
+  <div class="hero" style="padding:40px 48px 48px; border-bottom:1px solid var(--border);">
+    <div class="hero-glow" style="background: radial-gradient(ellipse, rgba(168,85,247,0.10) 0%, transparent 70%);"></div>
+    <div class="hero-glow2" style="background: radial-gradient(ellipse, rgba(255,107,53,0.08) 0%, transparent 70%);"></div>
+    <div class="week-badge" style="background:linear-gradient(135deg,rgba(168,85,247,0.1),rgba(255,107,53,0.1));">
+      <div>
+        <div class="sublabel">CURRENT</div>
+        <div class="num" style="color:var(--accent3);">02</div>
+      </div>
+      <div style="width:1px;height:40px;background:var(--border)"></div>
+      <div>
+        <div class="label">Week 2</div>
+        <div class="sublabel">ML Models &amp; Feature Extraction with openSMILE</div>
+      </div>
+    </div>
+    <p class="hero-desc">
+      Now that you understand signals, it's time to turn them into something a model can learn from.
+      This week you'll master classical ML pipelines for audio, extract rich acoustic features with openSMILE,
+      and build your first working emotion/sound classifier.
+    </p>
+    <div class="stats-row">
+      <div class="stat"><div class="val">6<span style="color:var(--accent3)">+</span></div><div class="lbl">Video Resources</div></div>
+      <div class="stat"><div class="val">5<span style="color:var(--accent3)">+</span></div><div class="lbl">Code Samples</div></div>
+      <div class="stat"><div class="val">4<span style="color:var(--accent3)">+</span></div><div class="lbl">Courses</div></div>
+      <div class="stat"><div class="val">3<span style="color:var(--accent3)">+</span></div><div class="lbl">Tools</div></div>
+      <div class="stat"><div class="val">~<span style="color:var(--accent3)">16</span>h</div><div class="lbl">Estimated Time</div></div>
+    </div>
+  </div>
+
+  <main class="container w2-content">
+
+    <!-- PIPELINE ARCH -->
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(168,85,247,0.1);">🏗️</div>
+      <h2>The Audio ML Pipeline</h2>
+      <span class="section-tag">Mental model first</span>
+    </div>
+    <div class="arch-diagram">
+      <div class="arch-row">
+        <div class="arch-label">Input</div>
+        <div class="arch-blocks">
+          <div class="arch-block raw">.wav / .mp3<br>Audio File</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-block raw">Resample<br>to 16 kHz</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-block raw">Mono<br>Convert</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-block raw">Normalize<br>Amplitude</div>
+        </div>
+      </div>
+      <div class="arch-row">
+        <div class="arch-label">Features</div>
+        <div class="arch-blocks">
+          <div class="arch-block feat">MFCCs<br>(13–40)</div>
+          <div class="arch-block feat">Chroma<br>Features</div>
+          <div class="arch-block feat">Spectral<br>Contrast</div>
+          <div class="arch-block feat">Pitch / F0<br>Contour</div>
+          <div class="arch-block feat">openSMILE<br>ComParE</div>
+          <div class="arch-block feat">ZCR &amp;<br>RMS</div>
+        </div>
+      </div>
+      <div class="arch-row">
+        <div class="arch-label">Model</div>
+        <div class="arch-blocks">
+          <div class="arch-block model">SVM<br>(baseline)</div>
+          <div class="arch-block model">Random<br>Forest</div>
+          <div class="arch-block model">MLP /<br>FeedForward</div>
+          <div class="arch-block model">CNN on<br>Spectrogram</div>
+          <div class="arch-block model">Wav2Vec2 /<br>HuBERT (fine-tune)</div>
+        </div>
+      </div>
+      <div class="arch-row">
+        <div class="arch-label">Output</div>
+        <div class="arch-blocks">
+          <div class="arch-block out">Emotion<br>Label</div>
+          <div class="arch-block out">Sound<br>Category</div>
+          <div class="arch-block out">Valence /<br>Arousal</div>
+          <div class="arch-block out">Confidence<br>Score</div>
         </div>
       </div>
     </div>
-    <div class="path-step">
-      <div class="step-num">03</div>
-      <div class="step-body">
-        <h3>The Fourier Transform — Math Demystified</h3>
-        <p>Work through the actual DFT formula. You don't need to memorize it — you need to understand what the integral is asking: "how much does this frequency pattern correlate with my signal?"</p>
-        <div class="step-links">
-          <a class="step-link" href="https://www.youtube.com/watch?v=mkGsMWi_j4Q" target="_blank">▶ DFT Step by Step</a>
-          <a class="step-link" href="https://betterexplained.com/articles/an-interactive-guide-to-the-fourier-transform/" target="_blank">📖 Better Explained Guide</a>
+
+    <!-- LEARNING PATH W2 -->
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(255,107,53,0.1);">🗺️</div>
+      <h2>Recommended Learning Path</h2>
+      <span class="section-tag">Start here</span>
+    </div>
+    <div class="path">
+      <div class="path-step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h3>From Features to Labels — Classical ML Recap</h3>
+          <p>Revisit SVMs, Random Forests, and MLPs as classifiers. The key insight: audio is just a feature vector once you extract it. Your model doesn't know it came from sound.</p>
+          <div class="step-links">
+            <a class="step-link" href="https://www.youtube.com/watch?v=efR1C6CvhmE" target="_blank">▶ StatQuest — SVM Clearly Explained</a>
+            <a class="step-link" href="https://scikit-learn.org/stable/modules/svm.html" target="_blank">📖 sklearn SVM docs</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h3>MFCCs — The Lingua Franca of Audio ML</h3>
+          <p>MFCCs (Mel-Frequency Cepstral Coefficients) are the most widely used feature set for speech and audio classification. Understand what each coefficient captures before you treat them as black-box numbers.</p>
+          <div class="step-links">
+            <a class="step-link" href="https://www.youtube.com/watch?v=4_SH2nfbQZ8" target="_blank">▶ MFCC Explained</a>
+            <a class="step-link" href="https://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html" target="_blank">📖 MFCCs from Scratch (Python)</a>
+            <a class="step-link" href="https://librosa.org/doc/latest/generated/librosa.feature.mfcc.html" target="_blank">🔊 librosa.feature.mfcc</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h3>Install openSMILE &amp; Run Your First Feature Set</h3>
+          <p>openSMILE is the industry-standard tool for acoustic feature extraction in affective computing and SER. Install it, run the ComParE_2016 config on a .wav file, and inspect the 6373-dimensional output CSV.</p>
+          <div class="step-links">
+            <a class="step-link" href="https://github.com/audeering/opensmile" target="_blank">🔧 opensmile Python (audeering)</a>
+            <a class="step-link" href="https://audeering.github.io/opensmile-python/" target="_blank">📖 opensmile-python docs</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h3>Build an SER Baseline with RAVDESS + SVM</h3>
+          <p>Download the RAVDESS dataset (labeled emotion audio), extract MFCCs or openSMILE features, and train an SVM classifier. Aim for >65% accuracy as your first milestone. Then beat it with Random Forest.</p>
+          <div class="step-links">
+            <a class="step-link" href="https://zenodo.org/record/1188976" target="_blank">📂 RAVDESS Dataset</a>
+            <a class="step-link" href="https://www.kaggle.com/code/shivamburnwal/speech-emotion-recognition" target="_blank">📓 Kaggle SER Notebook</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-step">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <h3>CNNs on Spectrograms — The Visual Approach</h3>
+          <p>Treat your mel-spectrogram as an image and throw a CNN at it. This is often the most competitive classical approach and bridges into the transformer-based models of Week 3.</p>
+          <div class="step-links">
+            <a class="step-link" href="https://www.youtube.com/watch?v=ZLIPkmmDJAc" target="_blank">▶ CNN for Audio — Tutorial</a>
+            <a class="step-link" href="https://pytorch.org/audio/stable/tutorials/audio_feature_augmentation_tutorial.html" target="_blank">🔥 torchaudio Spectrogram CNN</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-step">
+        <div class="step-num">06</div>
+        <div class="step-body">
+          <h3>Evaluate Properly — Beyond Accuracy</h3>
+          <p>Audio emotion datasets are almost always class-imbalanced. Learn to use UAR (Unweighted Average Recall), confusion matrices, and cross-fold validation. The INTERSPEECH challenge papers use UAR — get familiar with it now.</p>
+          <div class="step-links">
+            <a class="step-link" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html" target="_blank">📖 UAR in sklearn</a>
+            <a class="step-link" href="https://www.youtube.com/watch?v=vP06aMoz4v8" target="_blank">▶ Confusion Matrix Deep Dive</a>
+          </div>
         </div>
       </div>
     </div>
-    <div class="path-step">
-      <div class="step-num">04</div>
-      <div class="step-body">
-        <h3>FFT & Spectrograms in Python</h3>
-        <p>Implement your first FFT with NumPy, plot a spectrogram of an audio file. See the theory materialize as code and visual output.</p>
-        <div class="step-links">
-          <a class="step-link" href="https://realpython.com/python-scipy-fft/" target="_blank">🐍 SciPy FFT Tutorial</a>
-          <a class="step-link" href="https://librosa.org/doc/latest/generated/librosa.display.specshow.html" target="_blank">🔊 Librosa Spectrogram</a>
-        </div>
+
+    <div class="quote-block">
+      <p>"A feature is only as good as the information it preserves. MFCCs were designed for speech intelligibility — not for emotion. Understanding that gap is the beginning of doing better work."</p>
+      <cite>— Björn Schuller, Chair of Embedded Intelligence for Health Care and Wellbeing, Augsburg University</cite>
+    </div>
+
+    <!-- VIDEOS W2 -->
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(255,107,53,0.12);">▶</div>
+      <h2>Must-Watch Videos</h2>
+      <span class="section-tag">Visual learning</span>
+    </div>
+    <div class="cards">
+      <a class="card" href="https://www.youtube.com/watch?v=ZLIPkmmDJAc" target="_blank">
+        <div class="card-star">⭐ Essential</div>
+        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Free</span></div>
+        <div class="card-title">Audio Classification with CNNs — Full Tutorial</div>
+        <div class="card-source">Valerio Velardo · YouTube · 35 min</div>
+        <div class="card-desc">End-to-end walkthrough of building a sound classification CNN in PyTorch: loading audio, generating mel spectrograms, building the network, training, and evaluating. Uses UrbanSound8K dataset. Directly applicable to AudialMind.</div>
+        <div class="card-link">Watch on YouTube →</div>
+      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=4_SH2nfbQZ8" target="_blank">
+        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Free</span></div>
+        <div class="card-title">MFCCs Explained Clearly</div>
+        <div class="card-source">Valerio Velardo · YouTube · 18 min</div>
+        <div class="card-desc">Step-by-step walkthrough of the MFCC pipeline: pre-emphasis → framing → windowing → FFT → Mel filterbank → log → DCT. Builds the full picture of why each step exists and what information it preserves or discards.</div>
+        <div class="card-link">Watch on YouTube →</div>
+      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=efR1C6CvhmE" target="_blank">
+        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Free</span></div>
+        <div class="card-title">Support Vector Machines — Clearly Explained</div>
+        <div class="card-source">StatQuest · YouTube · 20 min</div>
+        <div class="card-desc">Josh Starmer's trademark clarity on SVMs: the margin, the kernel trick, and why SVMs punch above their weight on high-dimensional feature vectors like MFCCs and openSMILE outputs. Essential before training your baseline.</div>
+        <div class="card-link">Watch on YouTube →</div>
+      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=iCwMQJnKk2c&list=PL-wATfeyAMNpCRQkKgtdy35QjxRmMqEpl" target="_blank">
+        <div class="card-star">⭐ Full Series</div>
+        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Free</span></div>
+        <div class="card-title">Deep Learning for Audio — Full Playlist</div>
+        <div class="card-source">Valerio Velardo · YouTube · 12-part series</div>
+        <div class="card-desc">Covers the entire arc from feature extraction to deep learning for audio in one coherent course. Includes CNNs, RNNs, and attention for audio. This is arguably the best standalone resource for building audio ML systems from scratch.</div>
+        <div class="card-link">Open Playlist →</div>
+      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=vP06aMoz4v8" target="_blank">
+        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Free</span></div>
+        <div class="card-title">Confusion Matrices, Precision, Recall &amp; F1</div>
+        <div class="card-source">StatQuest · YouTube · 15 min</div>
+        <div class="card-desc">The fundamentals of classification evaluation, visualized clearly. Understand why accuracy is insufficient for imbalanced datasets — critical for RAVDESS and IEMOCAP where emotion classes are very unequal.</div>
+        <div class="card-link">Watch on YouTube →</div>
+      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=O5xeyoRL95U" target="_blank">
+        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Free</span></div>
+        <div class="card-title">Speech Emotion Recognition — Research Overview</div>
+        <div class="card-source">Björn Schuller · ICASSP · 55 min</div>
+        <div class="card-desc">A research-level keynote from one of the world's leading SER researchers. Covers the state of the field, datasets, challenges (acted vs. natural speech), and current best practices. Watch this to understand where AudialMind sits in the research landscape.</div>
+        <div class="card-link">Watch Talk →</div>
+      </a>
+    </div>
+
+    <!-- OPENSMILE DEEP DIVE -->
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(168,85,247,0.12);">🎛️</div>
+      <h2>openSMILE Deep Dive</h2>
+      <span class="section-tag">Industry-standard feature extractor</span>
+    </div>
+    <p style="font-size:14px;color:#6a90aa;line-height:1.7;margin-bottom:24px;max-width:760px;">
+      openSMILE (open-source Speech and Music Interpretation by Large-space Extraction) is developed by the
+      <strong style="color:#aac8e0">audEERING GmbH</strong> team and has been the backbone of every INTERSPEECH Computational Paralinguistics Challenge (ComParE) since 2009. It extracts over 6,000 acoustic features from a single audio file using a config-driven pipeline.
+    </p>
+    <div class="table-wrap" style="margin-bottom:28px;">
+      <table class="feature-table">
+        <thead>
+          <tr>
+            <th>Config / Feature Set</th>
+            <th>Feature Count</th>
+            <th>Use Case</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ComParE_2016</td>
+            <td style="color:#fb923c">6,373 features</td>
+            <td>SER, emotion, health</td>
+            <td>The competition standard. Overkill for quick experiments but the benchmark for papers.</td>
+          </tr>
+          <tr>
+            <td>eGeMAPS</td>
+            <td style="color:#fb923c">88 features</td>
+            <td>SER, clinical speech</td>
+            <td>Minimalist, interpretable, and theoretically grounded. Recommended starting point.</td>
+          </tr>
+          <tr>
+            <td>GeMAPS</td>
+            <td style="color:#fb923c">62 features</td>
+            <td>Paralinguistics</td>
+            <td>Predecessor to eGeMAPS. Slightly less features. Use eGeMAPS instead.</td>
+          </tr>
+          <tr>
+            <td>GeMAPSv01b</td>
+            <td style="color:#fb923c">62 features</td>
+            <td>Paralinguistics, SER</td>
+            <td>Updated variant with corrected loudness calculation.</td>
+          </tr>
+          <tr>
+            <td>emobase</td>
+            <td style="color:#fb923c">988 features</td>
+            <td>Emotion recognition</td>
+            <td>Middle ground between eGeMAPS and ComParE. Good for rapid prototyping.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CODE CARDS W2 -->
+    <div class="cards two">
+      <div class="card">
+        <div class="card-star">⭐ Start Here</div>
+        <div class="card-tags"><span class="tag tool">Tool</span><span class="tag interactive">Code</span><span class="tag free">Free</span></div>
+        <div class="card-title">Install &amp; Extract eGeMAPS Features</div>
+        <div class="card-source">opensmile · Python · pip install opensmile</div>
+        <div class="card-desc">Install the Python wrapper and run eGeMAPS on a single file. eGeMAPS (88 features) is the recommended starting config — interpretable, fast, and well-validated for SER tasks.</div>
+        <div class="card-code"><span class="cm"># Install</span>
+pip install opensmile
+
+<span class="kw">import</span> opensmile
+
+smile = opensmile.<span class="fn">Smile</span>(
+    feature_set=opensmile.FeatureSet.<span class="fn">eGeMAPSv02</span>,
+    feature_level=opensmile.FeatureLevel.<span class="fn">Functionals</span>,
+)
+
+features = smile.<span class="fn">process_file</span>(<span class="st">"audio.wav"</span>)
+<span class="fn">print</span>(features.shape)   <span class="cm"># (1, 88)</span></div>
+        <a class="card-link" href="https://audeering.github.io/opensmile-python/" target="_blank">View Full Docs →</a>
+      </div>
+      <div class="card">
+        <div class="card-tags"><span class="tag tool">Tool</span><span class="tag interactive">Code</span><span class="tag free">Free</span></div>
+        <div class="card-title">Process a Full Dataset Folder</div>
+        <div class="card-source">opensmile · Python · Batch Extraction</div>
+        <div class="card-desc">Extract features from every .wav file in a dataset folder (e.g. RAVDESS) and compile into a single DataFrame ready for sklearn. This is your actual data pipeline.</div>
+        <div class="card-code"><span class="kw">import</span> opensmile, os, pandas as pd
+
+smile = opensmile.<span class="fn">Smile</span>(
+    feature_set=opensmile.FeatureSet.<span class="fn">eGeMAPSv02</span>,
+    feature_level=opensmile.FeatureLevel.<span class="fn">Functionals</span>,
+)
+
+rows = []
+<span class="kw">for</span> root, _, files <span class="kw">in</span> os.<span class="fn">walk</span>(<span class="st">"ravdess/"</span>):
+    <span class="kw">for</span> f <span class="kw">in</span> files:
+        <span class="kw">if</span> f.<span class="fn">endswith</span>(<span class="st">".wav"</span>):
+            path = os.path.<span class="fn">join</span>(root, f)
+            label = f.<span class="fn">split</span>(<span class="st">"-"</span>)[<span class="nu">2</span>]
+            feat = smile.<span class="fn">process_file</span>(path)
+            feat[<span class="st">"label"</span>] = label
+            rows.<span class="fn">append</span>(feat)
+
+df = pd.<span class="fn">concat</span>(rows).<span class="fn">reset_index</span>(drop=<span class="kw">True</span>)
+df.<span class="fn">to_csv</span>(<span class="st">"features.csv"</span>, index=<span class="kw">False</span>)</div>
+        <a class="card-link" href="https://github.com/audeering/opensmile" target="_blank">View on GitHub →</a>
+      </div>
+      <div class="card">
+        <div class="card-tags"><span class="tag tool">Tool</span><span class="tag interactive">Code</span><span class="tag free">Free</span></div>
+        <div class="card-title">Train an SVM on openSMILE Features</div>
+        <div class="card-source">sklearn · SVM · RBF Kernel</div>
+        <div class="card-desc">Once you have your features.csv, training the baseline SVM takes under 10 lines. Use StandardScaler — SVM is sensitive to feature scale. RBF kernel usually outperforms linear for eGeMAPS.</div>
+        <div class="card-code"><span class="kw">from</span> sklearn.svm <span class="kw">import</span> SVC
+<span class="kw">from</span> sklearn.preprocessing <span class="kw">import</span> StandardScaler
+<span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> cross_val_score
+<span class="kw">import</span> pandas as pd
+
+df = pd.<span class="fn">read_csv</span>(<span class="st">"features.csv"</span>)
+X = df.<span class="fn">drop</span>(<span class="st">"label"</span>, axis=<span class="nu">1</span>).<span class="fn">values</span>
+y = df[<span class="st">"label"</span>].<span class="fn">values</span>
+
+X_scaled = <span class="fn">StandardScaler</span>().<span class="fn">fit_transform</span>(X)
+svm = <span class="fn">SVC</span>(kernel=<span class="st">"rbf"</span>, C=<span class="nu">1.0</span>, gamma=<span class="st">"scale"</span>)
+
+uar = <span class="fn">cross_val_score</span>(
+    svm, X_scaled, y, cv=<span class="nu">10</span>,
+    scoring=<span class="st">"balanced_accuracy"</span>
+)
+<span class="fn">print</span>(<span class="fn">f</span><span class="st">"UAR: {uar.mean():.3f} ± {uar.std():.3f}"</span>)</div>
+        <a class="card-link" href="https://scikit-learn.org/stable/modules/svm.html" target="_blank">sklearn SVM Docs →</a>
+      </div>
+      <div class="card">
+        <div class="card-tags"><span class="tag tool">Tool</span><span class="tag interactive">Code</span><span class="tag free">Free</span></div>
+        <div class="card-title">Mel Spectrogram CNN in PyTorch</div>
+        <div class="card-source">torchaudio · PyTorch · CNN Baseline</div>
+        <div class="card-desc">A minimal CNN classifier that takes mel spectrograms as input images. Use this as your second baseline after SVM — spectrograms often outperform hand-crafted features on expressive speech.</div>
+        <div class="card-code"><span class="kw">import</span> torch, torchaudio
+<span class="kw">import</span> torch.nn as nn
+
+mel_transform = torchaudio.transforms.<span class="fn">MelSpectrogram</span>(
+    sample_rate=<span class="nu">16000</span>, n_mels=<span class="nu">64</span>,
+    n_fft=<span class="nu">1024</span>, hop_length=<span class="nu">512</span>
+)
+
+<span class="kw">class</span> <span class="fn">AudioCNN</span>(nn.Module):
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, n_classes):
+        <span class="fn">super</span>().__init__()
+        self.conv = nn.<span class="fn">Sequential</span>(
+            nn.<span class="fn">Conv2d</span>(<span class="nu">1</span>, <span class="nu">32</span>, <span class="nu">3</span>, padding=<span class="nu">1</span>), nn.<span class="fn">ReLU</span>(),
+            nn.<span class="fn">MaxPool2d</span>(<span class="nu">2</span>),
+            nn.<span class="fn">Conv2d</span>(<span class="nu">32</span>, <span class="nu">64</span>, <span class="nu">3</span>, padding=<span class="nu">1</span>), nn.<span class="fn">ReLU</span>(),
+            nn.<span class="fn">AdaptiveAvgPool2d</span>((<span class="nu">4</span>, <span class="nu">4</span>))
+        )
+        self.fc = nn.<span class="fn">Linear</span>(<span class="nu">64</span>*<span class="nu">16</span>, n_classes)</div>
+        <a class="card-link" href="https://pytorch.org/audio/stable/index.html" target="_blank">torchaudio Docs →</a>
+      </div>
+      <div class="card">
+        <div class="card-tags"><span class="tag tool">Tool</span><span class="tag interactive">Code</span><span class="tag free">Free</span></div>
+        <div class="card-title">Visualize openSMILE Features with UMAP</div>
+        <div class="card-source">UMAP · sklearn · matplotlib</div>
+        <div class="card-desc">After extracting 88+ features per file, use UMAP to project them into 2D and visualize how well the feature space separates emotion classes. The fastest way to sanity-check whether your features are informative.</div>
+        <div class="card-code"><span class="kw">import</span> umap
+<span class="kw">import</span> matplotlib.pyplot as plt
+<span class="kw">from</span> sklearn.preprocessing <span class="kw">import</span> StandardScaler
+
+df = pd.<span class="fn">read_csv</span>(<span class="st">"features.csv"</span>)
+X = df.<span class="fn">drop</span>(<span class="st">"label"</span>, axis=<span class="nu">1</span>).<span class="fn">values</span>
+y = df[<span class="st">"label"</span>].<span class="fn">values</span>
+
+X_s = <span class="fn">StandardScaler</span>().<span class="fn">fit_transform</span>(X)
+emb = umap.<span class="fn">UMAP</span>(n_neighbors=<span class="nu">15</span>).<span class="fn">fit_transform</span>(X_s)
+
+<span class="kw">for</span> label <span class="kw">in</span> <span class="fn">set</span>(y):
+    mask = y == label
+    plt.<span class="fn">scatter</span>(emb[mask,<span class="nu">0</span>], emb[mask,<span class="nu">1</span>],
+                label=label, alpha=<span class="nu">0.6</span>, s=<span class="nu">15</span>)
+plt.<span class="fn">legend</span>(); plt.<span class="fn">show</span>()</div>
+        <a class="card-link" href="https://umap-learn.readthedocs.io/" target="_blank">UMAP Docs →</a>
+      </div>
+      <div class="card">
+        <div class="card-tags"><span class="tag tool">Tool</span><span class="tag interactive">Code</span><span class="tag free">Free</span></div>
+        <div class="card-title">Feature Importance with Random Forest</div>
+        <div class="card-source">sklearn · RandomForestClassifier</div>
+        <div class="card-desc">Train a Random Forest on your openSMILE features and extract feature importances. Tells you which of the 88 eGeMAPS features matter most for your specific task.</div>
+        <div class="card-code"><span class="kw">from</span> sklearn.ensemble <span class="kw">import</span> RandomForestClassifier
+<span class="kw">import</span> pandas as pd, matplotlib.pyplot as plt
+
+df = pd.<span class="fn">read_csv</span>(<span class="st">"features.csv"</span>)
+feature_cols = [c <span class="kw">for</span> c <span class="kw">in</span> df.columns <span class="kw">if</span> c != <span class="st">"label"</span>]
+X, y = df[feature_cols], df[<span class="st">"label"</span>]
+
+rf = <span class="fn">RandomForestClassifier</span>(n_estimators=<span class="nu">200</span>,
+                              random_state=<span class="nu">42</span>)
+rf.<span class="fn">fit</span>(X, y)
+
+importances = pd.<span class="fn">Series</span>(
+    rf.feature_importances_, index=feature_cols)
+importances.<span class="fn">nlargest</span>(<span class="nu">20</span>).<span class="fn">plot</span>(kind=<span class="st">"barh"</span>,
+    figsize=(<span class="nu">10</span>,<span class="nu">6</span>), color=<span class="st">"#a855f7"</span>)
+plt.<span class="fn">tight_layout</span>(); plt.<span class="fn">show</span>()</div>
+        <a class="card-link" href="https://scikit-learn.org/stable/modules/ensemble.html" target="_blank">sklearn RF Docs →</a>
       </div>
     </div>
-    <div class="path-step">
-      <div class="step-num">05</div>
-      <div class="step-body">
-        <h3>Sampling, Aliasing & Nyquist Theorem</h3>
-        <p>Digital audio is sampled. Understand why 44.1 kHz is the standard, and what happens when you sample too slowly — aliasing artifacts.</p>
-        <div class="step-links">
-          <a class="step-link" href="https://www.youtube.com/watch?v=FcXZ28BX-xE" target="_blank">▶ Sampling Theorem Explained</a>
-          <a class="step-link" href="https://pudding.cool/2018/02/waveforms/" target="_blank">◎ Pudding — Waveforms Guide</a>
-        </div>
+
+    <!-- COURSES W2 -->
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(245,158,11,0.10);">🎓</div>
+      <h2>Structured Courses</h2>
+      <span class="section-tag">For going deeper</span>
+    </div>
+    <div class="cards two">
+      <a class="card" href="https://www.coursera.org/specializations/machine-learning-introduction" target="_blank">
+        <div class="card-star">⭐ Recommended</div>
+        <div class="card-tags"><span class="tag course">Course</span><span class="tag free">Free Audit</span></div>
+        <div class="card-title">Machine Learning Specialization — Andrew Ng</div>
+        <div class="card-source">Coursera · DeepLearning.AI · 3 courses</div>
+        <div class="card-desc">If your ML fundamentals are shaky, this is the canonical foundation. Focus on Course 1 (supervised learning) and Course 2 (neural networks). Covers SVMs, trees, and neural nets — everything you'll use as a baseline for AudialMind.</div>
+        <div class="card-link">View Course →</div>
+      </a>
+      <a class="card" href="https://www.fast.ai" target="_blank">
+        <div class="card-tags"><span class="tag course">Course</span><span class="tag free">Free</span></div>
+        <div class="card-title">Practical Deep Learning for Coders</div>
+        <div class="card-source">fast.ai · Jeremy Howard</div>
+        <div class="card-desc">Top-down, code-first deep learning. Lesson 2 covers audio classification explicitly (treating spectrograms as images). The philosophy of "train on a small dataset first, then scale" is exactly right for AudialMind's approach.</div>
+        <div class="card-link">View Course →</div>
+      </a>
+      <a class="card" href="https://huggingface.co/learn/audio-course/chapter0/introduction" target="_blank">
+        <div class="card-tags"><span class="tag course">Course</span><span class="tag free">Free</span></div>
+        <div class="card-title">HuggingFace Audio Course</div>
+        <div class="card-source">Hugging Face · 8 units</div>
+        <div class="card-desc">The definitive free course on using transformer models for audio. Unit 4 covers Audio Classification, Unit 5 covers Automatic Speech Recognition. Week 2 → study Units 1–4; Unit 5–8 are for Week 3 content. Directly uses Wav2Vec2 and Whisper.</div>
+        <div class="card-link">Start Course →</div>
+      </a>
+      <a class="card" href="https://www.coursera.org/learn/audio-signal-processing" target="_blank">
+        <div class="card-tags"><span class="tag course">Course</span><span class="tag free">Free Audit</span></div>
+        <div class="card-title">Audio Signal Processing for Music Applications</div>
+        <div class="card-source">Coursera · UPF Barcelona</div>
+        <div class="card-desc">Continuing from Week 1 — this week focus on Weeks 5–7 of the course: STFT, mel filterbanks, and spectral features. The notebook assignments give you working code for every concept. Pairs perfectly with the openSMILE deep dive.</div>
+        <div class="card-link">View Course →</div>
+      </a>
+    </div>
+
+    <!-- TOOLS W2 -->
+    <div class="section-head">
+      <div class="section-icon" style="background:rgba(34,197,94,0.10);">🔧</div>
+      <h2>Tools &amp; Libraries This Week</h2>
+      <span class="section-tag">Install &amp; configure</span>
+    </div>
+    <div class="cards">
+      <a class="card" href="https://github.com/audeering/opensmile" target="_blank">
+        <div class="card-star">⭐ Core Tool</div>
+        <div class="card-tags"><span class="tag interactive">Library</span><span class="tag free">Free</span></div>
+        <div class="card-title">openSMILE Python — audeering</div>
+        <div class="card-source">audeering/opensmile · pip install opensmile</div>
+        <div class="card-desc">The official Python wrapper for openSMILE. Wraps the C++ binary transparently — you call <code>smile.process_file()</code> and get back a pandas DataFrame of features. Supports ComParE, eGeMAPS, GeMAPS, and emobase out of the box.</div>
+        <div class="card-link">View on GitHub →</div>
+      </a>
+      <a class="card" href="https://pytorch.org/audio/stable/index.html" target="_blank">
+        <div class="card-tags"><span class="tag interactive">Library</span><span class="tag free">Free</span></div>
+        <div class="card-title">torchaudio — Audio for PyTorch</div>
+        <div class="card-source">pytorch.org · pip install torchaudio</div>
+        <div class="card-desc">PyTorch's official audio library. Provides <code>MelSpectrogram</code>, <code>MFCC</code>, <code>AmplitudeToDB</code> transforms and data loading utilities. The <code>torchaudio.datasets</code> module includes RAVDESS, LibriSpeech, and more for direct download.</div>
+        <div class="card-link">View Docs →</div>
+      </a>
+      <a class="card" href="https://umap-learn.readthedocs.io/" target="_blank">
+        <div class="card-tags"><span class="tag interactive">Library</span><span class="tag free">Free</span></div>
+        <div class="card-title">UMAP — Dimensionality Reduction</div>
+        <div class="card-source">umap-learn · pip install umap-learn</div>
+        <div class="card-desc">Uniform Manifold Approximation and Projection. Use it to project your 88-dim eGeMAPS vectors into 2D for visualization. Faster and more faithful to global structure than t-SNE for high-dimensional audio feature sets.</div>
+        <div class="card-link">View Docs →</div>
+      </a>
+    </div>
+
+    <div class="divider" style="margin-top:64px;"></div>
+
+    <!-- CHECKLIST W2 -->
+    <div style="margin-top:40px;padding:32px;background:var(--surface);border:1px solid var(--border);border-radius:8px;">
+      <div style="font-family:'Times New Roman',Times,serif;font-weight:800;font-size:20px;color:#fff;margin-bottom:16px;">📋 Week 2 Goals — Checklist</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent3);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Install opensmile (<code>pip install opensmile</code>) and run eGeMAPS on a test .wav file</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent3);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Download RAVDESS dataset and understand the filename emotion encoding</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent3);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Extract openSMILE eGeMAPS features for all RAVDESS files into a CSV</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent3);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Train an SVM baseline and report UAR with 10-fold cross-validation</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent3);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Train a Random Forest baseline and compare feature importances</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent3);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Visualize your eGeMAPS features with UMAP — do emotion clusters appear?</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent3);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Build a minimal CNN spectrogram classifier with torchaudio + PyTorch</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent3);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Watch HuggingFace Audio Course Units 1–4</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent3);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Read the eGeMAPS paper abstract &amp; feature table — know what you're extracting</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent3);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Set up Weights &amp; Biases and log your first experiment run</div>
       </div>
     </div>
-  </div>
 
-  <!-- QUOTE -->
-  <div class="quote-block">
-    <p>"The Fourier transform is not just a mathematical tool — it's a way of seeing. Once you understand it, you'll see frequencies hiding inside everything."</p>
-    <cite>— Alan V. Oppenheim, Discrete-Time Signal Processing</cite>
-  </div>
-
-  <!-- === VIDEO RESOURCES === -->
-  <div class="section-head">
-    <div class="section-icon" style="background:rgba(255,107,53,0.12);">▶</div>
-    <h2>Must-Watch Videos</h2>
-    <span class="section-tag">Visual learning</span>
-  </div>
-
-  <div class="cards">
-
-    <a class="card" href="https://www.youtube.com/watch?v=spUNpyF58BY" target="_blank">
-      <div class="card-star">⭐ Essential</div>
-      <div class="card-tags">
-        <span class="tag video">Video</span>
-        <span class="tag free">Free</span>
-      </div>
-      <div class="card-title">But what is the Fourier Transform? A visual introduction</div>
-      <div class="card-source">3Blue1Brown · YouTube · 20 min</div>
-      <div class="card-desc">The single best starting point for anyone. Grant Sanderson's stunning animation-driven explanation of why the Fourier Transform works, using the "winding frequency" intuition. No prior knowledge needed.</div>
-      <div class="card-link">Watch on YouTube →</div>
-    </a>
-
-    <a class="card" href="https://www.youtube.com/watch?v=r18Gi8lSkfM" target="_blank">
-      <div class="card-tags">
-        <span class="tag video">Video</span>
-        <span class="tag free">Free</span>
-      </div>
-      <div class="card-title">The Remarkable Story Behind the Fourier Transform</div>
-      <div class="card-source">Veritasium · YouTube · 31 min</div>
-      <div class="card-desc">Goes into the history and physics behind Fourier's original insight — decomposing heat flow into sine waves. Excellent for building context and motivation before the math.</div>
-      <div class="card-link">Watch on YouTube →</div>
-    </a>
-
-    <a class="card" href="https://www.youtube.com/watch?v=mkGsMWi_j4Q" target="_blank">
-      <div class="card-tags">
-        <span class="tag video">Video</span>
-        <span class="tag free">Free</span>
-      </div>
-      <div class="card-title">The Discrete Fourier Transform — Step by Step</div>
-      <div class="card-source">Steve Brunton · YouTube · 45 min</div>
-      <div class="card-desc">University-level lecture (UW) that carefully builds the DFT from scratch with clear notation. Professor Brunton's whiteboard style is unusually clear and connects DFT to the continuous FT.</div>
-      <div class="card-link">Watch on YouTube →</div>
-    </a>
-
-    <a class="card" href="https://www.youtube.com/watch?v=FcXZ28BX-xE" target="_blank">
-      <div class="card-tags">
-        <span class="tag video">Video</span>
-        <span class="tag free">Free</span>
-      </div>
-      <div class="card-title">Sampling, Nyquist Theorem & Aliasing Explained</div>
-      <div class="card-source">Reducible · YouTube · 22 min</div>
-      <div class="card-desc">Why can't we just record at any sample rate? This video nails the Nyquist-Shannon theorem visually, shows aliasing artifacts in action, and explains anti-aliasing filters used in real ADCs.</div>
-      <div class="card-link">Watch on YouTube →</div>
-    </a>
-
-    <a class="card" href="https://www.youtube.com/playlist?list=PLn0OLiymPak2G__qvavn3T8k7R8ssKxVr" target="_blank">
-      <div class="card-tags">
-        <span class="tag video">Video</span>
-        <span class="tag free">Free</span>
-      </div>
-      <div class="card-title">Audio Signal Processing for ML — Full Series</div>
-      <div class="card-source">Valerio Velardo · YouTube · Series</div>
-      <div class="card-desc">A dedicated playlist that goes from signal basics all the way to MFCCs and spectrograms specifically for machine learning. One of the most practically relevant video series for audio classification projects.</div>
-      <div class="card-link">Open Playlist →</div>
-    </a>
-
-    <a class="card" href="https://www.youtube.com/watch?v=0ALKGR0I5MA" target="_blank">
-      <div class="card-tags">
-        <span class="tag video">Video</span>
-        <span class="tag free">Free</span>
-      </div>
-      <div class="card-title">The Fast Fourier Transform Algorithm Explained</div>
-      <div class="card-source">Reducible · YouTube · 30 min</div>
-      <div class="card-desc">Once you understand DFT, learn why FFT is O(n log n) instead of O(n²). Critical for understanding why real-time audio analysis is possible, and great algorithm thinking exercise.</div>
-      <div class="card-link">Watch on YouTube →</div>
-    </a>
-
-  </div>
-
-  <!-- === INTERACTIVE VISUALIZATIONS === -->
-  <div class="section-head">
-    <div class="section-icon" style="background:rgba(168,85,247,0.12);">◎</div>
-    <h2>Interactive Visualizations</h2>
-    <span class="section-tag">Learn by playing</span>
-  </div>
-
-  <div class="cards two">
-
-    <a class="card" href="https://jackschaedler.github.io/circles-sines-signals/" target="_blank">
-      <div class="card-star">⭐ Best Visual</div>
-      <div class="card-tags">
-        <span class="tag interactive">Interactive</span>
-        <span class="tag visual">Visual</span>
-        <span class="tag free">Free</span>
-      </div>
-      <div class="card-title">Circles, Sines, and Signals — A Primer</div>
-      <div class="card-source">jackschaedler.github.io</div>
-      <div class="card-desc">A beautifully crafted scrollytelling primer on signal processing. Every concept is animated and interactive — from basic oscillations to Fourier series decomposition. Arguably the best single visual resource on the internet for this topic.</div>
-      <div class="card-link">Open Interactive Guide →</div>
-    </a>
-
-    <a class="card" href="https://pudding.cool/2018/02/waveforms/" target="_blank">
-      <div class="card-tags">
-        <span class="tag interactive">Interactive</span>
-        <span class="tag visual">Visual</span>
-        <span class="tag free">Free</span>
-      </div>
-      <div class="card-title">Let's Learn About Waveforms</div>
-      <div class="card-source">The Pudding</div>
-      <div class="card-desc">An audio-driven visual explainer where you actually hear the sine, square, sawtooth and triangle waves as you learn about them. Combines perception and math. Excellent for building the intuition for why waveform shape matters for timbre.</div>
-      <div class="card-link">Open Visual Guide →</div>
-    </a>
-
-    <a class="card" href="https://www.falstad.com/fourier/" target="_blank">
-      <div class="card-tags">
-        <span class="tag interactive">Interactive</span>
-        <span class="tag free">Free</span>
-      </div>
-      <div class="card-title">Falstad Fourier Series Applet</div>
-      <div class="card-source">falstad.com</div>
-      <div class="card-desc">A classic Java applet (now in JS) that lets you drag Fourier coefficients and see the resulting waveform in real time. Also lets you draw a custom waveform and watch it decompose into harmonics. Excellent for building coefficient intuition.</div>
-      <div class="card-link">Open Applet →</div>
-    </a>
-
-  </div>
-
-  <!-- === ARTICLES & READING === -->
-  <div class="section-head">
-    <div class="section-icon" style="background:rgba(0,212,255,0.10);">📄</div>
-    <h2>Articles & Reading</h2>
-    <span class="section-tag">Deep understanding</span>
-  </div>
-
-  <div class="cards">
-
-    <a class="card" href="https://betterexplained.com/articles/an-interactive-guide-to-the-fourier-transform/" target="_blank">
-      <div class="card-star">⭐ Best Read</div>
-      <div class="card-tags">
-        <span class="tag article">Article</span>
-        <span class="tag free">Free</span>
-      </div>
-      <div class="card-title">An Interactive Guide to the Fourier Transform</div>
-      <div class="card-source">BetterExplained by Kalid Azad</div>
-      <div class="card-desc">Kalid's trademark "aha moment" writing style cuts through formulas to give you genuine intuition. Uses the analogy of a smoothie recipe — frequencies are the ingredients, the FT is the recipe. One of the most-linked DSP articles on the web.</div>
-      <div class="card-link">Read Article →</div>
-    </a>
-
-    <a class="card" href="https://realpython.com/python-scipy-fft/" target="_blank">
-      <div class="card-tags">
-        <span class="tag article">Article</span>
-        <span class="tag interactive">Code</span>
-        <span class="tag free">Free</span>
-      </div>
-      <div class="card-title">Fourier Transforms with SciPy FFT</div>
-      <div class="card-source">Real Python</div>
-      <div class="card-desc">Hands-on tutorial that walks you from a basic sine wave all the way to analyzing audio files with FFT in Python. Includes filtering, spectral analysis, and visualizing results with Matplotlib. Your first real code session.</div>
-      <div class="card-link">Read Tutorial →</div>
-    </a>
-
-    <a class="card" href="https://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html" target="_blank">
-      <div class="card-tags">
-        <span class="tag article">Article</span>
-        <span class="tag free">Free</span>
-      </div>
-      <div class="card-title">Speech Processing for ML — MFCCs from Scratch</div>
-      <div class="card-source">haythamfayek.com</div>
-      <div class="card-desc">A focused walkthrough from raw audio signal to MFCC features — the de-facto standard for audio classification. Great bridge between DSP basics this week and ML features in the coming weeks.</div>
-      <div class="card-link">Read Article →</div>
-    </a>
-
-  </div>
-
-  <!-- === COURSES === -->
-  <div class="section-head">
-    <div class="section-icon" style="background:rgba(245,158,11,0.10);">🎓</div>
-    <h2>Structured Courses</h2>
-    <span class="section-tag">For going deeper</span>
-  </div>
-
-  <div class="cards two">
-
-    <a class="card" href="https://www.coursera.org/learn/audio-signal-processing" target="_blank">
-      <div class="card-tags">
-        <span class="tag course">Course</span>
-        <span class="tag free">Free Audit</span>
-      </div>
-      <div class="card-title">Audio Signal Processing for Music Applications</div>
-      <div class="card-source">Coursera · Universitat Pompeu Fabra Barcelona</div>
-      <div class="card-desc">The gold-standard MOOC for audio DSP. Covers sinusoids, DFT, STFT, spectral models, and synthesis. Taught by researchers who literally wrote the book on music DSP. Highly recommended for AudialMind's long-term foundation.</div>
-      <div class="card-link">View Course →</div>
-    </a>
-
-    <a class="card" href="https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/" target="_blank">
-      <div class="card-tags">
-        <span class="tag course">Course</span>
-        <span class="tag free">Free</span>
-      </div>
-      <div class="card-title">MIT 6.003 — Signals and Systems</div>
-      <div class="card-source">MIT OpenCourseWare</div>
-      <div class="card-desc">The classic undergrad signals course freely available from MIT. If you want rigorous mathematical depth — convolution, Laplace transforms, Z-transforms — this is the canonical resource. Use selectively: lectures 1–8 cover what you need this week.</div>
-      <div class="card-link">View OCW →</div>
-    </a>
-
-    <a class="card" href="https://www.youtube.com/watch?v=iTMn0Kt18tg&list=PLMrJAkhIeNNT_Xh3Oy0Y4LTj0Oxo8GqsC" target="_blank">
-      <div class="card-tags">
-        <span class="tag course">Course</span>
-        <span class="tag free">Free</span>
-      </div>
-      <div class="card-title">Engineering Math — Fourier Series & Transforms</div>
-      <div class="card-source">Steve Brunton · University of Washington</div>
-      <div class="card-desc">A free YouTube lecture series covering Fourier Series, Transforms, and their applications in engineering. Dr. Brunton is one of the clearest math lecturers on YouTube, with excellent coverage of SVD and data-driven methods too.</div>
-      <div class="card-link">Open Playlist →</div>
-    </a>
-
-  </div>
-
-  <!-- === TOOLS & LIBRARIES === -->
-  <div class="section-head">
-    <div class="section-icon" style="background:rgba(34,197,94,0.10);">🔧</div>
-    <h2>Tools & Libraries to Install This Week</h2>
-    <span class="section-tag">Hands-on</span>
-  </div>
-
-  <div class="cards">
-
-    <a class="card" href="https://librosa.org" target="_blank">
-      <div class="card-star">⭐ Core Tool</div>
-      <div class="card-tags">
-        <span class="tag interactive">Library</span>
-        <span class="tag free">Free</span>
-      </div>
-      <div class="card-title">Librosa — Audio Analysis in Python</div>
-      <div class="card-source">librosa.org · pip install librosa</div>
-      <div class="card-desc">The de-facto Python library for audio analysis. Loads audio files, computes spectrograms, MFCCs, chroma features, beats, and more. You'll use this for the entire AudialMind project.</div>
-      <div class="card-link">View Docs →</div>
-    </a>
-
-    <a class="card" href="https://docs.scipy.org/doc/scipy/reference/fft.html" target="_blank">
-      <div class="card-tags">
-        <span class="tag interactive">Library</span>
-        <span class="tag free">Free</span>
-      </div>
-      <div class="card-title">SciPy FFT Module</div>
-      <div class="card-source">scipy.fft · Part of SciPy</div>
-      <div class="card-desc">The fastest and most correct FFT implementation for Python (wraps FFTPACK/FFTW). Essential for any custom signal processing work. <code>scipy.fft.fft()</code> is all you need to start.</div>
-      <div class="card-link">View Docs →</div>
-    </a>
-
-    <a class="card" href="https://matplotlib.org/stable/gallery/specialty_plots/mri_with_eeg.html" target="_blank">
-      <div class="card-tags">
-        <span class="tag interactive">Library</span>
-        <span class="tag free">Free</span>
-      </div>
-      <div class="card-title">Matplotlib for Signal Visualization</div>
-      <div class="card-source">matplotlib.org · Already installed</div>
-      <div class="card-desc">You'll use <code>plt.specgram()</code>, <code>plt.psd()</code>, and <code>librosa.display.specshow()</code> constantly. This week: practice plotting a raw waveform, an FFT magnitude spectrum, and a spectrogram side by side.</div>
-      <div class="card-link">View Gallery →</div>
-    </a>
-
-    <a class="card" href="https://www.fon.hum.uva.nl/praat/" target="_blank">
-      <div class="card-star">⭐ Must Have</div>
-      <div class="card-tags">
-        <span class="tag interactive">Software</span>
-        <span class="tag free">Free</span>
-      </div>
-      <div class="card-title">Praat — Phonetics & Speech Analysis</div>
-      <div class="card-source">fon.hum.uva.nl/praat · Windows / Mac / Linux</div>
-      <div class="card-desc">The gold-standard tool used by linguists, phoneticians, and audio researchers worldwide. Praat lets you visualize waveforms, spectrograms, pitch contours, formants, and intensity in real time — all without writing a single line of code. Ideal for building strong visual intuition for how speech signals behave before implementing analysis in Python. Also scriptable via its own Praat scripting language for batch processing.</div>
-      <div class="card-link">Download Praat →</div>
-    </a>
-
-  </div>
-
-  <div class="divider" style="margin-top:64px;"></div>
-
-  <!-- WEEK SUMMARY -->
-  <div style="margin-top:40px;padding:32px;background:var(--surface);border:1px solid var(--border);border-radius:8px;">
-    <div style="font-family:'Times New Roman', Times, serif,;font-weight:800;font-size:20px;color:#fff;margin-bottom:16px;">📋 Week 1 Goals — Checklist</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-      <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;">
-        <span style="color:var(--accent);font-family:'Space Mono',monospace;margin-top:1px"></span>
-        Watch 3Blue1Brown Fourier video
-      </div>
-      <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;">
-        <span style="color:var(--accent);font-family:'Space Mono',monospace;margin-top:1px"></span>
-        Read the BetterExplained Fourier article end-to-end
-      </div>
-      <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;">
-        <span style="color:var(--accent);font-family:'Space Mono',monospace;margin-top:1px"></span>
-        Play with Circles & Sines until decomposition feels intuitive
-      </div>
-      <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;">
-        <span style="color:var(--accent);font-family:'Space Mono',monospace;margin-top:1px"></span>
-        Install librosa and load your first .wav file in Python
-      </div>
-      <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;">
-        <span style="color:var(--accent);font-family:'Space Mono',monospace;margin-top:1px"></span>
-        Plot a spectrogram of a real audio file using Matplotlib
-      </div>
-      <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;">
-        <span style="color:var(--accent);font-family:'Space Mono',monospace;margin-top:1px"></span>
-        Explain Nyquist theorem in your own words
-      </div>
-      <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;">
-        <span style="color:var(--accent);font-family:'Space Mono',monospace;margin-top:1px"></span>
-        Download Praat &amp; open a .wav file — inspect its spectrogram &amp; pitch contour
-      </div>
-      <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;">
-        <span style="color:var(--accent);font-family:'Space Mono',monospace;margin-top:1px"></span>
-        Compare the same audio's spectrogram in Praat vs Matplotlib — note the differences
+    <!-- W2 NEXT WEEK PREVIEW -->
+    <div style="margin-top:20px;padding:24px 32px;background:linear-gradient(135deg,rgba(168,85,247,0.06),rgba(255,107,53,0.04));border:1px solid rgba(168,85,247,0.2);border-radius:8px;display:flex;align-items:center;gap:24px;">
+      <div style="flex:1;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">Coming Next</div>
+        <div style="font-family:'Times New Roman',Times,serif;font-weight:800;font-size:20px;color:#fff;margin-bottom:6px;">Assignment 1</div>
+        <div style="font-size:13px;color:#6a90aa;line-height:1.6;">To be updated by May 31.</div>
       </div>
     </div>
-  </div>
+  </main>
+</div>
 
-</main>
-
+<!-- FOOTER -->
 <footer>
-  <div class="foot-left">AudialMind · Signal Processing & Audio Classification · Week 1</div>
-  <div class="foot-right">
-    <span class="progress-pill">Week 1 / Foundations</span>
+  <div class="foot-left">AudialMind · Signal Processing &amp; Audio Classification</div>
+  <div class="foot-right" id="footer-pill">
+    <span class="progress-pill w1-pill" id="footer-w1-pill">Week 1 / Foundations</span>
+    <span class="progress-pill w2-pill" id="footer-w2-pill" style="display:none;">Week 2 / ML Foundations</span>
   </div>
 </footer>
+
+<script>
+  function switchTab(weekId, btn) {
+    // Update panels
+    document.querySelectorAll('.week-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + weekId).classList.add('active');
+
+    // Update buttons
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Update footer pills
+    document.getElementById('footer-w1-pill').style.display = weekId === 'w1' ? '' : 'none';
+    document.getElementById('footer-w2-pill').style.display = weekId === 'w2' ? '' : 'none';
+
+    // Scroll to top of tab nav
+    document.querySelector('.tab-nav').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function switchTabById(weekId) {
+    const btn = document.querySelector('.tab-btn.' + weekId);
+    if (btn) switchTab(weekId, btn);
+  }
+</script>
 
 </body>
 </html>
