@@ -15,7 +15,8 @@
     --accent: #00d4ff;
     --accent2: #ff6b35;
     --accent3: #a855f7;
-    --accent4: #10b981; /* Week 3 — emerald green */
+    --accent4: #10b981;
+    --accent5: #f59e0b;
     --text: #e0eaf4;
     --muted: #5a7a96;
     --tag-video: #ff6b35;
@@ -48,7 +49,6 @@
     z-index: 0;
   }
 
-  /* ======================== SHARED HERO ======================== */
   .hero {
     position: relative;
     padding: 80px 48px 60px;
@@ -102,7 +102,6 @@
   .wave-anim .bar { width: 3px; border-radius: 2px; animation: wavebar 1.4s ease-in-out infinite; opacity: 0.6; }
   @keyframes wavebar { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(3.5); } }
 
-  /* ======================== TAB NAV ======================== */
   .tab-nav {
     position: sticky; top: 0; z-index: 100;
     background: rgba(5,10,15,0.95);
@@ -110,6 +109,7 @@
     border-bottom: 1px solid var(--border);
     padding: 0 48px;
     display: flex; align-items: center; gap: 0;
+    overflow-x: auto;
   }
   .tab-btn {
     font-family: 'Space Mono', monospace;
@@ -132,19 +132,18 @@
   .tab-btn.w1::after { background: var(--accent); }
   .tab-btn.w2::after { background: var(--accent3); }
   .tab-btn.w3::after { background: var(--accent4); }
+  .tab-btn.w4::after { background: var(--accent5); }
   .tab-btn.active.w1 { color: var(--accent); }
   .tab-btn.active.w2 { color: var(--accent3); }
   .tab-btn.active.w3 { color: var(--accent4); }
+  .tab-btn.active.w4 { color: var(--accent5); }
   .tab-done { font-size: 9px; color: #4ade80; margin-left: 6px; letter-spacing: 0; }
 
-  /* ======================== WEEK PANELS ======================== */
   .week-panel { display: none; }
   .week-panel.active { display: block; }
 
-  /* ======================== LAYOUT ======================== */
   .container { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 48px 80px; }
 
-  /* ======================== SECTION HEADERS ======================== */
   .section-head {
     display: flex; align-items: baseline; gap: 16px;
     margin: 64px 0 28px; padding-bottom: 16px;
@@ -154,7 +153,6 @@
   .section-head .section-tag { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
   .section-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
 
-  /* ======================== CARDS ======================== */
   .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
   .cards.wide { grid-template-columns: 1fr; }
   .cards.two  { grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); }
@@ -167,10 +165,12 @@
   .w1-content .card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,212,255,0.07); }
   .w2-content .card:hover { border-color: var(--accent3); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(168,85,247,0.08); }
   .w3-content .card:hover { border-color: var(--accent4); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(16,185,129,0.08); }
+  .w4-content .card:hover { border-color: var(--accent5); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(245,158,11,0.10); }
   .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; opacity: 0; transition: opacity 0.2s; }
   .w1-content .card::before { background: linear-gradient(90deg, var(--accent), var(--accent3)); }
   .w2-content .card::before { background: linear-gradient(90deg, var(--accent3), var(--accent2)); }
   .w3-content .card::before { background: linear-gradient(90deg, var(--accent4), var(--accent)); }
+  .w4-content .card::before { background: linear-gradient(90deg, var(--accent5), var(--accent2)); }
   .card:hover::before { opacity: 1; }
 
   .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
@@ -188,12 +188,14 @@
   .tag.tool        { background: rgba(0,212,255,0.08);   color: var(--accent);          border: 1px solid rgba(0,212,255,0.2); }
   .tag.paper       { background: rgba(168,85,247,0.10);  color: #c084fc;                border: 1px solid rgba(168,85,247,0.25); }
   .tag.new         { background: rgba(16,185,129,0.12);  color: #34d399;                border: 1px solid rgba(16,185,129,0.3); }
+  .tag.w4new       { background: rgba(245,158,11,0.12);  color: #fcd34d;                border: 1px solid rgba(245,158,11,0.3); }
 
   .card-title { font-family: 'Times New Roman', Times, serif; font-weight: 600; font-size: 18px; color: #fff; margin-bottom: 8px; line-height: 1.3; }
   .card-source { font-family: 'Space Mono', monospace; font-size: 10px; margin-bottom: 10px; letter-spacing: 0.05em; }
   .w1-content .card-source { color: var(--accent); }
   .w2-content .card-source { color: var(--accent3); }
   .w3-content .card-source { color: var(--accent4); }
+  .w4-content .card-source { color: var(--accent5); }
 
   .card-desc { font-size: 13.5px; line-height: 1.65; color: #6a90aa; }
   .card-link {
@@ -204,11 +206,11 @@
   .w1-content .card-link { color: var(--accent); }
   .w2-content .card-link { color: var(--accent3); }
   .w3-content .card-link { color: var(--accent4); }
+  .w4-content .card-link { color: var(--accent5); }
   .card-link:hover { gap: 10px; }
 
   .card-star { position: absolute; top: 16px; right: 16px; font-size: 11px; color: #f59e0b; font-family: 'Space Mono', monospace; display: flex; align-items: center; gap: 4px; }
 
-  /* ======================== LEARNING PATH ======================== */
   .path { display: flex; flex-direction: column; gap: 0; }
   .path-step { display: flex; gap: 24px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid rgba(26,58,85,0.5); position: relative; }
   .path-step:last-child { border-bottom: none; }
@@ -216,6 +218,7 @@
   .w1-content .step-num { color: var(--accent2); background: rgba(255,107,53,0.1); border: 1px solid rgba(255,107,53,0.3); }
   .w2-content .step-num { color: var(--accent3); background: rgba(168,85,247,0.10); border: 1px solid rgba(168,85,247,0.30); }
   .w3-content .step-num { color: var(--accent4); background: rgba(16,185,129,0.10); border: 1px solid rgba(16,185,129,0.30); }
+  .w4-content .step-num { color: var(--accent5); background: rgba(245,158,11,0.10); border: 1px solid rgba(245,158,11,0.30); }
   .step-body h3 { font-family: 'Times New Roman', Times, serif; font-weight: 600; font-size: 20px; color: #fff; margin-bottom: 4px; }
   .step-body p { font-size: 13px; color: #5a7a96; line-height: 1.6; }
   .step-body .step-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
@@ -227,24 +230,23 @@
   .w1-content .step-link:hover { border-color: var(--accent); color: var(--accent); }
   .w2-content .step-link:hover { border-color: var(--accent3); color: var(--accent3); }
   .w3-content .step-link:hover { border-color: var(--accent4); color: var(--accent4); }
+  .w4-content .step-link:hover { border-color: var(--accent5); color: var(--accent5); }
 
-  /* ======================== QUOTE BLOCK ======================== */
   .quote-block { margin: 48px 0; padding: 28px 32px; border-radius: 0 8px 8px 0; }
   .w1-content .quote-block { border-left: 3px solid var(--accent); background: linear-gradient(135deg, rgba(0,212,255,0.04), rgba(168,85,247,0.04)); }
   .w2-content .quote-block { border-left: 3px solid var(--accent3); background: linear-gradient(135deg, rgba(168,85,247,0.04), rgba(255,107,53,0.04)); }
   .w3-content .quote-block { border-left: 3px solid var(--accent4); background: linear-gradient(135deg, rgba(16,185,129,0.04), rgba(0,212,255,0.04)); }
+  .w4-content .quote-block { border-left: 3px solid var(--accent5); background: linear-gradient(135deg, rgba(245,158,11,0.04), rgba(255,107,53,0.04)); }
   .quote-block p { font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 20px; line-height: 1.7; color: #aac8e0; }
   .quote-block cite { display: block; margin-top: 12px; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); font-style: normal; }
 
   .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 16px 0; }
 
-  /* ======================== STATS ROW ======================== */
   .stats-row { display: flex; gap: 24px; margin-top: 40px; flex-wrap: wrap; }
   .stat { display: flex; flex-direction: column; gap: 4px; padding: 16px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; min-width: 130px; }
   .stat .val { font-family: 'Space Mono', monospace; font-size: 24px; font-weight: 700; color: #fff; line-height: 1; }
   .stat .lbl { font-size: 11px; color: var(--muted); letter-spacing: 0.05em; }
 
-  /* ======================== PIPELINE ARCH ======================== */
   .arch-diagram { display: flex; flex-direction: column; gap: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-top: 4px; }
   .arch-row { display: flex; align-items: stretch; border-bottom: 1px solid var(--border); }
   .arch-row:last-child { border-bottom: none; }
@@ -264,9 +266,9 @@
   .arch-block.model { color: #fb923c; border-color: rgba(251,146,60,0.3);  background: rgba(251,146,60,0.08); }
   .arch-block.out   { color: #4ade80; border-color: rgba(74,222,128,0.3);  background: rgba(74,222,128,0.08); }
   .arch-block.tf    { color: #34d399; border-color: rgba(52,211,153,0.3);  background: rgba(52,211,153,0.08); }
+  .arch-block.asr   { color: #fcd34d; border-color: rgba(245,158,11,0.35); background: rgba(245,158,11,0.08); }
   .arch-arrow { color: var(--muted); font-size: 18px; display: flex; align-items: center; padding: 0 2px; }
 
-  /* ======================== FEATURE TABLE ======================== */
   .feature-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px; }
   .feature-table th {
     font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
@@ -274,24 +276,100 @@
   }
   .feature-table td { padding: 11px 16px; border-bottom: 1px solid rgba(26,58,85,0.4); color: #6a90aa; vertical-align: top; line-height: 1.5; }
   .feature-table tr:last-child td { border-bottom: none; }
-  .feature-table tr:hover td { background: rgba(16,185,129,0.03); }
-  .feature-table td:first-child { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent4); white-space: nowrap; width: 22%; }
-  .feature-table td:nth-child(2) { color: #34d399; width: 20%; }
+  .w2-content .feature-table tr:hover td { background: rgba(16,185,129,0.03); }
+  .w4-content .feature-table tr:hover td { background: rgba(245,158,11,0.025); }
+  .w2-content .feature-table td:first-child { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent4); white-space: nowrap; width: 22%; }
+  .w2-content .feature-table td:nth-child(2) { color: #34d399; width: 20%; }
+  .w4-content .feature-table td:first-child { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent5); white-space: nowrap; width: 20%; }
   .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
 
-  /* ======================== CODE CARDS ======================== */
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px; }
+  .compare-table th {
+    font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.2);
+  }
+  .compare-table td { padding: 12px 16px; border-bottom: 1px solid rgba(26,58,85,0.4); color: #6a90aa; vertical-align: top; line-height: 1.5; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:hover td { background: rgba(16,185,129,0.025); }
+  .compare-table td:first-child { font-family: 'Space Mono', monospace; font-size: 11px; color: #e0eaf4; }
+  .compare-table td.good  { color: #4ade80; }
+  .compare-table td.ok    { color: #fbbf24; }
+  .compare-table td.bad   { color: #f87171; }
+
   .card-code {
-    margin-top: 14px; background: rgba(0,0,0,0.4); border: 1px solid rgba(16,185,129,0.2);
+    margin-top: 14px; background: rgba(0,0,0,0.4);
     border-radius: 5px; padding: 12px 14px; font-family: 'Space Mono', monospace;
     font-size: 11px; color: #a5f3fc; line-height: 1.7; overflow-x: auto; white-space: pre;
   }
+  .w2-content .card-code, .w3-content .card-code { border: 1px solid rgba(16,185,129,0.2); }
+  .w4-content .card-code { border: 1px solid rgba(245,158,11,0.2); }
   .card-code .cm { color: #5a7a96; }
   .card-code .kw { color: #c084fc; }
   .card-code .fn { color: #60a5fa; }
   .card-code .st { color: #86efac; }
   .card-code .nu { color: #fb923c; }
+  .card-code .am { color: #fcd34d; }
 
-  /* ======================== W3 ATTENTION DIAGRAM ======================== */
+  /* CTC diagram */
+  .ctc-diagram {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin: 20px 0;
+  }
+  .ctc-cell {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 10px 6px;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+  }
+  .ctc-cell.blank { color: #f87171; border-color: rgba(248,113,113,0.3); background: rgba(248,113,113,0.06); }
+  .ctc-cell.char  { color: #fcd34d; border-color: rgba(245,158,11,0.4); background: rgba(245,158,11,0.08); font-weight: 700; }
+  .ctc-cell.sub   { font-size: 9px; color: var(--muted); margin-top: 4px; }
+
+  /* Decoder grid */
+  .decoder-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 4px;
+  }
+  .decoder-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .decoder-box:hover { border-color: var(--accent5); }
+  .decoder-head {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(0,0,0,0.2);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .decoder-body {
+    padding: 16px 20px;
+    font-size: 13px;
+    color: #6a90aa;
+    line-height: 1.65;
+  }
+  .decoder-body strong { color: #aac8e0; font-weight: 400; display: block; margin-bottom: 6px; }
+
+  /* WER bars */
+  .wer-bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .wer-label { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--muted); width: 140px; flex-shrink: 0; }
+  .wer-bar-track { flex: 1; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; }
+  .wer-bar-fill { height: 100%; border-radius: 4px; }
+  .wer-val { font-family: 'Space Mono', monospace; font-size: 10px; color: #fcd34d; width: 44px; text-align: right; flex-shrink: 0; }
+
+  /* Attention diagram */
   .attn-diagram {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -326,7 +404,7 @@
   .attn-item:last-child { border-bottom: none; }
   .attn-item strong { color: #aac8e0; font-weight: 400; }
 
-  /* ======================== CNN DEEP DIVE VISUAL ======================== */
+  /* CNN pipeline */
   .cnn-pipeline {
     display: flex;
     align-items: stretch;
@@ -366,40 +444,14 @@
     color: var(--muted);
     line-height: 1.7;
   }
-  .cnn-stage-arrow {
-    position: absolute;
-    right: -14px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--muted);
-    font-size: 20px;
-    z-index: 2;
-    background: var(--surface);
-    padding: 2px 0;
-  }
 
-  /* ======================== COMPARISON TABLE ======================== */
-  .compare-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px; }
-  .compare-table th {
-    font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--muted); text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.2);
-  }
-  .compare-table th:first-child { color: var(--muted); }
-  .compare-table td { padding: 12px 16px; border-bottom: 1px solid rgba(26,58,85,0.4); color: #6a90aa; vertical-align: top; line-height: 1.5; }
-  .compare-table tr:last-child td { border-bottom: none; }
-  .compare-table tr:hover td { background: rgba(16,185,129,0.025); }
-  .compare-table td:first-child { font-family: 'Space Mono', monospace; font-size: 11px; color: #e0eaf4; }
-  .compare-table td.good  { color: #4ade80; }
-  .compare-table td.ok    { color: #fbbf24; }
-  .compare-table td.bad   { color: #f87171; }
-
-  /* ======================== FOOTER ======================== */
   footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; }
   footer .foot-left { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); }
   .progress-pill { font-family: 'Space Mono', monospace; font-size: 10px; border-radius: 20px; padding: 6px 14px; letter-spacing: 0.08em; }
   .w1-pill { color: var(--accent);  background: rgba(0,212,255,0.08);   border: 1px solid rgba(0,212,255,0.2); }
   .w2-pill { color: var(--accent3); background: rgba(168,85,247,0.08);  border: 1px solid rgba(168,85,247,0.2); }
   .w3-pill { color: var(--accent4); background: rgba(16,185,129,0.08);  border: 1px solid rgba(16,185,129,0.2); }
+  .w4-pill { color: var(--accent5); background: rgba(245,158,11,0.08);  border: 1px solid rgba(245,158,11,0.2); }
 
   code {
     font-family: 'Space Mono', monospace; font-size: 11px; color: #a5f3fc;
@@ -407,13 +459,21 @@
     border-radius: 3px; padding: 1px 5px;
   }
 
-  /* ======================== W2 SPECIFIC ======================== */
   @keyframes pdf-scanline { 0% { left: -60%; } 100% { left: 160%; } }
   @keyframes pdf-pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
   .pdf-card:hover { transform: translateY(-3px); box-shadow: 0 20px 56px rgba(255,107,53,0.18) !important; border-color: rgba(255,107,53,0.6) !important; }
   .pdf-card:hover .pdf-btn { background: rgba(255,107,53,0.2) !important; gap: 14px !important; }
   .submit-card:hover { transform: translateY(-3px); box-shadow: 0 20px 56px rgba(74,222,128,0.15) !important; border-color: rgba(74,222,128,0.6) !important; }
   .submit-card:hover .submit-btn { background: rgba(74,222,128,0.2) !important; gap: 14px !important; }
+
+  @media (max-width: 768px) {
+    .hero { padding: 48px 24px 40px; }
+    .container { padding: 0 24px 60px; }
+    .tab-nav { padding: 0 16px; }
+    .decoder-grid { grid-template-columns: 1fr; }
+    .attn-diagram { grid-template-columns: 1fr 1fr; }
+    footer { padding: 24px; flex-direction: column; gap: 12px; }
+  }
 </style>
 </head>
 <body>
@@ -432,17 +492,17 @@
     <div class="bar" style="height:8px;background:var(--accent);animation-delay:0.1s"></div>
     <div class="bar" style="height:8px;background:var(--accent);animation-delay:0.2s"></div>
     <div class="bar" style="height:8px;background:var(--accent);animation-delay:0.3s"></div>
-    <div class="bar" style="height:8px;background:var(--accent);animation-delay:0.4s"></div>
+    <div class="bar" style="height:8px;background:var(--accent3);animation-delay:0.4s"></div>
     <div class="bar" style="height:8px;background:var(--accent3);animation-delay:0.5s"></div>
     <div class="bar" style="height:8px;background:var(--accent3);animation-delay:0.6s"></div>
     <div class="bar" style="height:8px;background:var(--accent3);animation-delay:0.7s"></div>
-    <div class="bar" style="height:8px;background:var(--accent3);animation-delay:0.8s"></div>
-    <div class="bar" style="height:8px;background:var(--accent3);animation-delay:0.9s"></div>
+    <div class="bar" style="height:8px;background:var(--accent4);animation-delay:0.8s"></div>
+    <div class="bar" style="height:8px;background:var(--accent4);animation-delay:0.9s"></div>
     <div class="bar" style="height:8px;background:var(--accent4);animation-delay:1.0s"></div>
     <div class="bar" style="height:8px;background:var(--accent4);animation-delay:1.1s"></div>
-    <div class="bar" style="height:8px;background:var(--accent4);animation-delay:1.2s"></div>
-    <div class="bar" style="height:8px;background:var(--accent2);animation-delay:1.3s"></div>
-    <div class="bar" style="height:8px;background:var(--accent2);animation-delay:1.4s"></div>
+    <div class="bar" style="height:8px;background:var(--accent5);animation-delay:1.2s"></div>
+    <div class="bar" style="height:8px;background:var(--accent5);animation-delay:1.3s"></div>
+    <div class="bar" style="height:8px;background:var(--accent5);animation-delay:1.4s"></div>
   </div>
 </header>
 
@@ -452,10 +512,13 @@
     Week 1 — Signal Processing Foundations
   </button>
   <button class="tab-btn w2" onclick="switchTab('w2', this)">
-    Week 2 — ML Models &amp; Feature Extraction
+    Week 2 — ML Models
   </button>
   <button class="tab-btn w3" onclick="switchTab('w3', this)">
-    Week 3 — CNNs In Depth &amp; Transformers
+    Week 3 — Transformers
+  </button>
+  <button class="tab-btn w4" onclick="switchTab('w4', this)">
+    Week 4 — Audio to Text 
   </button>
 </nav>
 
@@ -539,7 +602,7 @@
     <div class="hero-glow" style="background: radial-gradient(ellipse, rgba(168,85,247,0.10) 0%, transparent 70%);"></div>
     <div class="hero-glow2" style="background: radial-gradient(ellipse, rgba(255,107,53,0.08) 0%, transparent 70%);"></div>
     <div class="week-badge" style="background:linear-gradient(135deg,rgba(168,85,247,0.1),rgba(255,107,53,0.1));">
-      <div><div class="sublabel"></div><div class="num" style="color:var(--accent3);">02</div></div>
+      <div><div class="num" style="color:var(--accent3);">02</div></div>
       <div style="width:1px;height:40px;background:var(--border)"></div>
       <div><div class="label">Week 2</div><div class="sublabel">ML Models & Feature Extraction with openSMILE</div></div>
     </div>
@@ -645,8 +708,7 @@ uar = <span class="fn">cross_val_score</span>(
         </div>
       </div>
     </a>
-    <!-- Bridge to W3 -->
-    <div style="margin-top:0;padding:24px 32px;background:linear-gradient(135deg,rgba(168,85,247,0.06),rgba(16,185,129,0.04));border:1px solid rgba(16,185,129,0.2);border-radius:8px;display:flex;align-items:center;gap:24px;cursor:pointer;" onclick="switchTabById('w3')">
+    <div style="padding:24px 32px;background:linear-gradient(135deg,rgba(168,85,247,0.06),rgba(16,185,129,0.04));border:1px solid rgba(16,185,129,0.2);border-radius:8px;display:flex;align-items:center;gap:24px;cursor:pointer;" onclick="switchTabById('w3')">
       <div style="flex:1;"><div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">Up Next</div><div style="font-family:'Times New Roman',Times,serif;font-weight:800;font-size:20px;color:#fff;margin-bottom:6px;">Week 3 — CNN Spectrogram Analysis In Depth &amp; Transformer Models</div><div style="font-size:13px;color:#6a90aa;line-height:1.6;">Go deep on CNN architecture choices for audio, then step into the transformer era with Wav2Vec2, HuBERT, and Audio Spectrogram Transformer.</div></div>
       <div style="font-family:'Space Mono',monospace;font-size:40px;color:rgba(16,185,129,0.3);flex-shrink:0;">03 →</div>
     </div>
@@ -659,13 +721,11 @@ uar = <span class="fn">cross_val_score</span>(
     <div class="hero-glow" style="background: radial-gradient(ellipse, rgba(16,185,129,0.12) 0%, transparent 70%);"></div>
     <div class="hero-glow2" style="background: radial-gradient(ellipse, rgba(0,212,255,0.07) 0%, transparent 70%);"></div>
     <div class="week-badge" style="background:linear-gradient(135deg,rgba(16,185,129,0.1),rgba(0,212,255,0.08));">
-      <div><div class="sublabel">CURRENT</div><div class="num" style="color:var(--accent4);">03</div></div>
+      <div><div class="num" style="color:var(--accent4);">03</div></div>
       <div style="width:1px;height:40px;background:var(--border)"></div>
       <div><div class="label">Week 3</div><div class="sublabel">CNN Spectrogram Analysis In Depth &amp; Transformer Models</div></div>
     </div>
-    <p class="hero-desc">
-      You've trained the baselines. Now understand <em>why</em> CNNs work the way they do on spectrograms, master the augmentation and architecture choices that actually move the needle, then cross into the transformer era — Wav2Vec2, HuBERT, and Audio Spectrogram Transformer.
-    </p>
+    <p class="hero-desc">You've trained the baselines. Now understand <em>why</em> CNNs work the way they do on spectrograms, master the augmentation and architecture choices that actually move the needle, then cross into the transformer era — Wav2Vec2, HuBERT, and Audio Spectrogram Transformer.</p>
     <div class="stats-row">
       <div class="stat"><div class="val">7<span style="color:var(--accent4)">+</span></div><div class="lbl">Video Resources</div></div>
       <div class="stat"><div class="val">6<span style="color:var(--accent4)">+</span></div><div class="lbl">Code Samples</div></div>
@@ -674,339 +734,86 @@ uar = <span class="fn">cross_val_score</span>(
       <div class="stat"><div class="val">~<span style="color:var(--accent4)">18</span>h</div><div class="lbl">Estimated Time</div></div>
     </div>
   </div>
-
   <main class="container w3-content">
-
-    <!-- PART A: CNN DEEP DIVE -->
     <div style="margin-top:64px;padding:20px 28px;background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.15);border-radius:8px;display:flex;align-items:center;gap:16px;">
       <div style="font-family:'Space Mono',monospace;font-size:28px;font-weight:700;color:var(--accent4);line-height:1;">A</div>
       <div><div style="font-family:'Times New Roman',Times,serif;font-weight:800;font-size:22px;color:#fff;">CNN Spectrogram Analysis — In Depth</div><div style="font-size:13px;color:#5a7a96;margin-top:4px;">Move beyond the toy CNN. Understand why every architectural decision matters for audio.</div></div>
     </div>
-
-    <!-- CNN STAGE PIPELINE -->
     <div class="section-head"><div class="section-icon" style="background:rgba(16,185,129,0.1);">🏗️</div><h2>The Spectrogram CNN — Layer by Layer</h2><span class="section-tag">What each stage actually learns</span></div>
     <div class="cnn-pipeline">
-      <div class="cnn-stage">
-        <div class="cnn-stage-label" style="color:var(--accent4);">Stage 0</div>
-        <div class="cnn-stage-title">Mel Spectrogram</div>
-        <div class="cnn-stage-detail">n_mels: 64–128<br>n_fft: 1024–2048<br>hop_length: 512<br>log-amplitude<br>shape: (1, F, T)</div>
-      </div>
-      <div class="cnn-stage">
-        <div class="cnn-stage-label" style="color:#60a5fa;">Stage 1</div>
-        <div class="cnn-stage-title">Early Conv Blocks</div>
-        <div class="cnn-stage-detail">Small kernels (3×3)<br>Captures local<br>time-freq patterns<br>Harmonic edges<br>BatchNorm + ReLU</div>
-      </div>
-      <div class="cnn-stage">
-        <div class="cnn-stage-label" style="color:#c084fc;">Stage 2</div>
-        <div class="cnn-stage-title">Mid Conv Blocks</div>
-        <div class="cnn-stage-detail">Larger receptive field<br>Formant structure<br>Temporal patterns<br>MaxPool(2,2)<br>Dropout 0.25</div>
-      </div>
-      <div class="cnn-stage">
-        <div class="cnn-stage-label" style="color:#fb923c;">Stage 3</div>
-        <div class="cnn-stage-title">Deep Conv Blocks</div>
-        <div class="cnn-stage-detail">Global patterns<br>Rhythm, timbre<br>Emotion contour<br>AdaptiveAvgPool<br>→ fixed vector</div>
-      </div>
-      <div class="cnn-stage">
-        <div class="cnn-stage-label" style="color:#4ade80;">Stage 4</div>
-        <div class="cnn-stage-title">Classifier Head</div>
-        <div class="cnn-stage-detail">FC 512 → 256<br>Dropout 0.5<br>FC 256 → N_classes<br>Softmax / Sigmoid<br>CrossEntropy loss</div>
-      </div>
+      <div class="cnn-stage"><div class="cnn-stage-label" style="color:var(--accent4);">Stage 0</div><div class="cnn-stage-title">Mel Spectrogram</div><div class="cnn-stage-detail">n_mels: 64–128<br>n_fft: 1024–2048<br>hop_length: 512<br>log-amplitude<br>shape: (1, F, T)</div></div>
+      <div class="cnn-stage"><div class="cnn-stage-label" style="color:#60a5fa;">Stage 1</div><div class="cnn-stage-title">Early Conv Blocks</div><div class="cnn-stage-detail">Small kernels (3×3)<br>Captures local<br>time-freq patterns<br>Harmonic edges<br>BatchNorm + ReLU</div></div>
+      <div class="cnn-stage"><div class="cnn-stage-label" style="color:#c084fc;">Stage 2</div><div class="cnn-stage-title">Mid Conv Blocks</div><div class="cnn-stage-detail">Larger receptive field<br>Formant structure<br>Temporal patterns<br>MaxPool(2,2)<br>Dropout 0.25</div></div>
+      <div class="cnn-stage"><div class="cnn-stage-label" style="color:#fb923c;">Stage 3</div><div class="cnn-stage-title">Deep Conv Blocks</div><div class="cnn-stage-detail">Global patterns<br>Rhythm, timbre<br>Emotion contour<br>AdaptiveAvgPool<br>→ fixed vector</div></div>
+      <div class="cnn-stage"><div class="cnn-stage-label" style="color:#4ade80;">Stage 4</div><div class="cnn-stage-title">Classifier Head</div><div class="cnn-stage-detail">FC 512 → 256<br>Dropout 0.5<br>FC 256 → N_classes<br>Softmax / Sigmoid<br>CrossEntropy loss</div></div>
     </div>
-
-    <!-- ARCHITECTURAL CHOICES TABLE -->
-    <div class="section-head"><div class="section-icon" style="background:rgba(255,107,53,0.12);">▶</div><h2>Must-Watch Videos</h2><span class="section-tag">Visual learning</span></div>
+    <div class="section-head"><div class="section-icon" style="background:rgba(255,107,53,0.12);">▶</div><h2>Must-Watch Videos — CNN Deep Dive</h2><span class="section-tag">Visual learning</span></div>
     <div class="cards">
-      <a class="card" href="https://www.youtube.com/watch?v=aircAruvnKk" target="_blank">
-        <div class="card-star">⭐ Essential</div>
-        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Online</span></div>
-        <div class="card-title">But what is a neural network? — 3Blue1Brown</div>
-        <div class="card-source">3Blue1Brown · YouTube · 19 min</div>
-        <div class="card-desc">The foundational visual intuition behind neurons, layers, and activation functions. The best starting point before diving into convolutions specifically.</div>
-        <div class="card-link">Watch on YouTube →</div>
-      </a>
-      <a class="card" href="https://www.youtube.com/watch?v=FmpDIaiMIeA" target="_blank">
-        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Online</span></div>
-        <div class="card-title">How Convolutional Neural Networks Work</div>
-        <div class="card-source">Brandon Rohrer · YouTube · 26 min</div>
-        <div class="card-desc">Step-by-step walkthrough of filters, pooling, ReLU, and fully connected layers. Uses image classification as the running example but the mechanics transfer directly to 1D audio CNNs.</div>
-        <div class="card-link">Watch on YouTube →</div>
-      </a>
-      <a class="card" href="https://www.youtube.com/watch?v=pj9-rr1wDhM" target="_blank">
-        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Online</span></div>
-        <div class="card-title">CNN Explainer — Visual Tour</div>
-        <div class="card-source">MIT 6.S191 · YouTube · 18 min</div>
-        <div class="card-desc">MIT deep learning lecture covering conv layers, pooling, stride, and padding with clean animated slides. Part of the open-access 6.S191 course.</div>
-        <div class="card-link">Watch on YouTube →</div>
-      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=aircAruvnKk" target="_blank"><div class="card-star">⭐ Essential</div><div class="card-tags"><span class="tag video">Video</span><span class="tag free">Online</span></div><div class="card-title">But what is a neural network? — 3Blue1Brown</div><div class="card-source">3Blue1Brown · YouTube · 19 min</div><div class="card-desc">The foundational visual intuition behind neurons, layers, and activation functions. The best starting point before diving into convolutions specifically.</div><div class="card-link">Watch on YouTube →</div></a>
+      <a class="card" href="https://www.youtube.com/watch?v=FmpDIaiMIeA" target="_blank"><div class="card-tags"><span class="tag video">Video</span><span class="tag free">Online</span></div><div class="card-title">How Convolutional Neural Networks Work</div><div class="card-source">Brandon Rohrer · YouTube · 26 min</div><div class="card-desc">Step-by-step walkthrough of filters, pooling, ReLU, and fully connected layers. Uses image classification as the running example but the mechanics transfer directly to 1D audio CNNs.</div><div class="card-link">Watch on YouTube →</div></a>
+      <a class="card" href="https://www.youtube.com/watch?v=pj9-rr1wDhM" target="_blank"><div class="card-tags"><span class="tag video">Video</span><span class="tag free">Online</span></div><div class="card-title">CNN Explainer — Visual Tour</div><div class="card-source">MIT 6.S191 · YouTube · 18 min</div><div class="card-desc">MIT deep learning lecture covering conv layers, pooling, stride, and padding with clean animated slides. Part of the open-access 6.S191 course.</div><div class="card-link">Watch on YouTube →</div></a>
     </div>
-
-    <!-- PART B: TRANSFORMERS -->
     <div style="margin-top:64px;padding:20px 28px;background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.15);border-radius:8px;display:flex;align-items:center;gap:16px;">
       <div style="font-family:'Space Mono',monospace;font-size:28px;font-weight:700;color:var(--accent4);line-height:1;">B</div>
       <div><div style="font-family:'Times New Roman',Times,serif;font-weight:800;font-size:22px;color:#fff;">Transformer Models for Audio</div><div style="font-size:13px;color:#5a7a96;margin-top:4px;">The pre-trained model era — self-supervised learning on thousands of hours, fine-tuned on yours.</div></div>
     </div>
-
-    <!-- TRANSFORMER PIPELINE -->
     <div class="section-head"><div class="section-icon" style="background:rgba(16,185,129,0.1);">🏗️</div><h2>The Transformer Audio Pipeline</h2><span class="section-tag">How pre-training changes everything</span></div>
     <div class="arch-diagram">
-      <div class="arch-row">
-        <div class="arch-label">Pre-train</div>
-        <div class="arch-blocks">
-          <div class="arch-block raw">LibriSpeech<br>960h unlabeled</div>
-          <div class="arch-arrow">→</div>
-          <div class="arch-block tf">CNN Feature<br>Extractor</div>
-          <div class="arch-arrow">→</div>
-          <div class="arch-block tf">Quantizer /<br>Context Net</div>
-          <div class="arch-arrow">→</div>
-          <div class="arch-block tf">Contrastive<br>Loss (masked)</div>
-          <div class="arch-arrow">→</div>
-          <div class="arch-block tf">Learned<br>Representations</div>
-        </div>
-      </div>
-      <div class="arch-row">
-        <div class="arch-label">Fine-tune</div>
-        <div class="arch-blocks">
-          <div class="arch-block raw">RAVDESS<br>(your data)</div>
-          <div class="arch-arrow">→</div>
-          <div class="arch-block tf">Frozen or<br>Unfrozen Encoder</div>
-          <div class="arch-arrow">→</div>
-          <div class="arch-block tf">Mean-pool<br>hidden states</div>
-          <div class="arch-arrow">→</div>
-          <div class="arch-block model">Classifier<br>Head (new)</div>
-        </div>
-      </div>
-      <div class="arch-row">
-        <div class="arch-label">Output</div>
-        <div class="arch-blocks">
-          <div class="arch-block out">Emotion Label</div>
-          <div class="arch-block out">Sound Category</div>
-          <div class="arch-block out">UAR > 80%</div>
-        </div>
-      </div>
+      <div class="arch-row"><div class="arch-label">Pre-train</div><div class="arch-blocks"><div class="arch-block raw">LibriSpeech<br>960h unlabeled</div><div class="arch-arrow">→</div><div class="arch-block tf">CNN Feature<br>Extractor</div><div class="arch-arrow">→</div><div class="arch-block tf">Quantizer /<br>Context Net</div><div class="arch-arrow">→</div><div class="arch-block tf">Contrastive<br>Loss (masked)</div><div class="arch-arrow">→</div><div class="arch-block tf">Learned<br>Representations</div></div></div>
+      <div class="arch-row"><div class="arch-label">Fine-tune</div><div class="arch-blocks"><div class="arch-block raw">RAVDESS<br>(your data)</div><div class="arch-arrow">→</div><div class="arch-block tf">Frozen or<br>Unfrozen Encoder</div><div class="arch-arrow">→</div><div class="arch-block tf">Mean-pool<br>hidden states</div><div class="arch-arrow">→</div><div class="arch-block model">Classifier<br>Head (new)</div></div></div>
+      <div class="arch-row"><div class="arch-label">Output</div><div class="arch-blocks"><div class="arch-block out">Emotion Label</div><div class="arch-block out">Sound Category</div><div class="arch-block out">UAR > 80%</div></div></div>
     </div>
-
-    <!-- ATTENTION MECHANISM -->
     <div class="section-head"><div class="section-icon" style="background:rgba(16,185,129,0.1);">🧠</div><h2>Self-Attention — The Core Mechanism</h2><span class="section-tag">What makes transformers different</span></div>
     <p style="font-size:14px;color:#6a90aa;line-height:1.7;margin-bottom:24px;max-width:760px;">Before diving into specific models, understand what transformer self-attention does that CNNs cannot: it computes relationships between <em>every pair of time steps</em> simultaneously. This is why a transformer can connect the opening vowel of an utterance to its closing syllable to model prosody — a CNN's receptive field grows slowly with depth.</p>
     <div class="attn-diagram" style="margin-bottom:28px;">
-      <div class="attn-col">
-        <div class="attn-col-head" style="color:var(--accent4);">Query (Q)</div>
-        <div class="attn-col-body">
-          <div class="attn-item"><strong>"What am I looking for?"</strong></div>
-          <div class="attn-item">Each time frame projects its hidden state to a query vector</div>
-          <div class="attn-item">Represents what information the current frame needs from others</div>
-          <div class="attn-item"><code>Q = XW_Q</code></div>
-        </div>
-      </div>
-      <div class="attn-col">
-        <div class="attn-col-head" style="color:#60a5fa;">Key (K)</div>
-        <div class="attn-col-body">
-          <div class="attn-item"><strong>"What do I contain?"</strong></div>
-          <div class="attn-item">Each time frame broadcasts what information it can provide</div>
-          <div class="attn-item">Dot product Q·K gives relevance score between any two frames</div>
-          <div class="attn-item"><code>K = XW_K</code></div>
-        </div>
-      </div>
-      <div class="attn-col">
-        <div class="attn-col-head" style="color:#c084fc;">Value (V)</div>
-        <div class="attn-col-body">
-          <div class="attn-item"><strong>"What do I give?"</strong></div>
-          <div class="attn-item">The actual content retrieved when attention is paid</div>
-          <div class="attn-item">Weighted sum of V vectors, weights = softmax(Q·K/√d)</div>
-          <div class="attn-item"><code>V = XW_V</code></div>
-        </div>
-      </div>
-      <div class="attn-col">
-        <div class="attn-col-head" style="color:#fb923c;">Multi-Head</div>
-        <div class="attn-col-body">
-          <div class="attn-item"><strong>H parallel heads</strong></div>
-          <div class="attn-item">Each head learns different attention patterns (rhythm, pitch, phoneme)</div>
-          <div class="attn-item">Wav2Vec2 uses 12 heads, 768-dim each</div>
-          <div class="attn-item"><code>concat → linear</code></div>
-        </div>
-      </div>
+      <div class="attn-col"><div class="attn-col-head" style="color:var(--accent4);">Query (Q)</div><div class="attn-col-body"><div class="attn-item"><strong>"What am I looking for?"</strong></div><div class="attn-item">Each time frame projects its hidden state to a query vector</div><div class="attn-item">Represents what information the current frame needs from others</div><div class="attn-item"><code>Q = XW_Q</code></div></div></div>
+      <div class="attn-col"><div class="attn-col-head" style="color:#60a5fa;">Key (K)</div><div class="attn-col-body"><div class="attn-item"><strong>"What do I contain?"</strong></div><div class="attn-item">Each time frame broadcasts what information it can provide</div><div class="attn-item">Dot product Q·K gives relevance score between any two frames</div><div class="attn-item"><code>K = XW_K</code></div></div></div>
+      <div class="attn-col"><div class="attn-col-head" style="color:#c084fc;">Value (V)</div><div class="attn-col-body"><div class="attn-item"><strong>"What do I give?"</strong></div><div class="attn-item">The actual content retrieved when attention is paid</div><div class="attn-item">Weighted sum of V vectors, weights = softmax(Q·K/√d)</div><div class="attn-item"><code>V = XW_V</code></div></div></div>
+      <div class="attn-col"><div class="attn-col-head" style="color:#fb923c;">Multi-Head</div><div class="attn-col-body"><div class="attn-item"><strong>H parallel heads</strong></div><div class="attn-item">Each head learns different attention patterns (rhythm, pitch, phoneme)</div><div class="attn-item">Wav2Vec2 uses 12 heads, 768-dim each</div><div class="attn-item"><code>concat → linear</code></div></div></div>
     </div>
-
-    <!-- MODEL COMPARISON TABLE -->
     <div class="section-head"><div class="section-icon" style="background:rgba(16,185,129,0.1);">📊</div><h2>Pre-trained Model Comparison</h2><span class="section-tag">Choosing the right backbone</span></div>
     <div class="table-wrap" style="margin-bottom:28px;">
       <table class="compare-table">
-        <thead>
-          <tr><th>Model</th><th>Input</th><th>Pre-training</th><th>Params</th><th>SER Quality</th><th>Fine-tune Cost</th><th>Best For</th></tr>
-        </thead>
+        <thead><tr><th>Model</th><th>Input</th><th>Pre-training</th><th>Params</th><th>SER Quality</th><th>Fine-tune Cost</th><th>Best For</th></tr></thead>
         <tbody>
-          <tr>
-            <td>Wav2Vec2-base</td>
-            <td>Raw waveform</td>
-            <td>960h LibriSpeech (contrastive)</td>
-            <td>95M</td>
-            <td class="good">★★★★☆</td>
-            <td class="good">Low — 1 GPU, 30min</td>
-            <td>Starting point. Excellent balance of performance and compute.</td>
-          </tr>
-          <tr>
-            <td>Wav2Vec2-large</td>
-            <td>Raw waveform</td>
-            <td>960h LS + LV60k</td>
-            <td>317M</td>
-            <td class="good">★★★★★</td>
-            <td class="ok">Medium — 2-4 GPU hrs</td>
-            <td>SOTA on IEMOCAP. Use when you need maximum performance.</td>
-          </tr>
-          <tr>
-            <td>HuBERT-base</td>
-            <td>Raw waveform</td>
-            <td>960h LS (masked prediction)</td>
-            <td>94M</td>
-            <td class="good">★★★★★</td>
-            <td class="good">Low — comparable to W2V2-base</td>
-            <td>Often matches or beats Wav2Vec2. Preferred by many SER papers.</td>
-          </tr>
-          <tr>
-            <td>Audio Spectrogram<br>Transformer (AST)</td>
-            <td>Mel spectrogram (image)</td>
-            <td>ImageNet + AudioSet</td>
-            <td>88M (ViT-B)</td>
-            <td class="ok">★★★★☆</td>
-            <td class="ok">Medium</td>
-            <td>Best for sound classification (non-speech). Strong on ESC-50, UrbanSound.</td>
-          </tr>
-          <tr>
-            <td>Whisper-base</td>
-            <td>Log-mel spectrogram</td>
-            <td>680k hrs weak-supervised</td>
-            <td>74M</td>
-            <td class="ok">★★★☆☆</td>
-            <td class="good">Low</td>
-            <td>ASR-focused but encoder features surprisingly useful for SER. Good baseline.</td>
-          </tr>
-          <tr>
-            <td>WavLM-base+</td>
-            <td>Raw waveform</td>
-            <td>960h LS + denoising</td>
-            <td>94M</td>
-            <td class="good">★★★★★</td>
-            <td class="ok">Medium</td>
-            <td>Current best overall on SUPERB benchmark. Denoising pre-training helps real-world audio.</td>
-          </tr>
+          <tr><td>Wav2Vec2-base</td><td>Raw waveform</td><td>960h LibriSpeech (contrastive)</td><td>95M</td><td class="good">★★★★☆</td><td class="good">Low — 1 GPU, 30min</td><td>Starting point. Excellent balance of performance and compute.</td></tr>
+          <tr><td>Wav2Vec2-large</td><td>Raw waveform</td><td>960h LS + LV60k</td><td>317M</td><td class="good">★★★★★</td><td class="ok">Medium — 2-4 GPU hrs</td><td>SOTA on IEMOCAP. Use when you need maximum performance.</td></tr>
+          <tr><td>HuBERT-base</td><td>Raw waveform</td><td>960h LS (masked prediction)</td><td>94M</td><td class="good">★★★★★</td><td class="good">Low — comparable to W2V2-base</td><td>Often matches or beats Wav2Vec2. Preferred by many SER papers.</td></tr>
+          <tr><td>Audio Spectrogram Transformer (AST)</td><td>Mel spectrogram (image)</td><td>ImageNet + AudioSet</td><td>88M (ViT-B)</td><td class="ok">★★★★☆</td><td class="ok">Medium</td><td>Best for sound classification (non-speech). Strong on ESC-50, UrbanSound.</td></tr>
+          <tr><td>Whisper-base</td><td>Log-mel spectrogram</td><td>680k hrs weak-supervised</td><td>74M</td><td class="ok">★★★☆☆</td><td class="good">Low</td><td>ASR-focused but encoder features surprisingly useful for SER. Good baseline.</td></tr>
+          <tr><td>WavLM-base+</td><td>Raw waveform</td><td>960h LS + denoising</td><td>94M</td><td class="good">★★★★★</td><td class="ok">Medium</td><td>Current best overall on SUPERB benchmark. Denoising pre-training helps real-world audio.</td></tr>
         </tbody>
       </table>
     </div>
-
     <div class="quote-block"><p>"Self-supervised learning from raw audio has fundamentally changed what's possible with small labelled datasets. With Wav2Vec2, 10 minutes of labelled speech can outperform a system trained on 100 hours with hand-crafted features."</p><cite>— Alexei Baevski et al., Wav2Vec 2.0: A Framework for Self-Supervised Learning of Speech Representations (NeurIPS 2020)</cite></div>
-
-    <!-- LEARNING PATH W3 -->
     <div class="section-head"><div class="section-icon" style="background:rgba(255,107,53,0.1);">🗺️</div><h2>Recommended Learning Path</h2><span class="section-tag">Start here</span></div>
     <div class="path">
       <div class="path-step"><div class="step-num">01</div><div class="step-body"><h3>Understand Self-Attention from Scratch</h3><p>Before touching any audio model, make sure attention is crystal clear. You need to understand Q, K, V matrices and why dot-product attention scales as O(n²) in sequence length.</p><div class="step-links"><a class="step-link" href="https://www.youtube.com/watch?v=iDulhoQ2pro" target="_blank">▶ Andrej Karpathy — Attention Explained</a><a class="step-link" href="https://jalammar.github.io/illustrated-transformer/" target="_blank">📖 Illustrated Transformer</a><a class="step-link" href="https://www.youtube.com/watch?v=eMlx5fFNoYc" target="_blank">▶ 3Blue1Brown Attention</a></div></div></div>
       <div class="path-step"><div class="step-num">02</div><div class="step-body"><h3>Wav2Vec2 — The Architecture Breakdown</h3><p>Read the original paper's architecture section and watch the HuggingFace walkthrough. Key components: CNN feature extractor, transformer context network, quantizer, and the contrastive loss over masked positions.</p><div class="step-links"><a class="step-link" href="https://arxiv.org/abs/2006.11477" target="_blank">📄 Wav2Vec2 Paper (arXiv)</a><a class="step-link" href="https://huggingface.co/docs/transformers/model_doc/wav2vec2" target="_blank">📖 HF Wav2Vec2 Docs</a></div></div></div>
       <div class="path-step"><div class="step-num">03</div><div class="step-body"><h3>Fine-tune Wav2Vec2 on RAVDESS</h3><p>Load <code>facebook/wav2vec2-base</code> from HuggingFace, freeze the feature extractor, add a classification head, and fine-tune on your RAVDESS splits. Target: >75% UAR. Compare against your Week 2 CNN baseline.</p><div class="step-links"><a class="step-link" href="https://huggingface.co/docs/transformers/training" target="_blank">📖 HF Fine-tuning Guide</a><a class="step-link" href="https://huggingface.co/learn/audio-course/chapter4/fine-tuning" target="_blank">🎓 HF Audio Course Unit 4</a></div></div></div>
       <div class="path-step"><div class="step-num">04</div><div class="step-body"><h3>Audio Spectrogram Transformer — The Vision-Audio Bridge</h3><p>AST treats spectrograms as images divided into non-overlapping patches, using a standard ViT backbone. Understanding it bridges your CNN intuition to the transformer world and gives you the best general-purpose sound classifier.</p><div class="step-links"><a class="step-link" href="https://arxiv.org/abs/2104.01778" target="_blank">📄 AST Paper (arXiv)</a><a class="step-link" href="https://github.com/YuanGongND/ast" target="_blank">🔧 Official AST Code</a></div></div></div>
-      <div class="path-step"><div class="step-num">05</div><div class="step-body"><h3>Layer-wise Analysis — Which Layers Capture What?</h3><p>Run a probing experiment: extract hidden states from each transformer layer and train a linear classifier. Earlier layers capture phonetics, middle layers capture syntax/prosody, final layers capture semantic/emotion content. This tells you where to attach your classifier head.</p><div class="step-links"><a class="step-link" href="https://arxiv.org/abs/2101.00390" target="_blank">📄 SUPERB Benchmark Paper</a><a class="step-link" href="https://github.com/s3prl/s3prl" target="_blank">🔧 S3PRL Toolkit</a></div></div></div>
+      <div class="path-step"><div class="step-num">05</div><div class="step-body"><h3>Layer-wise Analysis — Which Layers Capture What?</h3><p>Run a probing experiment: extract hidden states from each transformer layer and train a linear classifier. Earlier layers capture phonetics, middle layers capture syntax/prosody, final layers capture semantic/emotion content.</p><div class="step-links"><a class="step-link" href="https://arxiv.org/abs/2101.00390" target="_blank">📄 SUPERB Benchmark Paper</a><a class="step-link" href="https://github.com/s3prl/s3prl" target="_blank">🔧 S3PRL Toolkit</a></div></div></div>
       <div class="path-step"><div class="step-num">06</div><div class="step-body"><h3>WavLM & the Current SOTA — What's Beyond Wav2Vec2</h3><p>WavLM adds a denoised speech prediction task to masked speech modeling, making it far more robust to noise and speaker variation. Study what changed architecturally and run a quick comparison against Wav2Vec2 on your dataset.</p><div class="step-links"><a class="step-link" href="https://arxiv.org/abs/2110.13900" target="_blank">📄 WavLM Paper (arXiv)</a><a class="step-link" href="https://huggingface.co/microsoft/wavlm-base-plus" target="_blank">🤗 WavLM on HuggingFace</a></div></div></div>
     </div>
-
-    <!-- VIDEOS W3 -->
-    <div class="section-head"><div class="section-icon" style="background:rgba(255,107,53,0.12);">▶</div><h2>Must-Watch Videos</h2><span class="section-tag">Visual learning</span></div>
+    <div class="section-head"><div class="section-icon" style="background:rgba(255,107,53,0.12);">▶</div><h2>Must-Watch Videos — Transformers</h2><span class="section-tag">Visual learning</span></div>
     <div class="cards">
-      <a class="card" href="https://www.youtube.com/watch?v=eMlx5fFNoYc" target="_blank">
-        <div class="card-star">⭐ Essential</div>
-        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Online</span></div>
-        <div class="card-title">Attention in Neural Networks — 3Blue1Brown</div>
-        <div class="card-source">3Blue1Brown · YouTube · 26 min</div>
-        <div class="card-desc">Grant Sanderson's visual breakdown of attention and transformers. Uses GPT as the context but the mechanism is identical for audio transformers. The Q/K/V animation alone is worth 30 minutes of reading.</div>
-        <div class="card-link">Watch on YouTube →</div>
-      </a>
-      <a class="card" href="https://www.youtube.com/watch?v=iDulhoQ2pro" target="_blank">
-        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Online</span></div>
-        <div class="card-title">Let's Build GPT — Andrej Karpathy</div>
-        <div class="card-source">Andrej Karpathy · YouTube · 2h</div>
-        <div class="card-desc">Build a transformer from scratch in ~200 lines of PyTorch. Understanding the implementation at this level makes fine-tuning audio transformers dramatically less mysterious. The most educational coding video on the internet.</div>
-        <div class="card-link">Watch on YouTube →</div>
-      </a>
-      <a class="card" href="https://www.youtube.com/watch?v=S2wuA5A84Oc" target="_blank">
-        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Online</span></div>
-        <div class="card-title">Wav2Vec 2.0 — Paper Explained</div>
-        <div class="card-source">Yannic Kilcher · YouTube · 42 min</div>
-        <div class="card-desc">Deep dive into the Wav2Vec2 paper — the quantizer module, contrastive loss, and how masked prediction forces the model to learn speech structure without labels. The clearest paper walkthrough available.</div>
-        <div class="card-link">Watch on YouTube →</div>
-      </a>
-      <a class="card" href="https://www.youtube.com/watch?v=HtBmFOGTXhg" target="_blank">
-        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Online</span></div>
-        <div class="card-title">HuBERT — Speech Representation Learning</div>
-        <div class="card-source">AI Paper Reading · YouTube · 30 min</div>
-        <div class="card-desc">HuBERT's offline clustering approach to masked unit prediction — how iterative k-means label generation differs from Wav2Vec2's contrastive loss, and why it tends to produce cleaner emotion-relevant features.</div>
-        <div class="card-link">Watch on YouTube →</div>
-      </a>
-      <a class="card" href="https://www.youtube.com/watch?v=DVQ5eo67HZ8" target="_blank">
-        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Online</span></div>
-        <div class="card-title">Vision Transformers (ViT) — Paper Explained</div>
-        <div class="card-source">Yannic Kilcher · YouTube · 25 min</div>
-        <div class="card-desc">Audio Spectrogram Transformer is literally a ViT applied to spectrograms — so understanding ViT first is essential. Covers patch embeddings, positional encoding, and why image transformers outperform CNNs at scale.</div>
-        <div class="card-link">Watch on YouTube →</div>
-      </a>
-      <a class="card" href="https://huggingface.co/learn/audio-course/chapter4/fine-tuning" target="_blank">
-        <div class="card-star">⭐ Hands-on</div>
-        <div class="card-tags"><span class="tag interactive">Interactive</span><span class="tag course">Course</span><span class="tag free">Online</span></div>
-        <div class="card-title">HuggingFace Audio Course — Unit 4: Fine-tuning</div>
-        <div class="card-source">Hugging Face · Unit 4 of 8</div>
-        <div class="card-desc">Step-by-step guide to fine-tuning a pre-trained audio model on a classification task using the HuggingFace Trainer API. Includes handling variable-length audio, feature extraction, and evaluation metrics. The most practically relevant guide for your week's project.</div>
-        <div class="card-link">Start Unit 4 →</div>
-      </a>
-      <a class="card" href="https://www.youtube.com/watch?v=qx6KKh8EFu4" target="_blank">
-        <div class="card-tags"><span class="tag video">Video</span><span class="tag free">Online</span></div>
-        <div class="card-title">Whisper — How OpenAI's ASR Model Works</div>
-        <div class="card-source">Andrej Karpathy · YouTube · 45 min</div>
-        <div class="card-desc">Karpathy's walkthrough of Whisper's architecture. Though ASR-focused, Whisper's encoder produces strong representations for downstream tasks. Understanding its log-mel input pipeline and encoder design is directly relevant for extracting embeddings.</div>
-        <div class="card-link">Watch on YouTube →</div>
-      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=eMlx5fFNoYc" target="_blank"><div class="card-star">⭐ Essential</div><div class="card-tags"><span class="tag video">Video</span><span class="tag free">Online</span></div><div class="card-title">Attention in Neural Networks — 3Blue1Brown</div><div class="card-source">3Blue1Brown · YouTube · 26 min</div><div class="card-desc">Grant Sanderson's visual breakdown of attention and transformers. Uses GPT as the context but the mechanism is identical for audio transformers. The Q/K/V animation alone is worth 30 minutes of reading.</div><div class="card-link">Watch on YouTube →</div></a>
+      <a class="card" href="https://www.youtube.com/watch?v=iDulhoQ2pro" target="_blank"><div class="card-tags"><span class="tag video">Video</span><span class="tag free">Online</span></div><div class="card-title">Let's Build GPT — Andrej Karpathy</div><div class="card-source">Andrej Karpathy · YouTube · 2h</div><div class="card-desc">Build a transformer from scratch in ~200 lines of PyTorch. Understanding the implementation at this level makes fine-tuning audio transformers dramatically less mysterious.</div><div class="card-link">Watch on YouTube →</div></a>
+      <a class="card" href="https://www.youtube.com/watch?v=S2wuA5A84Oc" target="_blank"><div class="card-tags"><span class="tag video">Video</span><span class="tag free">Online</span></div><div class="card-title">Wav2Vec 2.0 — Paper Explained</div><div class="card-source">Yannic Kilcher · YouTube · 42 min</div><div class="card-desc">Deep dive into the Wav2Vec2 paper — the quantizer module, contrastive loss, and how masked prediction forces the model to learn speech structure without labels.</div><div class="card-link">Watch on YouTube →</div></a>
+      <a class="card" href="https://www.youtube.com/watch?v=HtBmFOGTXhg" target="_blank"><div class="card-tags"><span class="tag video">Video</span><span class="tag free">Online</span></div><div class="card-title">HuBERT — Speech Representation Learning</div><div class="card-source">AI Paper Reading · YouTube · 30 min</div><div class="card-desc">HuBERT's offline clustering approach to masked unit prediction — how iterative k-means label generation differs from Wav2Vec2's contrastive loss.</div><div class="card-link">Watch on YouTube →</div></a>
+      <a class="card" href="https://www.youtube.com/watch?v=DVQ5eo67HZ8" target="_blank"><div class="card-tags"><span class="tag video">Video</span><span class="tag free">Online</span></div><div class="card-title">Vision Transformers (ViT) — Paper Explained</div><div class="card-source">Yannic Kilcher · YouTube · 25 min</div><div class="card-desc">Audio Spectrogram Transformer is literally a ViT applied to spectrograms — so understanding ViT first is essential. Covers patch embeddings, positional encoding, and why image transformers outperform CNNs at scale.</div><div class="card-link">Watch on YouTube →</div></a>
+      <a class="card" href="https://huggingface.co/learn/audio-course/chapter4/fine-tuning" target="_blank"><div class="card-star">⭐ Hands-on</div><div class="card-tags"><span class="tag interactive">Interactive</span><span class="tag course">Course</span><span class="tag free">Online</span></div><div class="card-title">HuggingFace Audio Course — Unit 4: Fine-tuning</div><div class="card-source">Hugging Face · Unit 4 of 8</div><div class="card-desc">Step-by-step guide to fine-tuning a pre-trained audio model on a classification task using the HuggingFace Trainer API. Includes handling variable-length audio, feature extraction, and evaluation metrics.</div><div class="card-link">Start Unit 4 →</div></a>
     </div>
-
-    <!-- KEY PAPERS W3 -->
     <div class="section-head"><div class="section-icon" style="background:rgba(168,85,247,0.12);">📄</div><h2>Key Papers to Read</h2><span class="section-tag">The foundational literature</span></div>
     <div class="cards two">
-      <a class="card" href="https://arxiv.org/abs/2006.11477" target="_blank">
-        <div class="card-star">⭐ Must Read</div>
-        <div class="card-tags"><span class="tag paper">Paper</span><span class="tag free">Online</span></div>
-        <div class="card-title">Wav2Vec 2.0: A Framework for Self-Supervised Learning of Speech Representations</div>
-        <div class="card-source">Baevski et al. · Facebook AI · NeurIPS 2020</div>
-        <div class="card-desc">The foundational paper for modern audio SSL. Focus on Sections 2 (model) and 4 (experiments). Pay attention to the ablations on frozen vs fine-tuned feature extractor — directly applicable to your RAVDESS experiments.</div>
-        <div class="card-link">Read on arXiv →</div>
-      </a>
-      <a class="card" href="https://arxiv.org/abs/2106.07447" target="_blank">
-        <div class="card-star">⭐ Must Read</div>
-        <div class="card-tags"><span class="tag paper">Paper</span><span class="tag free">Online</span></div>
-        <div class="card-title">HuBERT: Self-Supervised Speech Representation Learning by Masked Prediction of Hidden Units</div>
-        <div class="card-source">Hsu et al. · Facebook AI · 2021</div>
-        <div class="card-desc">The model that consistently outperforms Wav2Vec2 on downstream tasks including SER. The key innovation is offline clustering to generate soft labels for masked prediction — removing the need for a quantizer module.</div>
-        <div class="card-link">Read on arXiv →</div>
-      </a>
-      <a class="card" href="https://arxiv.org/abs/2104.01778" target="_blank">
-        <div class="card-tags"><span class="tag paper">Paper</span><span class="tag free">Online</span></div>
-        <div class="card-title">AST: Audio Spectrogram Transformer</div>
-        <div class="card-source">Gong et al. · MIT · Interspeech 2021</div>
-        <div class="card-desc">Demonstrates that a pure attention model (no convolutions) applied directly to mel spectrogram patches achieves SOTA on AudioSet. The cross-modal transfer from ImageNet pretraining is the key result to understand.</div>
-        <div class="card-link">Read on arXiv →</div>
-      </a>
-      <a class="card" href="https://arxiv.org/abs/2110.13900" target="_blank">
-        <div class="card-tags"><span class="tag paper">Paper</span><span class="tag free">Online</span></div>
-        <div class="card-title">WavLM: Large-Scale Self-Supervised Pre-Training for Full Stack Speech Processing</div>
-        <div class="card-source">Chen et al. · Microsoft · 2022</div>
-        <div class="card-desc">Currently the top-ranked model on the SUPERB benchmark. Combines masked speech prediction with denoised speech prediction, making it far more robust to real-world recording conditions than Wav2Vec2 or HuBERT.</div>
-        <div class="card-link">Read on arXiv →</div>
-      </a>
+      <a class="card" href="https://arxiv.org/abs/2006.11477" target="_blank"><div class="card-star">⭐ Must Read</div><div class="card-tags"><span class="tag paper">Paper</span><span class="tag free">Online</span></div><div class="card-title">Wav2Vec 2.0: A Framework for Self-Supervised Learning of Speech Representations</div><div class="card-source">Baevski et al. · Facebook AI · NeurIPS 2020</div><div class="card-desc">The foundational paper for modern audio SSL. Focus on Sections 2 (model) and 4 (experiments). Pay attention to the ablations on frozen vs fine-tuned feature extractor.</div><div class="card-link">Read on arXiv →</div></a>
+      <a class="card" href="https://arxiv.org/abs/2106.07447" target="_blank"><div class="card-star">⭐ Must Read</div><div class="card-tags"><span class="tag paper">Paper</span><span class="tag free">Online</span></div><div class="card-title">HuBERT: Self-Supervised Speech Representation Learning by Masked Prediction of Hidden Units</div><div class="card-source">Hsu et al. · Facebook AI · 2021</div><div class="card-desc">The model that consistently outperforms Wav2Vec2 on downstream tasks including SER. The key innovation is offline clustering to generate soft labels for masked prediction.</div><div class="card-link">Read on arXiv →</div></a>
+      <a class="card" href="https://arxiv.org/abs/2104.01778" target="_blank"><div class="card-tags"><span class="tag paper">Paper</span><span class="tag free">Online</span></div><div class="card-title">AST: Audio Spectrogram Transformer</div><div class="card-source">Gong et al. · MIT · Interspeech 2021</div><div class="card-desc">Demonstrates that a pure attention model applied directly to mel spectrogram patches achieves SOTA on AudioSet. The cross-modal transfer from ImageNet pretraining is the key result.</div><div class="card-link">Read on arXiv →</div></a>
+      <a class="card" href="https://arxiv.org/abs/2110.13900" target="_blank"><div class="card-tags"><span class="tag paper">Paper</span><span class="tag free">Online</span></div><div class="card-title">WavLM: Large-Scale Self-Supervised Pre-Training for Full Stack Speech Processing</div><div class="card-source">Chen et al. · Microsoft · 2022</div><div class="card-desc">Currently the top-ranked model on the SUPERB benchmark. Combines masked speech prediction with denoised speech prediction, making it far more robust to real-world recording conditions.</div><div class="card-link">Read on arXiv →</div></a>
     </div>
-
-    <!-- TRANSFORMER CODE SAMPLES -->
     <div class="section-head"><div class="section-icon" style="background:rgba(34,197,94,0.10);">🔧</div><h2>Implementation Code</h2><span class="section-tag">From HuggingFace to custom heads</span></div>
     <div class="cards two">
-      <div class="card">
-        <div class="card-star">⭐ Start Here</div>
-        <div class="card-tags"><span class="tag tool">Code</span><span class="tag new">W3</span><span class="tag free">Online</span></div>
-        <div class="card-title">Fine-tune Wav2Vec2 for Emotion Classification</div>
-        <div class="card-source">HuggingFace Transformers · PyTorch</div>
-        <div class="card-desc">Load the base model, freeze the CNN feature extractor, add a pooling + classification head, and fine-tune only the transformer layers and head. This is the standard recipe for small dataset SER.</div>
-        <div class="card-code"><span class="kw">from</span> transformers <span class="kw">import</span> Wav2Vec2Model
+      <div class="card"><div class="card-star">⭐ Start Here</div><div class="card-tags"><span class="tag tool">Code</span><span class="tag new">W3</span><span class="tag free">Online</span></div><div class="card-title">Fine-tune Wav2Vec2 for Emotion Classification</div><div class="card-source">HuggingFace Transformers · PyTorch</div><div class="card-desc">Load the base model, freeze the CNN feature extractor, add a pooling + classification head, and fine-tune only the transformer layers and head.</div><div class="card-code"><span class="kw">from</span> transformers <span class="kw">import</span> Wav2Vec2Model
 <span class="kw">import</span> torch.nn as nn
 
 <span class="kw">class</span> <span class="fn">W2V2Classifier</span>(nn.Module):
@@ -1015,7 +822,6 @@ uar = <span class="fn">cross_val_score</span>(
         self.encoder = Wav2Vec2Model.<span class="fn">from_pretrained</span>(
             <span class="st">"facebook/wav2vec2-base"</span>
         )
-        <span class="cm"># Freeze CNN feature extractor</span>
         self.encoder.feature_extractor.<span class="fn">_freeze_parameters</span>()
         self.proj = nn.<span class="fn">Sequential</span>(
             nn.<span class="fn">Linear</span>(<span class="nu">768</span>, <span class="nu">256</span>), nn.<span class="fn">ReLU</span>(),
@@ -1026,41 +832,23 @@ uar = <span class="fn">cross_val_score</span>(
     <span class="kw">def</span> <span class="fn">forward</span>(self, x, mask=<span class="kw">None</span>):
         out = self.encoder(x, attention_mask=mask)
         pooled = out.last_hidden_state.<span class="fn">mean</span>(dim=<span class="nu">1</span>)
-        <span class="kw">return</span> self.proj(pooled)</div>
-        <a class="card-link" href="https://huggingface.co/docs/transformers/model_doc/wav2vec2" target="_blank">HF Wav2Vec2 Docs →</a>
-      </div>
-      <div class="card">
-        <div class="card-tags"><span class="tag tool">Code</span><span class="tag new">W3</span><span class="tag free">Online</span></div>
-        <div class="card-title">HuBERT Feature Extraction (No Fine-tune)</div>
-        <div class="card-source">HuggingFace · HuBERT · Frozen Encoder</div>
-        <div class="card-desc">Extract HuBERT embeddings without fine-tuning the transformer at all — just train a lightweight classifier head on the mean-pooled hidden states. Surprisingly competitive and very fast to iterate on.</div>
-        <div class="card-code"><span class="kw">from</span> transformers <span class="kw">import</span> HubertModel, Wav2Vec2FeatureExtractor
+        <span class="kw">return</span> self.proj(pooled)</div><a class="card-link" href="https://huggingface.co/docs/transformers/model_doc/wav2vec2" target="_blank">HF Wav2Vec2 Docs →</a></div>
+      <div class="card"><div class="card-tags"><span class="tag tool">Code</span><span class="tag new">W3</span><span class="tag free">Online</span></div><div class="card-title">HuBERT Feature Extraction (No Fine-tune)</div><div class="card-source">HuggingFace · HuBERT · Frozen Encoder</div><div class="card-desc">Extract HuBERT embeddings without fine-tuning the transformer at all — just train a lightweight classifier head on the mean-pooled hidden states.</div><div class="card-code"><span class="kw">from</span> transformers <span class="kw">import</span> HubertModel, Wav2Vec2FeatureExtractor
 <span class="kw">import</span> torch
 
 model = HubertModel.<span class="fn">from_pretrained</span>(<span class="st">"facebook/hubert-base-ls960"</span>)
 extractor = Wav2Vec2FeatureExtractor.<span class="fn">from_pretrained</span>(
     <span class="st">"facebook/hubert-base-ls960"</span>
 )
-
 model.<span class="fn">eval</span>()
 <span class="kw">with</span> torch.<span class="fn">no_grad</span>():
     inputs = extractor(audio, sampling_rate=<span class="nu">16000</span>,
                        return_tensors=<span class="st">"pt"</span>, padding=<span class="kw">True</span>)
     out = model(**inputs)
-    <span class="cm"># Mean-pool all hidden states</span>
-    emb = out.last_hidden_state.<span class="fn">mean</span>(dim=<span class="nu">1</span>)</div>
-        <a class="card-link" href="https://huggingface.co/facebook/hubert-base-ls960" target="_blank">HuBERT on HF Hub →</a>
-      </div>
-      <div class="card">
-        <div class="card-tags"><span class="tag tool">Code</span><span class="tag new">W3</span><span class="tag free">Online</span></div>
-        <div class="card-title">Layer-wise Probing Experiment</div>
-        <div class="card-source">HuggingFace · output_hidden_states=True</div>
-        <div class="card-desc">Extract all intermediate hidden states and train a separate linear probe on each to find which transformer layer best encodes emotion. The optimal layer is typically 6–9 for SER tasks in base-size models.</div>
-        <div class="card-code"><span class="cm"># Get all hidden states</span>
-<span class="kw">with</span> torch.<span class="fn">no_grad</span>():
+    emb = out.last_hidden_state.<span class="fn">mean</span>(dim=<span class="nu">1</span>)</div><a class="card-link" href="https://huggingface.co/facebook/hubert-base-ls960" target="_blank">HuBERT on HF Hub →</a></div>
+      <div class="card"><div class="card-tags"><span class="tag tool">Code</span><span class="tag new">W3</span><span class="tag free">Online</span></div><div class="card-title">Layer-wise Probing Experiment</div><div class="card-source">HuggingFace · output_hidden_states=True</div><div class="card-desc">Extract all intermediate hidden states and train a separate linear probe on each to find which transformer layer best encodes emotion.</div><div class="card-code"><span class="kw">with</span> torch.<span class="fn">no_grad</span>():
     out = model(**inputs, output_hidden_states=<span class="kw">True</span>)
 
-<span class="cm"># out.hidden_states: tuple of (B, T, 768) × 13 layers</span>
 results = {}
 <span class="kw">for</span> i, layer_hs <span class="kw">in</span> <span class="fn">enumerate</span>(out.hidden_states):
     emb = layer_hs.<span class="fn">mean</span>(dim=<span class="nu">1</span>).<span class="fn">numpy</span>()
@@ -1071,15 +859,8 @@ results = {}
     results[i] = score.<span class="fn">mean</span>()
 
 best_layer = <span class="fn">max</span>(results, key=results.<span class="fn">get</span>)
-<span class="fn">print</span>(<span class="fn">f</span><span class="st">"Best layer: {best_layer} → UAR {results[best_layer]:.3f}"</span>)</div>
-        <a class="card-link" href="https://huggingface.co/docs/transformers/main_classes/output" target="_blank">Model outputs docs →</a>
-      </div>
-      <div class="card">
-        <div class="card-tags"><span class="tag tool">Code</span><span class="tag new">W3</span><span class="tag free">Online</span></div>
-        <div class="card-title">Weighted Layer Fusion (SUPERB-style)</div>
-        <div class="card-source">PyTorch · Learnable Layer Weights</div>
-        <div class="card-desc">Instead of picking one layer, learn a weighted sum across all transformer layers. This is the approach used by the SUPERB benchmark and often outperforms using only the final layer by 2–5% UAR.</div>
-        <div class="card-code"><span class="kw">class</span> <span class="fn">WeightedLayerFusion</span>(nn.Module):
+<span class="fn">print</span>(<span class="fn">f</span><span class="st">"Best layer: {best_layer} → UAR {results[best_layer]:.3f}"</span>)</div><a class="card-link" href="https://huggingface.co/docs/transformers/main_classes/output" target="_blank">Model outputs docs →</a></div>
+      <div class="card"><div class="card-tags"><span class="tag tool">Code</span><span class="tag new">W3</span><span class="tag free">Online</span></div><div class="card-title">Weighted Layer Fusion (SUPERB-style)</div><div class="card-source">PyTorch · Learnable Layer Weights</div><div class="card-desc">Instead of picking one layer, learn a weighted sum across all transformer layers. Often outperforms using only the final layer by 2–5% UAR.</div><div class="card-code"><span class="kw">class</span> <span class="fn">WeightedLayerFusion</span>(nn.Module):
     <span class="kw">def</span> <span class="fn">__init__</span>(self, n_layers=<span class="nu">13</span>):
         <span class="fn">super</span>().__init__()
         self.weights = nn.<span class="fn">Parameter</span>(
@@ -1087,53 +868,12 @@ best_layer = <span class="fn">max</span>(results, key=results.<span class="fn">g
         )
 
     <span class="kw">def</span> <span class="fn">forward</span>(self, hidden_states):
-        <span class="cm"># hidden_states: list of (B, T, D) × n_layers</span>
         w = self.weights.<span class="fn">softmax</span>(dim=<span class="nu">0</span>)
         stacked = torch.<span class="fn">stack</span>(hidden_states, dim=<span class="nu">1</span>)
-        <span class="cm"># (B, n_layers, T, D)</span>
         fused = (stacked * w[<span class="kw">None</span>,:,<span class="kw">None</span>,<span class="kw">None</span>]).<span class="fn">sum</span>(dim=<span class="nu">1</span>)
-        <span class="kw">return</span> fused.<span class="fn">mean</span>(dim=<span class="nu">1</span>)   <span class="cm"># (B, D)</span></div>
-        <a class="card-link" href="https://arxiv.org/abs/2105.01051" target="_blank">SUPERB Paper →</a>
-      </div>
+        <span class="kw">return</span> fused.<span class="fn">mean</span>(dim=<span class="nu">1</span>)</div><a class="card-link" href="https://arxiv.org/abs/2105.01051" target="_blank">SUPERB Paper →</a></div>
     </div>
-
-    <!-- COURSES W3 -->
-    <div class="section-head"><div class="section-icon" style="background:rgba(245,158,11,0.10);">🎓</div><h2>Structured Courses</h2><span class="section-tag">For going deeper</span></div>
-    <div class="cards two">
-      <a class="card" href="https://huggingface.co/learn/audio-course/chapter0/introduction" target="_blank">
-        <div class="card-star">⭐ Primary</div>
-        <div class="card-tags"><span class="tag course">Course</span><span class="tag free">Online</span></div>
-        <div class="card-title">HuggingFace Audio Course — Units 4–8</div>
-        <div class="card-source">Hugging Face · 8 units</div>
-        <div class="card-desc">This week focus on Units 4 (Audio Classification), 5 (ASR), and 6 (Text-to-Speech). Unit 4 is the core: fine-tuning a pre-trained audio model end-to-end with HuggingFace Trainer on a classification task. Directly applicable.</div>
-        <div class="card-link">Start Course →</div>
-      </a>
-      <a class="card" href="https://www.fast.ai" target="_blank">
-        <div class="card-tags"><span class="tag course">Course</span><span class="tag free">Online</span></div>
-        <div class="card-title">Practical Deep Learning for Coders — Lesson 2 & 10</div>
-        <div class="card-source">fast.ai · Jeremy Howard</div>
-        <div class="card-desc">Lesson 2 covers treating spectrograms as images (directly relevant to AST), Lesson 10 covers the "train small, then scale" philosophy for fine-tuning large models. The practical mindset here is invaluable.</div>
-        <div class="card-link">View Course →</div>
-      </a>
-      <a class="card" href="https://github.com/s3prl/s3prl" target="_blank">
-        <div class="card-tags"><span class="tag tool">Library</span><span class="tag free">Online</span></div>
-        <div class="card-title">S3PRL — Self-Supervised Speech Pre-training and Representation Learning</div>
-        <div class="card-source">s3prl · PyTorch · pip install s3prl</div>
-        <div class="card-desc">The toolkit behind the SUPERB benchmark. Provides a unified interface to 20+ self-supervised speech models (Wav2Vec2, HuBERT, WavLM, etc.) and downstream task evaluators. The fastest way to compare models on your dataset.</div>
-        <div class="card-link">View on GitHub →</div>
-      </a>
-      <a class="card" href="https://course.fast.ai/Lessons/lesson7.html" target="_blank">
-        <div class="card-tags"><span class="tag course">Course</span><span class="tag free">Online</span></div>
-        <div class="card-title">Collaborative Filtering & Fine-tuning Philosophy — fast.ai Lesson 7</div>
-        <div class="card-source">fast.ai · Jeremy Howard</div>
-        <div class="card-desc">The best conceptual treatment of "when to freeze, when to unfreeze, and how to choose learning rates for fine-tuning." The discriminative learning rates technique from this lesson applies directly to frozen-then-unfrozen Wav2Vec2 fine-tuning.</div>
-        <div class="card-link">View Lesson →</div>
-      </a>
-    </div>
-
     <div class="divider" style="margin-top:64px;"></div>
-
-    <!-- CHECKLIST W3 -->
     <div style="margin-top:40px;padding:32px;background:var(--surface);border:1px solid var(--border);border-radius:8px;">
       <div style="font-family:'Times New Roman',Times,serif;font-weight:800;font-size:20px;color:#fff;margin-bottom:16px;">📋 Week 3 Goals — Checklist</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
@@ -1145,15 +885,291 @@ best_layer = <span class="fn">max</span>(results, key=results.<span class="fn">g
         <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent4);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Complete HuggingFace Audio Course Unit 4 end-to-end</div>
       </div>
     </div>
+    <div style="margin-top:20px;padding:24px 32px;background:linear-gradient(135deg,rgba(16,185,129,0.06),rgba(245,158,11,0.04));border:1px solid rgba(245,158,11,0.2);border-radius:8px;display:flex;align-items:center;gap:24px;cursor:pointer;" onclick="switchTabById('w4')">
+      <div style="flex:1;"><div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">Up Next</div><div style="font-family:'Times New Roman',Times,serif;font-weight:800;font-size:20px;color:#fff;margin-bottom:6px;">Week 4 — Audio to Text (ASR)</div><div style="font-size:13px;color:#6a90aa;line-height:1.6;">Convert raw audio into written words. CTC, seq2seq decoders, Whisper fine-tuning, and WER evaluation.</div></div>
+      <div style="font-family:'Space Mono',monospace;font-size:40px;color:rgba(245,158,11,0.3);flex-shrink:0;">04 →</div>
+    </div>
+  </main>
+</div>
 
+<!-- ======================== WEEK 4 ======================== -->
+<div id="panel-w4" class="week-panel">
+  <div class="hero" style="padding:40px 48px 48px; border-bottom:1px solid var(--border);">
+    <div class="hero-glow" style="background: radial-gradient(ellipse, rgba(245,158,11,0.14) 0%, transparent 70%);"></div>
+    <div class="hero-glow2" style="background: radial-gradient(ellipse, rgba(255,107,53,0.08) 0%, transparent 70%);"></div>
+    <div class="week-badge" style="background:linear-gradient(135deg,rgba(245,158,11,0.12),rgba(255,107,53,0.08));">
+      <div><div class="sublabel">CURRENT</div><div class="num" style="color:var(--accent5);">04</div></div>
+      <div style="width:1px;height:40px;background:var(--border)"></div>
+      <div><div class="label">Week 4</div><div class="sublabel">Audio to Text — Automatic Speech Recognition</div></div>
+    </div>
+    <p class="hero-desc">You can classify sounds and emotions. Now make the model <em>speak</em> — convert raw audio into written words. This week you'll understand how CTC and seq2seq decoders turn encoder representations into token sequences, fine-tune Whisper on a custom domain, and evaluate with WER and CER.</p>
+    <div class="stats-row">
+      <div class="stat"><div class="val">3<span style="color:var(--accent5)">+</span></div><div class="lbl">Video Resources</div></div>
+      <div class="stat"><div class="val">6<span style="color:var(--accent5)">+</span></div><div class="lbl">Code Samples</div></div>
+      <div class="stat"><div class="val">4<span style="color:var(--accent5)">+</span></div><div class="lbl">Papers</div></div>
+      <div class="stat"><div class="val">3<span style="color:var(--accent5)">+</span></div><div class="lbl">Datasets</div></div>
+      <div class="stat"><div class="val">~<span style="color:var(--accent5)">20</span>h</div><div class="lbl">Estimated Time</div></div>
+    </div>
+  </div>
+  <main class="container w4-content">
+    <div style="margin-top:64px;padding:20px 28px;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.15);border-radius:8px;">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">The Arc So Far</div>
+      <div style="display:flex;gap:0;align-items:stretch;flex-wrap:wrap;">
+        <div style="flex:1;min-width:160px;padding:14px 20px;border-right:1px solid var(--border);text-align:center;"><div style="font-family:'Space Mono',monospace;font-size:20px;font-weight:700;color:var(--accent);">W1</div><div style="font-size:12px;color:#5a7a96;margin-top:6px;line-height:1.5;">Signals → spectrograms<br>FFT, Nyquist, STFT</div></div>
+        <div style="flex:1;min-width:160px;padding:14px 20px;border-right:1px solid var(--border);text-align:center;"><div style="font-family:'Space Mono',monospace;font-size:20px;font-weight:700;color:var(--accent3);">W2</div><div style="font-size:12px;color:#5a7a96;margin-top:6px;line-height:1.5;">Features → labels<br>MFCCs, SVM, CNN</div></div>
+        <div style="flex:1;min-width:160px;padding:14px 20px;border-right:1px solid var(--border);text-align:center;"><div style="font-family:'Space Mono',monospace;font-size:20px;font-weight:700;color:var(--accent4);">W3</div><div style="font-size:12px;color:#5a7a96;margin-top:6px;line-height:1.5;">Audio → embeddings<br>Wav2Vec2, HuBERT, AST</div></div>
+        <div style="flex:1;min-width:160px;padding:14px 20px;text-align:center;"><div style="font-family:'Space Mono',monospace;font-size:20px;font-weight:700;color:var(--accent5);">W4</div><div style="font-size:12px;color:var(--accent5);margin-top:6px;line-height:1.5;font-style:italic;">Audio → words<br>ASR, CTC, Whisper</div></div>
+      </div>
+    </div>
+    <div class="section-head"><div class="section-icon" style="background:rgba(245,158,11,0.10);">🏗️</div><h2>The ASR Pipeline</h2><span class="section-tag">End-to-end architecture</span></div>
+    <div class="arch-diagram">
+      <div class="arch-row"><div class="arch-label">Audio In</div><div class="arch-blocks"><div class="arch-block raw">Raw Waveform<br>16 kHz mono</div><div class="arch-arrow">→</div><div class="arch-block raw">Pre-emphasis<br>+ VAD trim</div><div class="arch-arrow">→</div><div class="arch-block feat">Log-Mel Spectrogram<br>80 mel bins · 25ms hop</div></div></div>
+      <div class="arch-row"><div class="arch-label">Encoder</div><div class="arch-blocks"><div class="arch-block tf">CNN Stem<br>(Whisper: 2 × Conv1D)</div><div class="arch-arrow">→</div><div class="arch-block tf">Transformer Encoder<br>Multi-head self-attention</div><div class="arch-arrow">→</div><div class="arch-block tf">Hidden States<br>shape: (T′, D)</div></div></div>
+      <div class="arch-row"><div class="arch-label">Decoder</div><div class="arch-blocks"><div class="arch-block asr">CTC Head<br>(frame → token, no LM)</div><div style="color:var(--muted);font-size:12px;padding:0 8px;">or</div><div class="arch-block model">Seq2Seq Decoder<br>(autoregressive tokens)</div><div class="arch-arrow">→</div><div class="arch-block asr">Beam Search<br>+ optional LM rescore</div></div></div>
+      <div class="arch-row"><div class="arch-label">Output</div><div class="arch-blocks"><div class="arch-block out">Transcript<br>"Hello, how are you?"</div><div class="arch-block out">Word-level<br>Timestamps</div><div class="arch-block out">Language ID<br>(multilingual models)</div><div class="arch-block out">WER / CER<br>evaluation</div></div></div>
+    </div>
+    <div class="section-head"><div class="section-icon" style="background:rgba(255,107,53,0.10);">🗺️</div><h2>Recommended Learning Path</h2><span class="section-tag">Start here</span></div>
+    <div class="path">
+      <div class="path-step"><div class="step-num">01</div><div class="step-body"><h3>What Makes ASR Different from Classification?</h3><p>In Weeks 2–3 you mapped audio → a single label. ASR maps audio → a <em>sequence of tokens</em> of variable length. This sequence-to-sequence problem requires a fundamentally different output head. Start by building intuition for why a softmax per frame doesn't work on its own.</p><div class="step-links"><a class="step-link" href="https://www.youtube.com/watch?v=3MjIkWxXigM" target="_blank">▶ Sequence Modelling Intuition — Andrej Karpathy</a><a class="step-link" href="https://distill.pub/2017/ctc/" target="_blank">📖 Distill — CTC Explained Visually</a></div></div></div>
+      <div class="path-step"><div class="step-num">02</div><div class="step-body"><h3>CTC — Connectionist Temporal Classification</h3><p>CTC is the mechanism that lets you train a neural network to produce character or token sequences from frame-level outputs, without needing a frame-to-character alignment. The key ideas: the blank token (∅), the collapsing rule, and the forward-backward dynamic programming algorithm for efficient gradient computation.</p><div class="step-links"><a class="step-link" href="https://distill.pub/2017/ctc/" target="_blank">📖 Distill — Sequence Modeling with CTC</a><a class="step-link" href="https://pytorch.org/docs/stable/generated/torch.nn.CTCLoss.html" target="_blank">🔧 PyTorch CTCLoss docs</a></div></div></div>
+      <div class="path-step"><div class="step-num">03</div><div class="step-body"><h3>Seq2Seq with Cross-Attention — The Whisper Architecture</h3><p>Whisper (OpenAI, 2022) uses a seq2seq encoder-decoder transformer where the decoder autoregressively generates tokens using cross-attention over encoder hidden states. This is more powerful than CTC for long-form audio but requires more memory. Understand how cross-attention differs from the self-attention you studied in Week 3.</p><div class="step-links"><a class="step-link" href="https://arxiv.org/abs/2212.04356" target="_blank">📄 Whisper Paper (arXiv)</a><a class="step-link" href="https://huggingface.co/docs/transformers/model_doc/whisper" target="_blank">📖 HF Whisper Docs</a></div></div></div>
+      <div class="path-step"><div class="step-num">04</div><div class="step-body"><h3>Evaluation — WER, CER, and Beam Search</h3><p>Word Error Rate (WER) is the standard ASR metric. Understand how it is computed via Levenshtein edit distance, why CER (character-level) is preferred for character-rich or morphologically complex languages, and how beam search width affects the quality-speed tradeoff during decoding.</p><div class="step-links"><a class="step-link" href="https://huggingface.co/spaces/evaluate-metric/wer" target="_blank">🔧 HF evaluate — WER metric</a><a class="step-link" href="https://jiwer.readthedocs.io/en/latest/" target="_blank">📖 jiwer library docs</a></div></div></div>
+      <div class="path-step"><div class="step-num">05</div><div class="step-body"><h3>Fine-tune Whisper on a Custom Domain</h3><p>Load <code>openai/whisper-small</code> from HuggingFace, prepare your dataset with the WhisperFeatureExtractor, fine-tune with the Seq2SeqTrainer, and evaluate on a held-out test set. A medical, legal, or accented speech domain with ~4 hours of data is enough to measurably improve over the base model. Target: WER below 15% on your domain.</p><div class="step-links"><a class="step-link" href="https://huggingface.co/blog/fine-tune-whisper" target="_blank">📖 HF Fine-tuning Whisper Guide</a><a class="step-link" href="https://huggingface.co/learn/audio-course/chapter5/fine-tuning" target="_blank">🎓 HF Audio Course Unit 5</a><a class="step-link" href="https://github.com/openai/whisper" target="_blank">🔧 Whisper Official Repo</a></div></div></div>
+      <div class="path-step"><div class="step-num">06</div><div class="step-body"><h3>Language Model Rescoring & Streaming ASR</h3><p>Adding an n-gram or neural LM at decode time reliably reduces WER by 10–30% relative on standard benchmarks. Understand shallow fusion vs deep fusion. Then explore streaming ASR with chunked attention — crucial for real-time applications like voice assistants and live transcription.</p><div class="step-links"><a class="step-link" href="https://arxiv.org/abs/2005.08100" target="_blank">📄 Conformer Paper — Streaming-friendly ASR encoder</a><a class="step-link" href="https://github.com/kensho-technologies/pyctcdecode" target="_blank">🔧 pyctcdecode — CTC + LM beam search</a><a class="step-link" href="https://huggingface.co/docs/transformers/main/en/model_doc/whisper#streaming" target="_blank">📖 Whisper streaming docs</a></div></div></div>
+    </div>
+    <div class="quote-block"><p>"We train a single model to predict the text of speech as well as the language spoken, the task being performed, and even the timestamps of each word. This joint training setup, at scale, produces a robust multitask system."</p><cite>— Alec Radford et al., Robust Speech Recognition via Large-Scale Weak Supervision (Whisper, OpenAI 2022)</cite></div>
+    <div style="margin-top:64px;padding:20px 28px;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.15);border-radius:8px;display:flex;align-items:center;gap:16px;">
+      <div style="font-family:'Space Mono',monospace;font-size:28px;font-weight:700;color:var(--accent5);line-height:1;">A</div>
+      <div><div style="font-family:'Times New Roman',Times,serif;font-weight:800;font-size:22px;color:#fff;">CTC — How the Blank Token Works</div><div style="font-size:13px;color:#5a7a96;margin-top:4px;">The collapsing rule that makes sequence labeling without alignment possible.</div></div>
+    </div>
+    <div class="section-head"><div class="section-icon" style="background:rgba(245,158,11,0.10);">🔠</div><h2>CTC Alignment — Visualised</h2><span class="section-tag">Understanding the collapsing rule</span></div>
+    <p style="font-size:14px;color:#6a90aa;line-height:1.7;margin-bottom:20px;max-width:760px;">Given the word <strong style="color:#fff">"HI"</strong>, a CTC model with 7 output frames might produce any of these valid paths — all collapse to the same transcript via the CTC rules: (1) merge repeated characters, (2) remove blanks (∅).</p>
+    <div style="margin-bottom:6px;font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;">Valid path — repeated then collapsed</div>
+    <div class="ctc-diagram">
+      <div class="ctc-cell char">H<div class="ctc-sub">t=1</div></div>
+      <div class="ctc-cell char">H<div class="ctc-sub">t=2</div></div>
+      <div class="ctc-cell blank">∅<div class="ctc-sub">t=3</div></div>
+      <div class="ctc-cell char">H<div class="ctc-sub">t=4</div></div>
+      <div class="ctc-cell blank">∅<div class="ctc-sub">t=5</div></div>
+      <div class="ctc-cell char">I<div class="ctc-sub">t=6</div></div>
+      <div class="ctc-cell char">I<div class="ctc-sub">t=7</div></div>
+    </div>
+    <div style="font-family:'Space Mono',monospace;font-size:11px;color:#6a90aa;margin:8px 0 24px;padding-left:4px;">→ Merge repeated: <span style="color:#fcd34d">H ∅ H ∅ I I</span> → Remove blanks: <span style="color:#4ade80">HI</span> ✓</div>
+    <div style="margin-bottom:16px;padding:20px 24px;background:var(--surface);border:1px solid var(--border);border-radius:8px;">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--accent5);margin-bottom:12px;letter-spacing:0.06em;">THE CTC RULES (applied in order)</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="font-size:13px;color:#6a90aa;line-height:1.6;"><strong style="color:#aac8e0;display:block;margin-bottom:4px;">Rule 1 — Merge repeated tokens</strong>HHHH → H · IIII → I · ∅∅∅ → ∅</div>
+        <div style="font-size:13px;color:#6a90aa;line-height:1.6;"><strong style="color:#aac8e0;display:block;margin-bottom:4px;">Rule 2 — Remove all blanks</strong>H ∅ I → HI · but H ∅∅ H → HH (blank separates repeated chars)</div>
+      </div>
+    </div>
+    <div style="margin-top:64px;padding:20px 28px;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.15);border-radius:8px;display:flex;align-items:center;gap:16px;">
+      <div style="font-family:'Space Mono',monospace;font-size:28px;font-weight:700;color:var(--accent5);line-height:1;">B</div>
+      <div><div style="font-family:'Times New Roman',Times,serif;font-weight:800;font-size:22px;color:#fff;">Decoder Architectures — CTC vs Seq2Seq vs RNN-T</div><div style="font-size:13px;color:#5a7a96;margin-top:4px;">Three ways to turn encoder hidden states into a word sequence.</div></div>
+    </div>
+    <div class="section-head"><div class="section-icon" style="background:rgba(245,158,11,0.10);">📊</div><h2>Decoder Type Comparison</h2><span class="section-tag">Trade-offs at a glance</span></div>
+    <div class="decoder-grid">
+      <div class="decoder-box"><div class="decoder-head" style="color:var(--accent5);">CTC — Connectionist Temporal Classification</div><div class="decoder-body"><strong>How it works</strong>A linear projection maps each encoder frame to a token probability. The blank symbol ∅ fills time steps where no output is emitted. Training maximises the summed probability of all valid CTC paths (dynamic programming).<div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);"><div style="display:flex;gap:24px;flex-wrap:wrap;"><div><div style="font-family:'Space Mono',monospace;font-size:9px;color:#4ade80;margin-bottom:4px;">PROS</div><div style="font-size:12px;color:#6a90aa;line-height:1.6;">Fast inference · No decoder · Streamable · Easy to add LM</div></div><div><div style="font-family:'Space Mono',monospace;font-size:9px;color:#f87171;margin-bottom:4px;">CONS</div><div style="font-size:12px;color:#6a90aa;line-height:1.6;">Independence assumption between output tokens · Weaker on long-form</div></div></div></div><div style="margin-top:12px;font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);">Used in: Wav2Vec2 (fine-tuned for ASR) · DeepSpeech · QuartzNet</div></div></div>
+      <div class="decoder-box"><div class="decoder-head" style="color:#60a5fa;">Seq2Seq — Encoder-Decoder with Cross-Attention</div><div class="decoder-body"><strong>How it works</strong>A separate transformer decoder generates output tokens one at a time. At each step, cross-attention attends to all encoder hidden states to decide what to emit next. The model conditions each token on all previously generated tokens.<div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);"><div style="display:flex;gap:24px;flex-wrap:wrap;"><div><div style="font-family:'Space Mono',monospace;font-size:9px;color:#4ade80;margin-bottom:4px;">PROS</div><div style="font-size:12px;color:#6a90aa;line-height:1.6;">Models token dependencies · Excellent on long audio · Multilingual natively</div></div><div><div style="font-family:'Space Mono',monospace;font-size:9px;color:#f87171;margin-bottom:4px;">CONS</div><div style="font-size:12px;color:#6a90aa;line-height:1.6;">Slow (autoregressive) · Cannot stream · Hallucination on silence</div></div></div></div><div style="margin-top:12px;font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);">Used in: Whisper · mSLAM · SpeechT5</div></div></div>
+      <div class="decoder-box"><div class="decoder-head" style="color:#c084fc;">RNN-T — Recurrent Neural Network Transducer</div><div class="decoder-body"><strong>How it works</strong>Combines a transcription network (encoder) and a prediction network (label history) via a joint network that emits tokens or blank at each encoder frame. Fully online: it can emit partial results as audio streams in.<div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);"><div style="display:flex;gap:24px;flex-wrap:wrap;"><div><div style="font-family:'Space Mono',monospace;font-size:9px;color:#4ade80;margin-bottom:4px;">PROS</div><div style="font-size:12px;color:#6a90aa;line-height:1.6;">Fully streamable · Models label history · On-device / low latency</div></div><div><div style="font-family:'Space Mono',monospace;font-size:9px;color:#f87171;margin-bottom:4px;">CONS</div><div style="font-size:12px;color:#6a90aa;line-height:1.6;">Complex training · More memory · Slower to fine-tune</div></div></div></div><div style="margin-top:12px;font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);">Used in: Google's Gboard · Otter (Apple on-device ASR)</div></div></div>
+      <div class="decoder-box"><div class="decoder-head" style="color:#fb923c;">Conformer — CNN + Transformer Encoder Hybrid</div><div class="decoder-body"><strong>How it works</strong>Not a decoder — a superior <em>encoder</em> architecture. The Conformer block interleaves multi-headed self-attention (global context) with a depthwise separable convolution module (local patterns). This beats pure transformers because audio has both short-range acoustic and long-range linguistic structure.<div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);"><div style="display:flex;gap:24px;flex-wrap:wrap;"><div><div style="font-family:'Space Mono',monospace;font-size:9px;color:#4ade80;margin-bottom:4px;">PROS</div><div style="font-size:12px;color:#6a90aa;line-height:1.6;">Best encoder for ASR · Efficient · Pairs with CTC or RNN-T decoders</div></div><div><div style="font-family:'Space Mono',monospace;font-size:9px;color:#f87171;margin-bottom:4px;">CONS</div><div style="font-size:12px;color:#6a90aa;line-height:1.6;">Encoder only — still needs a decoder (CTC/RNN-T/Seq2Seq)</div></div></div></div><div style="margin-top:12px;font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);">Used in: ESPnet · NeMo · Canary (NVIDIA)</div></div></div>
+    </div>
+    <div class="section-head"><div class="section-icon" style="background:rgba(245,158,11,0.10);">📊</div><h2>Model WER — LibriSpeech test-clean</h2><span class="section-tag">Lower is better</span></div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px 28px;margin-top:4px;">
+      <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:20px;letter-spacing:0.08em;">WER% ON LIBRISPEECH TEST-CLEAN (no external LM unless stated)</div>
+      <div class="wer-bar-row"><div class="wer-label">Whisper large-v3</div><div class="wer-bar-track"><div class="wer-bar-fill" style="width:4%;background:linear-gradient(90deg,#4ade80,#10b981);"></div></div><div class="wer-val">2.7%</div></div>
+      <div class="wer-bar-row"><div class="wer-label">Whisper medium</div><div class="wer-bar-track"><div class="wer-bar-fill" style="width:6%;background:linear-gradient(90deg,#4ade80,#10b981);"></div></div><div class="wer-val">4.2%</div></div>
+      <div class="wer-bar-row"><div class="wer-label">WavLM-large + CTC</div><div class="wer-bar-track"><div class="wer-bar-fill" style="width:6.5%;background:linear-gradient(90deg,#34d399,#10b981);"></div></div><div class="wer-val">4.6%</div></div>
+      <div class="wer-bar-row"><div class="wer-label">Wav2Vec2-large (960h)</div><div class="wer-bar-track"><div class="wer-bar-fill" style="width:8%;background:linear-gradient(90deg,#fcd34d,#f59e0b);"></div></div><div class="wer-val">5.9%</div></div>
+      <div class="wer-bar-row"><div class="wer-label">Whisper small</div><div class="wer-bar-track"><div class="wer-bar-fill" style="width:12%;background:linear-gradient(90deg,#fcd34d,#f59e0b);"></div></div><div class="wer-val">8.4%</div></div>
+      <div class="wer-bar-row"><div class="wer-label">Wav2Vec2-base (960h)</div><div class="wer-bar-track"><div class="wer-bar-fill" style="width:17%;background:linear-gradient(90deg,#fb923c,#ff6b35);"></div></div><div class="wer-val">12.1%</div></div>
+      <div class="wer-bar-row"><div class="wer-label">Whisper tiny</div><div class="wer-bar-track"><div class="wer-bar-fill" style="width:22%;background:linear-gradient(90deg,#f87171,#ef4444);"></div></div><div class="wer-val">15.7%</div></div>
+      <div style="margin-top:16px;font-size:12px;color:var(--muted);font-family:'Space Mono',monospace;">* Values approximate, from published papers and HuggingFace model cards. Your domain WER will differ.</div>
+    </div>
+    <div class="section-head"><div class="section-icon" style="background:rgba(255,107,53,0.12);">▶</div><h2>Must-Watch Videos</h2><span class="section-tag">Visual learning</span></div>
+    <div class="cards">
+      <a class="card" href="https://www.youtube.com/watch?v=q67z7PTGRi8" target="_blank"><div class="card-star">⭐ Essential</div><div class="card-tags"><span class="tag video">Video</span><span class="tag free">Online</span></div><div class="card-title">How Does Speech Recognition Work? — End-to-End ASR Explained</div><div class="card-source">Yannic Kilcher · YouTube · 35 min</div><div class="card-desc">A clear walkthrough of the entire end-to-end ASR pipeline — from the acoustic model to the language model to beam search. Explains why HMM-GMM systems were replaced by neural end-to-end models and what CTC brought to the table.</div><div class="card-link">Watch on YouTube →</div></a>
+      <a class="card" href="https://www.youtube.com/watch?v=iDulhoQ2pro" target="_blank"><div class="card-tags"><span class="tag video">Video</span><span class="tag free">Online</span></div><div class="card-title">Let's Build the GPT Tokenizer</div><div class="card-source">Andrej Karpathy · YouTube · 2h</div><div class="card-desc">Whisper uses BPE tokenization. Understanding how subword tokenizers are trained from scratch is essential context for why Whisper can handle multilingual text — and for debugging tokenizer-related WER issues.</div><div class="card-link">Watch on YouTube →</div></a>
+      <a class="card" href="https://www.youtube.com/watch?v=3MjIkWxXigM" target="_blank"><div class="card-tags"><span class="tag video">Video</span><span class="tag free">Online</span></div><div class="card-title">Sequence to Sequence Models — Encoder-Decoder Architecture</div><div class="card-source">Andrej Karpathy · Stanford CS224N · 50 min</div><div class="card-desc">The Stanford lecture that first popularized seq2seq thinking. The cross-attention mechanism explained here is exactly what Whisper's decoder uses to attend to encoder audio features.</div><div class="card-link">Watch on YouTube →</div></a>
+    </div>
+    <div class="section-head"><div class="section-icon" style="background:rgba(34,197,94,0.10);">🔧</div><h2>Implementation Code</h2><span class="section-tag">From CTC to Whisper fine-tuning</span></div>
+    <div class="cards two">
+      <div class="card"><div class="card-star">⭐ Start Here</div><div class="card-tags"><span class="tag tool">Code</span><span class="tag w4new">W4</span><span class="tag free">Online</span></div><div class="card-title">Wav2Vec2 Fine-tuned for ASR (CTC head)</div><div class="card-source">HuggingFace Transformers · PyTorch · CTC</div><div class="card-desc">Add a CTC head on top of the Wav2Vec2 encoder you studied in Week 3. This is the simplest path from audio to text — no decoder required.</div><div class="card-code"><span class="kw">from</span> transformers <span class="kw">import</span> (
+    Wav2Vec2ForCTC, Wav2Vec2Processor
+)
+<span class="kw">import</span> torch
 
-<!-- FOOTER -->
+processor = Wav2Vec2Processor.<span class="fn">from_pretrained</span>(
+    <span class="st">"facebook/wav2vec2-base-960h"</span>
+)
+model = Wav2Vec2ForCTC.<span class="fn">from_pretrained</span>(
+    <span class="st">"facebook/wav2vec2-base-960h"</span>
+)
+inputs = processor(
+    audio, sampling_rate=<span class="nu">16000</span>,
+    return_tensors=<span class="st">"pt"</span>, padding=<span class="kw">True</span>
+)
+<span class="kw">with</span> torch.<span class="fn">no_grad</span>():
+    logits = model(**inputs).logits
+pred_ids = torch.<span class="fn">argmax</span>(logits, dim=-<span class="nu">1</span>)
+transcript = processor.<span class="fn">batch_decode</span>(pred_ids)
+<span class="fn">print</span>(transcript)</div><a class="card-link" href="https://huggingface.co/facebook/wav2vec2-base-960h" target="_blank">Model Card →</a></div>
+      <div class="card"><div class="card-tags"><span class="tag tool">Code</span><span class="tag w4new">W4</span><span class="tag free">Online</span></div><div class="card-title">Whisper Inference — Out-of-the-Box Transcription</div><div class="card-source">openai-whisper · pip install openai-whisper</div><div class="card-desc">Run Whisper locally in three lines. Use this to baseline your domain before fine-tuning. Always run the base model first — you might not need to fine-tune.</div><div class="card-code"><span class="kw">import</span> whisper
+
+model = whisper.<span class="fn">load_model</span>(<span class="st">"small"</span>)
+result = model.<span class="fn">transcribe</span>(<span class="st">"my_audio.wav"</span>)
+<span class="fn">print</span>(result[<span class="st">"text"</span>])
+
+<span class="cm"># With word-level timestamps</span>
+result = model.<span class="fn">transcribe</span>(
+    <span class="st">"my_audio.wav"</span>,
+    word_timestamps=<span class="kw">True</span>,
+    language=<span class="st">"en"</span>,
+    task=<span class="st">"transcribe"</span>
+)
+<span class="kw">for</span> seg <span class="kw">in</span> result[<span class="st">"segments"</span>]:
+    <span class="fn">print</span>(<span class="fn">f</span><span class="st">"{seg['start']:.2f}s – {seg['end']:.2f}s: {seg['text']}"</span>)</div><a class="card-link" href="https://github.com/openai/whisper" target="_blank">Whisper GitHub →</a></div>
+      <div class="card"><div class="card-tags"><span class="tag tool">Code</span><span class="tag w4new">W4</span><span class="tag free">Online</span></div><div class="card-title">Fine-tune Whisper-small on Custom Data</div><div class="card-source">HuggingFace Transformers · Seq2SeqTrainer</div><div class="card-desc">The HuggingFace fine-tuning recipe. This example assumes you have a dataset with <code>audio</code> and <code>sentence</code> columns — the standard ASR format used by Common Voice.</div><div class="card-code"><span class="kw">from</span> transformers <span class="kw">import</span> (
+    WhisperForConditionalGeneration,
+    WhisperProcessor, Seq2SeqTrainer,
+    Seq2SeqTrainingArguments
+)
+
+model = WhisperForConditionalGeneration.<span class="fn">from_pretrained</span>(
+    <span class="st">"openai/whisper-small"</span>
+)
+processor = WhisperProcessor.<span class="fn">from_pretrained</span>(
+    <span class="st">"openai/whisper-small"</span>, language=<span class="st">"English"</span>
+)
+model.freeze_encoder()
+
+training_args = <span class="fn">Seq2SeqTrainingArguments</span>(
+    output_dir=<span class="st">"./whisper-finetuned"</span>,
+    per_device_train_batch_size=<span class="nu">16</span>,
+    learning_rate=<span class="nu">1e-5</span>,
+    warmup_steps=<span class="nu">500</span>,
+    max_steps=<span class="nu">4000</span>,
+    predict_with_generate=<span class="kw">True</span>,
+    fp16=<span class="kw">True</span>,
+)
+trainer = <span class="fn">Seq2SeqTrainer</span>(
+    model=model, args=training_args,
+    train_dataset=train_ds,
+    eval_dataset=eval_ds,
+)</div><a class="card-link" href="https://huggingface.co/blog/fine-tune-whisper" target="_blank">Full Fine-tuning Guide →</a></div>
+      <div class="card"><div class="card-tags"><span class="tag tool">Code</span><span class="tag w4new">W4</span><span class="tag free">Online</span></div><div class="card-title">WER & CER Evaluation with jiwer</div><div class="card-source">jiwer · pip install jiwer</div><div class="card-desc">Compute WER, CER, and a full error breakdown (substitutions, deletions, insertions) in seconds. Always normalise case and punctuation before evaluating.</div><div class="card-code"><span class="kw">from</span> jiwer <span class="kw">import</span> wer, cer, process_words
+<span class="kw">import</span> jiwer
+
+reference  = [<span class="st">"the cat sat on the mat"</span>]
+hypothesis = [<span class="st">"the cat set on a mat"</span>]
+
+<span class="fn">print</span>(<span class="fn">f</span><span class="st">"WER: {wer(reference, hypothesis):.3f}"</span>)
+<span class="fn">print</span>(<span class="fn">f</span><span class="st">"CER: {cer(reference, hypothesis):.3f}"</span>)
+
+out = <span class="fn">process_words</span>(reference, hypothesis)
+<span class="fn">print</span>(<span class="fn">f</span><span class="st">"Substitutions: {out.substitutions}"</span>)
+<span class="fn">print</span>(<span class="fn">f</span><span class="st">"Deletions:     {out.deletions}"</span>)
+<span class="fn">print</span>(<span class="fn">f</span><span class="st">"Insertions:    {out.insertions}"</span>)
+
+transform = jiwer.<span class="fn">Compose</span>([
+    jiwer.<span class="fn">ToLowerCase</span>(),
+    jiwer.<span class="fn">RemovePunctuation</span>(),
+    jiwer.<span class="fn">Strip</span>(),
+])
+wer_score = <span class="fn">wer</span>(ref, hyp,
+    reference_transform=transform,
+    hypothesis_transform=transform
+)</div><a class="card-link" href="https://jiwer.readthedocs.io/en/latest/" target="_blank">jiwer Docs →</a></div>
+      <div class="card"><div class="card-tags"><span class="tag tool">Code</span><span class="tag w4new">W4</span><span class="tag free">Online</span></div><div class="card-title">CTC Beam Search with LM Rescore (pyctcdecode)</div><div class="card-source">pyctcdecode · pip install pyctcdecode</div><div class="card-desc">Add a KenLM n-gram language model to your CTC decoder. Typically reduces WER by 15–30% relative over greedy decoding.</div><div class="card-code"><span class="kw">from</span> pyctcdecode <span class="kw">import</span> build_ctcdecoder
+<span class="kw">from</span> transformers <span class="kw">import</span> Wav2Vec2Processor
+
+processor = Wav2Vec2Processor.<span class="fn">from_pretrained</span>(
+    <span class="st">"facebook/wav2vec2-base-960h"</span>
+)
+vocab = <span class="fn">list</span>(processor.tokenizer.<span class="fn">get_vocab</span>().<span class="fn">keys</span>())
+
+decoder = <span class="fn">build_ctcdecoder</span>(
+    labels=vocab,
+    kenlm_model=<span class="st">"4gram_big.arpa"</span>,
+    alpha=<span class="nu">0.5</span>,
+    beta=<span class="nu">1.5</span>,
+)
+logits_np = logits[<span class="nu">0</span>].<span class="fn">cpu</span>().<span class="fn">numpy</span>()
+transcript = decoder.<span class="fn">decode</span>(logits_np, beam_width=<span class="nu">100</span>)
+<span class="fn">print</span>(transcript)</div><a class="card-link" href="https://github.com/kensho-technologies/pyctcdecode" target="_blank">pyctcdecode GitHub →</a></div>
+      <div class="card"><div class="card-tags"><span class="tag tool">Code</span><span class="tag w4new">W4</span><span class="tag free">Online</span></div><div class="card-title">Custom Data Collator for Whisper Fine-tuning</div><div class="card-source">HuggingFace · DataCollatorSpeechSeq2SeqWithPadding</div><div class="card-desc">Handles variable-length audio batching — pads inputs and labels, replaces padding token IDs with -100 so they're ignored by the loss.</div><div class="card-code"><span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass
+<span class="kw">import</span> torch
+
+@dataclass
+<span class="kw">class</span> <span class="fn">DataCollatorSpeechSeq2Seq</span>:
+    processor: <span class="am">any</span>
+
+    <span class="kw">def</span> <span class="fn">__call__</span>(self, features):
+        inputs = [{<span class="st">"input_features"</span>: f[<span class="st">"input_features"</span>]} <span class="kw">for</span> f <span class="kw">in</span> features]
+        batch = self.processor.feature_extractor.<span class="fn">pad</span>(inputs, return_tensors=<span class="st">"pt"</span>)
+        labels = [{<span class="st">"input_ids"</span>: f[<span class="st">"labels"</span>]} <span class="kw">for</span> f <span class="kw">in</span> features]
+        labels_batch = self.processor.tokenizer.<span class="fn">pad</span>(labels, return_tensors=<span class="st">"pt"</span>)
+        lbl = labels_batch[<span class="st">"input_ids"</span>].<span class="fn">masked_fill</span>(
+            labels_batch.<span class="fn">attention_mask</span>.<span class="fn">ne</span>(<span class="nu">1</span>), -<span class="nu">100</span>
+        )
+        <span class="kw">if</span> (lbl[:, <span class="nu">0</span>] == self.processor.tokenizer.bos_token_id).<span class="fn">all</span>():
+            lbl = lbl[:, <span class="nu">1</span>:]
+        batch[<span class="st">"labels"</span>] = lbl
+        <span class="kw">return</span> batch</div><a class="card-link" href="https://huggingface.co/blog/fine-tune-whisper" target="_blank">Full Recipe →</a></div>
+    </div>
+    <div class="section-head"><div class="section-icon" style="background:rgba(245,158,11,0.10);">📂</div><h2>Datasets for ASR</h2><span class="section-tag">Your training data</span></div>
+    <div class="table-wrap">
+      <table class="feature-table">
+        <thead><tr><th>Dataset</th><th>Size</th><th>Language</th><th>Best For</th><th>Access</th></tr></thead>
+        <tbody>
+          <tr><td>LibriSpeech</td><td style="color:#fb923c;">960h</td><td>English</td><td>Standard ASR benchmark. Read speech from audiobooks. Clean, easy — use as a sanity check baseline.</td><td><a href="https://www.openslr.org/12" target="_blank" style="color:var(--accent5);font-size:11px;">openslr.org/12</a></td></tr>
+          <tr><td>Mozilla Common Voice 17</td><td style="color:#fb923c;">~20k h</td><td>100+ languages</td><td>Multilingual fine-tuning. Diverse accents and demographic variation. Best public dataset for low-resource language ASR.</td><td><a href="https://commonvoice.mozilla.org/en/datasets" target="_blank" style="color:var(--accent5);font-size:11px;">commonvoice.mozilla.org</a></td></tr>
+          <tr><td>TED-LIUM 3</td><td style="color:#fb923c;">452h</td><td>English</td><td>Spontaneous speech, diverse speakers. More realistic than LibriSpeech for conversational ASR.</td><td><a href="https://www.openslr.org/51/" target="_blank" style="color:var(--accent5);font-size:11px;">openslr.org/51</a></td></tr>
+          <tr><td>GigaSpeech</td><td style="color:#fb923c;">10k h</td><td>English</td><td>Automatically transcribed audiobooks, podcasts, and YouTube. Noisy but large. Good for noise-robust fine-tuning.</td><td><a href="https://github.com/SpeechColab/GigaSpeech" target="_blank" style="color:var(--accent5);font-size:11px;">github.com/SpeechColab</a></td></tr>
+          <tr><td>Indic Language TTS/ASR</td><td style="color:#fb923c;">varies</td><td>Hindi, Tamil, Kannada, etc.</td><td>Relevant for IIT Bombay context. AI4Bharat models (IndicWav2Vec, IndicWhisper) pre-trained on these.</td><td><a href="https://bhashini.gov.in/" target="_blank" style="color:var(--accent5);font-size:11px;">bhashini.gov.in</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="section-head"><div class="section-icon" style="background:rgba(168,85,247,0.12);">📄</div><h2>Key Papers to Read</h2><span class="section-tag">The foundational literature</span></div>
+    <div class="cards two">
+      <a class="card" href="https://arxiv.org/abs/2212.04356" target="_blank"><div class="card-star">⭐ Must Read</div><div class="card-tags"><span class="tag paper">Paper</span><span class="tag free">Online</span></div><div class="card-title">Robust Speech Recognition via Large-Scale Weak Supervision (Whisper)</div><div class="card-source">Radford et al. · OpenAI · ICML 2023</div><div class="card-desc">The paper behind Whisper. Focus on Section 2 (approach), Section 3 (multitask training format), and Table 1 (how scale drives robustness). The training format section directly impacts how you prepare your fine-tuning data.</div><div class="card-link">Read on arXiv →</div></a>
+      <a class="card" href="https://www.cs.toronto.edu/~graves/icml_2006.pdf" target="_blank"><div class="card-star">⭐ Foundational</div><div class="card-tags"><span class="tag paper">Paper</span><span class="tag free">Online</span></div><div class="card-title">Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks</div><div class="card-source">Graves et al. · University of Toronto · ICML 2006</div><div class="card-desc">The original CTC paper. Remarkably readable — read Sections 1–3 for the blank token motivation and the collapsing function. The forward-backward algorithm explains why CTC training is efficient despite the exponential number of valid paths.</div><div class="card-link">Read Original PDF →</div></a>
+      <a class="card" href="https://arxiv.org/abs/2005.08100" target="_blank"><div class="card-tags"><span class="tag paper">Paper</span><span class="tag free">Online</span></div><div class="card-title">Conformer: Convolution-augmented Transformer for Speech Recognition</div><div class="card-source">Gulati et al. · Google · Interspeech 2020</div><div class="card-desc">The architecture that replaced pure transformers as the ASR encoder of choice. The Conformer block interleaves feed-forward, multi-head self-attention, and depthwise convolution modules.</div><div class="card-link">Read on arXiv →</div></a>
+      <a class="card" href="https://arxiv.org/abs/2110.11309" target="_blank"><div class="card-tags"><span class="tag paper">Paper</span><span class="tag free">Online</span></div><div class="card-title">UniSpeech-SAT: Universal Speech Representation Learning with Speaker Aware Pre-Training</div><div class="card-source">Chen et al. · Microsoft · ICASSP 2022</div><div class="card-desc">Extends WavLM-style pre-training with speaker-aware objectives. Relevant context for understanding how pre-training objectives can be specialised for ASR vs SER vs speaker verification.</div><div class="card-link">Read on arXiv →</div></a>
+    </div>
+    <div class="section-head"><div class="section-icon" style="background:rgba(245,158,11,0.10);">🎓</div><h2>Structured Courses</h2><span class="section-tag">For going deeper</span></div>
+    <div class="cards two">
+      <a class="card" href="https://huggingface.co/learn/audio-course/chapter5/fine-tuning" target="_blank"><div class="card-star">⭐ Primary</div><div class="card-tags"><span class="tag course">Course</span><span class="tag free">Online</span></div><div class="card-title">HuggingFace Audio Course — Unit 5: ASR</div><div class="card-source">Hugging Face · Unit 5 of 8</div><div class="card-desc">The most practically relevant guide for Week 4. Covers pre-trained ASR models, fine-tuning Whisper with the Trainer API, WER evaluation, and a worked example on a low-resource language.</div><div class="card-link">Start Unit 5 →</div></a>
+      <a class="card" href="https://github.com/NVIDIA/NeMo" target="_blank"><div class="card-tags"><span class="tag tool">Library</span><span class="tag free">Online</span></div><div class="card-title">NVIDIA NeMo — ASR Toolkit</div><div class="card-source">NVIDIA · PyTorch · pip install nemo_toolkit</div><div class="card-desc">The production-grade ASR framework used in research and industry. Includes Conformer-CTC, Conformer-Transducer, and Canary (seq2seq) models.</div><div class="card-link">View NeMo GitHub →</div></a>
+      <a class="card" href="https://github.com/kaldi-asr/kaldi" target="_blank"><div class="card-tags"><span class="tag tool">Library</span><span class="tag free">Online</span></div><div class="card-title">Kaldi — Classical ASR Toolkit (for historical context)</div><div class="card-source">Kaldi · C++ / Shell</div><div class="card-desc">You won't use Kaldi for new work, but reading its recipes illuminates what end-to-end learning replaced: GMM-HMM acoustic models, pronunciation lexicons, Viterbi decoding, and WFST decoders.</div><div class="card-link">View Kaldi GitHub →</div></a>
+      <a class="card" href="https://espnet.github.io/espnet/" target="_blank"><div class="card-tags"><span class="tag tool">Library</span><span class="tag free">Online</span></div><div class="card-title">ESPnet — End-to-End Speech Processing Toolkit</div><div class="card-source">ESPnet · PyTorch · Academic</div><div class="card-desc">The most flexible research ASR toolkit. Supports CTC, RNN-T, seq2seq, and hybrid decoders. If you want to experiment with RNN-T or a Conformer encoder not in HuggingFace, ESPnet's recipe system is the fastest path.</div><div class="card-link">View ESPnet Docs →</div></a>
+    </div>
+    <div class="divider" style="margin-top:64px;"></div>
+    <div style="margin-top:40px;padding:32px;background:var(--surface);border:1px solid var(--border);border-radius:8px;">
+      <div style="font-family:'Times New Roman',Times,serif;font-weight:800;font-size:20px;color:#fff;margin-bottom:16px;">📋 Week 4 Goals — Checklist</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent5);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Read Distill.pub CTC article end-to-end — draw the trellis diagram yourself</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent5);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Run Whisper-small out-of-the-box on a recording from your own domain</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent5);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Compute baseline WER with jiwer — set your target before fine-tuning</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent5);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Fine-tune Wav2Vec2-base-960h with a CTC head on a small custom split (2–5h)</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent5);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Fine-tune Whisper-small on Common Voice Hindi or a domain you care about</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#6a90aa;line-height:1.5;"><span style="color:var(--accent5);font-family:'Space Mono',monospace;margin-top:1px">☐</span>Add LM rescoring with pyctcdecode — measure WER delta vs greedy CTC</div>
+      </div>
+    </div>
+    <div style="margin-top:28px;padding:24px 32px;background:linear-gradient(135deg,rgba(245,158,11,0.06),rgba(168,85,247,0.04));border:1px solid rgba(245,158,11,0.2);border-radius:8px;display:flex;align-items:center;gap:24px;">
+      <div style="flex:1;"><div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">Coming Up — Week 5</div><div style="font-family:'Times New Roman',Times,serif;font-weight:800;font-size:20px;color:#fff;margin-bottom:6px;">Text-to-Speech &amp; Voice Synthesis</div><div style="font-size:13px;color:#6a90aa;line-height:1.6;">Reverse the pipeline. Generate intelligible, natural-sounding speech from text — tacotron, VITS, and neural vocoders. Build a voice cloning demo with YourTTS in &lt;50 lines.</div></div>
+      <div style="font-family:'Space Mono',monospace;font-size:40px;color:rgba(245,158,11,0.25);flex-shrink:0;">05 →</div>
+    </div>
+  </main>
+</div>
+
+<!-- ======================== FOOTER ======================== -->
 <footer>
   <div class="foot-left">AudialMind · Signal Processing &amp; Audio Classification</div>
-  <div class="foot-right" id="footer-pill">
+  <div id="footer-pill">
     <span class="progress-pill w1-pill" id="footer-w1-pill">Week 1 / Foundations</span>
     <span class="progress-pill w2-pill" id="footer-w2-pill" style="display:none;">Week 2 / ML Foundations</span>
     <span class="progress-pill w3-pill" id="footer-w3-pill" style="display:none;">Week 3 / Transformers</span>
+    <span class="progress-pill w4-pill" id="footer-w4-pill" style="display:none;">Week 4 / ASR</span>
   </div>
 </footer>
 
@@ -1163,9 +1179,9 @@ best_layer = <span class="fn">max</span>(results, key=results.<span class="fn">g
     document.getElementById('panel-' + weekId).classList.add('active');
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    document.getElementById('footer-w1-pill').style.display = weekId === 'w1' ? '' : 'none';
-    document.getElementById('footer-w2-pill').style.display = weekId === 'w2' ? '' : 'none';
-    document.getElementById('footer-w3-pill').style.display = weekId === 'w3' ? '' : 'none';
+    ['w1','w2','w3','w4'].forEach(w => {
+      document.getElementById('footer-' + w + '-pill').style.display = weekId === w ? '' : 'none';
+    });
     document.querySelector('.tab-nav').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
   function switchTabById(weekId) {
